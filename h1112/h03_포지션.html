@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>탭 메뉴</title>
+    <style>
+        /* 모든 요소의 기본 여백 제거 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* body 스타일 */
+        body {
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; /* 한글 폰트 */
+            padding: 50px;
+            background-color: #fff;
+        }
+
+        /* 전체 컨테이너 */
+        .tab-wrapper {
+            max-width: 800px;           /* 최대 너비 */
+            margin: 0 auto;             /* 가운데 정렬 */
+        }
+
+        /* 탭 메뉴 컨테이너 */
+        .tab-container {
+            display: flex;              /* flexbox 사용 */
+            justify-content: flex-start; /* 왼쪽 정렬 */
+            align-items: stretch;       /* 높이 맞춤 */
+            gap: 0;                     /* 탭 사이 간격 없음 */
+            margin-bottom: 20px;        /* 아래 여백 */
+        }
+
+        /* 각 탭 기본 스타일 */
+        .tab-item {
+            min-width: 80px;            /* 최소 너비 */
+            padding: 10px 16px;         /* 내부 여백 */
+            text-align: center;         /* 텍스트 가운데 정렬 */
+            font-size: 13px;            /* 글자 크기 */
+            color: #666;                /* 글자 색상 (회색) */
+            background-color: transparent; /* 투명 배경 */
+            border: 1px solid #e0e0e0;  /* 연한 회색 테두리 */
+            border-right: none;         /* 오른쪽 테두리 제거 */
+            cursor: pointer;            /* 마우스 커서 손가락 모양 */
+            transition: all 0.2s ease;  /* 부드러운 전환 효과 */
+            white-space: nowrap;        /* 텍스트 줄바꿈 방지 */
+            line-height: 1.3;           /* 줄 간격 */
+        }
+
+        /* 마지막 탭에 오른쪽 테두리 추가 */
+        .tab-item:last-child {
+            border-right: 1px solid #e0e0e0;
+        }
+
+        /* 첫 번째 탭 (활성화된 탭 스타일) */
+        .tab-item.active {
+            color: #6366F1;             /* 보라/남색 글자 */
+            background-color: #F5F5FF;  /* 연보라색 배경 */
+            border: 2px solid #6366F1;  /* 보라색 테두리 (두껍게) */
+            border-radius: 8px;         /* 모서리 둥글게 */
+            font-weight: 600;           /* 글자 굵게 */
+            position: relative;         /* 위치 조정을 위해 */
+            z-index: 10;                /* 다른 탭 위에 표시 */
+            margin-right: -1px;         /* 테두리 겹침 방지 */
+        }
+
+        /* 활성 탭이 아닌 탭에 마우스 올렸을 때 */
+        .tab-item:hover:not(.active) {
+            background-color: #f9f9f9;  /* 연한 회색 배경 */
+            color: #333;                /* 글자 조금 더 진하게 */
+        }
+
+        /* 하단 설명 영역 */
+        .description-container {
+            display: flex;              /* flexbox 사용 */
+            justify-content: flex-start; /* 왼쪽 정렬 */
+            gap: 80px;                  /* 설명 사이 간격 */
+            padding-left: 20px;         /* 왼쪽 여백 */
+        }
+
+        /* 각 설명 항목 */
+        .description-item {
+            display: flex;              /* flexbox 사용 */
+            flex-direction: column;     /* 세로 방향 배치 */
+            gap: 4px;                   /* 제목과 부제목 사이 간격 */
+        }
+
+        /* 설명 제목 */
+        .description-title {
+            font-size: 12px;            /* 글자 크기 */
+            color: #333;                /* 진한 회색 */
+            font-weight: 500;           /* 중간 굵기 */
+            text-align: center;         /* 가운데 정렬 */
+        }
+
+        /* 설명 부제목 */
+        .description-subtitle {
+            font-size: 11px;            /* 작은 글자 */
+            color: #999;                /* 연한 회색 */
+            text-align: center;         /* 가운데 정렬 */
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 전체 래퍼 -->
+    <div class="tab-wrapper">
+        
+        <!-- 탭 메뉴 컨테이너 -->
+        <div class="tab-container">
+            <!-- 활성화된 탭 (항공권) -->
+            <div class="tab-item active">항공권</div>
+            
+            <!-- 나머지 탭들 -->
+            <div class="tab-item">숙소</div>
+            <div class="tab-item">투어</div>
+            <div class="tab-item">호텔/홈&빌라<br>특가</div>
+            <div class="tab-item">빈/스타일<br>특가</div>
+            <div class="tab-item">마일</div>
+        </div>
+
+        <!-- 하단 설명 영역 -->
+        <div class="description-container">
+            <!-- 첫 번째 설명 -->
+            <div class="description-item">
+                <div class="description-title">실시간</div>
+                <div class="description-subtitle">예약운영시간</div>
+            </div>
+            
+            <!-- 두 번째 설명 -->
+            <div class="description-item">
+                <div class="description-title">자유출발</div>
+            </div>
+            
+            <!-- 세 번째 설명 -->
+            <div class="description-item">
+                <div class="description-title">신상/시즌 중인상품</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 탭 클릭 기능 추가 (선택사항) -->
+    <script>
+        // 모든 탭 선택
+        const tabItems = document.querySelectorAll('.tab-item');
+        
+        // 각 탭에 클릭 이벤트 추가
+        tabItems.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // 모든 탭의 active 클래스 제거
+                tabItems.forEach(t => t.classList.remove('active'));
+                
+                // 클릭한 탭에 active 클래스 추가
+                this.classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>

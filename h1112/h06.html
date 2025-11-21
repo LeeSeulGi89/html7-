@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <style>
+        *{padding: 0; margin: 0;}
+        div{width: 200px; height: 200px; border:1px solid black;}
+        .main{width: 1000px; height: 200px;
+            border: 1px solid black;
+            background: yellow;
+            display: flex;
+        }
+        div{width: 200px; height: 200px; border: 1px solid black;
+            background: pink;
+        }
+        .c02:hover{display: none; background: green;}
+        .co2:hover{visibility: hidden;}
+        .sect{
+            width: 80%; height: 700px; border: solid black;
+            background: #eee;
+            /**column-count: 3;**/                  /*다단 개수*/
+            column-width: 300px;                        
+            column-rule: 2px dotted black;        /*다단 사이 줄 표시*/
+            text-align: justify;                    /*양쪽 맞춤*/
+
+        }
+        table,td{border: 1px solid black;
+            border-collapse: collapse; text-align: center;
+            vertical-align: top;
+        }
+        td{width: 100px; height: 40px;}
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+
+        </tr>
+    </table>
+    <div class="main">
+    <div class="c01"></div>
+    <div class="c02"></div>
+    <div class="c03"></div>
+    </div>
+    <hr>
+    <div class="sect">
+    논에서 벼농사와 태양광 발전을 동시에 했더니 매출이 8배 이상 늘어났다. 전남 영암군은 지난해 농업기술센터 직영 논 1000㎡에 45kW 규모의 영농형 태양광 설비를 설치하고, 올해 6월부터 벼 재배와 태양광발전을 병행하는 실증 재배를 했다. 12일 ‘영농형 태양관 실증재배’의 첫해 결과가 나온 것이다. 
+
+    영농형 태양광은 농지에서 작물을 재배하면서 그 위에서 태양광발전으로 전기를 생산하는 방식이다. 세계적으로 실증 재배가 증가했고 우리나라도 법적 제도 마련을 앞두고 있다. 
+
+    실증 결과 태양광 설비로 일조량이 줄면서 벼 수확량은 21% 감소했다. 일반 논에서는 668㎏이 수확된 반면 실증 논에서는 525㎏만 거뒀다. 올해 농협 수매가 기준으로 각각 117만원과92만원으로 25만원의 차이가 발생했다. 하지만 같은 기간 생산된 전기량은 4만8499kWh로, 올해 상반기 평균 전력 거래 가격을 적용하면 약 897만원의 수익이 예상됐다. 결과적으로 실증 논의 연간 총매출(벼+전기)은 989만원으로, 벼농사만 지은 경우의 8.4배에 달했다.
+
+    영암군은 이번 결과가 태양광 설비 설치 비용을 포함하지 않은 것이라는 점을 밝혔다. 나아가 설비 투자비까지 고려하면 설치 후 7년이 지나야 농가 소득에 의미 있는 변화를 가져올 것으로 분석했다. 또한 초기 투자 비용 지원, 인허가 기간 단축, 전기 인프라 확대 등 정부의 정책 지원이 필수적이라고 강조했다.
+
+    군은 앞으로 2년간 실증 재배를 계속하며 벼 수확량 안정성 확보와 재배 기술 개선 등을 종합 검증할 계획이다.
+    이정 영암군농업기술센터 소장은 “영농형 태양광 첫 실증 재배로 성과와 과제를 동시에 얻었다”며 “군민에게 합리적 모델을 제시해 농가소득 증대에 기여하겠다”고 말했다.
+    </div>
+</body>
+</html>

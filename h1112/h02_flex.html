@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex</title>
+    <style>
+        *{padding: 0; margin: 0; list-style: none;}
+        #main{width: 700px; height: 200px; border:1px solid black;
+            margin: 100px;
+            background: #eee;
+            display: flex;
+            justify-content: space-between;  /**가로정렬*/
+            align-items: center;
+            flex-wrap: wrap;
+            
+            /*
+            flex-wrap: wrap;
+            align-content: space-around;
+            flex-start:세로정렬에서 위쪽맞춤, flex-end:아래맞춤
+            space-berween:위쪽과 아래쪽 맞춤.
+            space-around: 모든 공백제공 , 위쪽, 아래쪽 공백
+            
+            
+            */
+
+            /*
+            center:가운데정렬, stretch:늘려서 채워줌, height가 없어야 함.
+            
+            */
+
+
+
+
+            /*
+            align-items: 세로정렬
+            flex-start:첫지점으로 배치, flex-end:끝지점으로 배치
+            cenret:가운데 배치
+            space-around: 모든항목 간격배치, space-between: 끝점으로 간격배치
+            */
+            /*flex-wrap: wrap;  */                   /*wrap:여러줄표시, no-wrap: 1줄표시, wrap-reverse:위쪽배치*/
+            /*flex-direction: row;*/             /* row 가로기준정렬 */
+        }
+        #main > div{width: 180px; height: 80px; border: 1px solid red;}
+        
+        /*order:순서배치바꾸기*/
+
+        /*.c01{order: 1;}
+        .c02{order: 4;}
+        .c03{order: 2;}
+        .c04{order: 3;} 
+        */
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div class="c01">1</div>
+        <div class="c02">2</div>
+        <div class="c03">3</div>
+        <div class="c04">4</div>
+    </div>
+</body>
+</html>
