@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <style>
+        #txt{border: 1px solid black; width: 300px; height: 200px;
+            display: none;
+        }
+        
+    </style>
+    <script>
+        $(function(){
+            $("#aBtn").click(function(){
+                //alert("애니메이션 시작")
+                console.log($("#aBtn").text());
+                console.log($(this).text());
+                let aBtn = $(this);
+                $("#txt").stop().fadeToggle(500,function(){
+                    if(aBtn.text() == "펼침"){
+                        aBtn.text("애니메이션 사라짐");
+                    }else{
+                        aBtn.text("펼침");
+                    }
+                });
+            });
+            
+            /*
+            $("#txt").slideDown(500, function(){
+                console.log("애니메이션 펼침 완료");
+            });
+            
+            $("#aBtn_no").click(function(){
+                $("#txt").stop().slideUp(500, function(){
+                    console.log("애니메이션 사라짐 완료");
+                });
+            });
+            */
+            
+        }); //jquery end
+        
+        
+    </script>
+</head>
+<body>
+    <button type="button" id="aBtn">펼침</button>
+    <br>
+    <div id="txt">
+        이경실은 19일 자신의 페이스북에 "소비자 입장에서는 식품을 고를 때 무엇을 보느냐만 중요했지, 양질의 달걀을 만든다는 자부심에 소비자의 마음까지 헤아리지 못 한 점 진심으로 사과드린다"고 밝혔다.
+    </div>
+</body>
+</html>

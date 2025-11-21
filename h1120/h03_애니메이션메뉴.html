@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>포레스트 리솜</title>
+    <style>
+        *{padding:0; margin:0;}
+        body{height: 3000px; background: pink;}
+        ol,ul{list-style: none;}
+        a{text-decoration: none; color: inherit;}
+        header{width:100%; height:121px;
+         border-bottom: 1px solid #f0f0f0;
+         background: white;
+         
+        }
+        #header_top{
+            width: 100%; height: 121px;
+            background: white;
+            border-bottom: 1px solid #f0f0f0;
+            display: none;
+            position: fixed; top:0; left:0;
+            z-index: 100;
+        }
+        #slide_menu_top{
+            display: none;
+            position: fixed; top:121px; left:0;
+        }
+        .menu{width:1290px; height:121px; margin:0 auto;
+            display: flex;
+            }
+        .logo{width:132px; height:121px; 
+            display: flex; align-items: center;
+        }
+        .logo img{width:132px; height:45px;}
+        nav{width: 1158px; height:121px;  }
+        .t_menu{height: 61px;  }
+        .t_menu ul{ height:61px; display: flex; justify-content: flex-end;
+          align-items: center; font-size: 12px; color:#8a8d8f;
+          font-weight: 400;
+        }
+        .t_menu ul li:after{
+            content:'|'; 
+            font-size: 10px; display: inline-block; color:#d3d3d3;
+            margin:0 13px;
+         }
+        .t_menu ul li:last-child:after{
+            content:''; 
+            margin:0 0 0 13px;
+        } 
+        .m_menu{height: 60px;  } 
+        .m_menu ul{ height:60px; display: flex; justify-content: flex-end;
+          align-items: center; font-size: 19px; color:#1d1d1d;
+          font-weight: 500; letter-spacing: -0.5px;
+        } 
+        .m_menu li{width:174px; height:60px; text-align: right;
+         line-height: 40px;
+        } 
+        .m_menu li:nth-child(2){width:130px;}
+        .m_menu li:nth-child(3){width:130px;}
+        .m_menu li a{display: inline-block; height:57px;}
+        .m_menu li a:hover{
+            border-bottom: 3px solid #718929;
+            color:#718929;
+        }
+        .slide_menu{width:100%; height:150px; background: #f0f0f0;
+            position: absolute; top:121px; left:0; z-index: 10;
+        }
+        /* banner menu */
+        .banner{width:100%; height:320px;
+            background: url("images/리솜메인.jpg");
+             
+        }
+        .slide_menu{display: none; }
+        .ul_menu{width:1290px; margin:0 auto; display: flex;
+           justify-content: flex-end; text-align: right;
+        }
+        .ul_menu .sm00{ width:174px;  }
+        .ul_menu .sm00:nth-child(2){width:130px;}
+        .ul_menu .sm00:nth-child(3){width:130px;}
+        .ul_menu .sm00 li{margin:5px 0 7px 0;}
+    </style>
+    <script>
+        $(function(){
+            var isHeaderVisible = false; // 헤더 상태 추적
+            
+            // 스크롤이벤트
+            $(window).scroll(function(){
+                var sc_top = $(this).scrollTop();
+                $("#txt").text("스크롤 높이: " + sc_top);
+                
+                if(sc_top >= 121 && !isHeaderVisible){
+                    isHeaderVisible = true;
+                    $("#header_top").stop().fadeIn(300);
+                } else if(sc_top < 121 && isHeaderVisible){
+                    isHeaderVisible = false;
+                    $("#header_top").stop().fadeOut(300);
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+    <!-- 고정 헤더 -->
+    <div id="header_top">
+        <div class="menu">
+            <div class="logo">
+                <img src="images/리솜메인2.png">
+            </div>
+            <nav>
+                <div class="t_menu">
+                    <ul>
+                        <li>회원예약</li>
+                        <li>패키지 예약</li>
+                        <li>부대시설 예약</li>
+                        <li>회원가입</li>
+                        <li>로그인</li>
+                    </ul>
+                </div>
+                <div class="m_menu">
+                    <ul>
+                        <li><a href="#">포레스트</a></li>
+                        <li><a href="#">스파</a></li>
+                        <li><a href="#">객실</a></li>
+                        <li><a href="#">특별한 경험</a></li>
+                        <li><a href="#">부대시설</a></li>
+                        <li><a href="#">브랜드소개</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    
+    <!-- 메인 헤더 -->
+    <header>
+        <div  class="menu">
+            <div class="logo">
+                <img src="images/리솜메인2.png">
+            </div>
+            <nav>
+                <div class="t_menu">
+                    <ul>
+                        <li>회원예약</li>
+                        <li>패키지 예약</li>
+                        <li>부대시설 예약</li>
+                        <li>회원가입</li>
+                        <li>로그인</li>
+                    </ul>
+                </div>
+                <div class="m_menu">
+                    <ul>
+                        <li><a href="#">포레스트</a></li>
+                        <li><a href="#">스파</a></li>
+                        <li><a href="#">객실</a></li>
+                        <li><a href="#">특별한 경험</a></li>
+                        <li><a href="#">부대시설</a></li>
+                        <li><a href="#">브랜드소개</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div id="slide_menu_top" class="slide_menu">
+        <div class="ul_menu">
+                <div class="sm00 sm_01">
+                    <ul>
+                        <li>소개</li>
+                        <li>뉴스</li>
+                        <li>스토리</li>
+                        <li>오시는 길</li>
+                    </ul>
+                </div>
+                <div class="sm00 sm_02">
+                    <ul>
+                        <li>소개</li>
+                        <li>뉴스</li>
+                        <li>스토리</li>
+                        <li>오시는 길</li>
+                    </ul>
+                </div>
+                <div class="sm00 sm_03">
+                    <ul>
+                        <li>소개</li>
+                        <li>뉴스</li>
+                        <li>스토리</li>
+                        <li>오시는 길</li>
+                    </ul>
+                </div>
+                <div class="sm00 sm_04">
+                    <ul>
+                        <li>소개</li>
+                        <li>뉴스</li>
+                        <li>스토리</li>
+                        <li>오시는 길</li>
+                    </ul>
+                </div>
+                <div class="sm00 sm_05">
+                    <ul>
+                        <li>소개</li>
+                        <li>뉴스</li>
+                        <li>스토리</li>
+                        <li>오시는 길</li>
+                    </ul>
+                </div>
+                <div class="sm00 sm_06">
+                    <ul>
+                        <li>소개</li>
+                        <li>뉴스</li>
+                        <li>스토리</li>
+                        <li>오시는 길</li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+    <!-- banner -->
+    <div class="banner"></div>
+    <div id="txt">111</div>
+    
+</body>
+</html>

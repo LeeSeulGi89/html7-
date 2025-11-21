@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>데이터가져오기</title>
+    <style>
+        table,th,td{border:1px solid black; border-collapse: collapse;}
+        th,td{width:200px; height:70px; text-align: center; }
+        #sno, #name, #kor, #eng, #math { width: 300px; height: 30px; margin-bottom: 10px;
+        
+        }
+        .header-image {
+            position: absolute;
+            top: 10px;
+            left: 770px;
+            width: 450px;
+            height: auto;
+        }
+        body {
+            position: relative;
+            padding-top: 20px;
+        }
+    </style>
+    <script>
+        var studentData = []; // 전역 변수로 데이터 저장
+        
+        $(function(){  //jquery start
+            // 데이터 가져오기
+            $("#takeBtn").click(function(){   
+                $.ajax({    
+                    url:"comment.json",  
+                    type:"get",   
+                    data:{},  
+                    dataType:"json",  
+                    success:function(data){    
+                        alert("성공");   
+                        console.log(data);  
+                        studentData = data; // 전역에 데이터 저장
+                        displayData();
+                    },
+                    error:function(){ alert("실패");  }  
+                });
+            });
+            
+            // 저장 버튼
+            $("#sbtn").click(function(){
+                saveBtn();
+            });
+            
+            // 수정 버튼 이벤트 (위임 이벤트)
+            $(document).on('click', '.uBtn', function(){
+                updateBtn(this);
+            });
+            
+            // 삭제 버튼 이벤트 (위임 이벤트)
+            $(document).on('click', '.dBtn', function(){
+                deleteBtn(this);
+            }); // ajax end
+        }); // jquery end
+        
+        // 데이터 표시 함수
+        function displayData(){
+            var dataHtml = ``;
+            for(var i=0; i<studentData.length; i++){  
+                dataHtml += `
+                    <tr id="${studentData[i].cno}">
+                        <td>${studentData[i].cno}</td>
+                        <td>${studentData[i].id}</td>
+                        <td>${studentData[i].cdate}</td>
+                        <td>${studentData[i].ccontent}</td>
+                        <td>${studentData[i].cpw}</td>
+                        <td>
+                            <button type="button" class="uBtn">수정</button>
+                            <button type="button" class="dBtn">삭제</button>
+                        </td>
+                    </tr>
+                `;
+            }
+            $("#tbody").html(dataHtml);  
+        }
+        
+        // 데이터 저장 함수
+        function saveBtn(){
+            var cno = parseInt($("#sno").val());
+            var id = $("#name").val();
+            var cdate = $("#kor").val();
+            var ccontent = $("#eng").val();
+            var cpw = parseInt($("#math").val());
+            
+            // 입력 값 검증
+            if(!cno || !id || !cdate || !ccontent || isNaN(cpw)){
+                alert("모든 항목을 올바르게 입력해주세요.");
+                return;
+            }
+            
+            // 중복 번호 확인
+            var exists = studentData.find(student => student.cno === cno);
+            if(exists){
+                alert("이미 존재하는 번호입니다.");
+                return;
+            }
+            
+            // 새 데이터 추가
+            var newStudent = {
+                cno: cno,
+                id: id,
+                cdate: cdate,
+                ccontent: ccontent,
+                cpw: cpw
+            };
+            
+            studentData.push(newStudent);
+            displayData();
+            clearForm();
+            alert("데이터가 저장되었습니다.");
+        }
+        
+        // 엔터키 처리 함수
+        function enterBtn(event){
+            if(event.keyCode === 13){
+                saveBtn();
+            }
+        }
+        
+        // 수정 버튼 함수
+        function updateBtn(btn){
+            var row = $(btn).closest('tr');
+            var cno = parseInt(row.attr('id'));
+            var studentIndex = studentData.findIndex(student => student.cno === cno);
+            
+            if(studentIndex !== -1){
+                var student = studentData[studentIndex];
+                $("#sno").val(student.cno);
+                $("#name").val(student.id);
+                $("#kor").val(student.cdate);
+                $("#eng").val(student.ccontent);
+                $("#math").val(student.cpw);
+                
+                // 데이터 삭제 후 다시 저장하도록 안내
+                studentData.splice(studentIndex, 1);
+                displayData();
+                alert("수정할 데이터를 불러왔습니다. 수정 후 다시 저장해주세요.");
+            }
+        }
+        
+        // 삭제 버튼 함수
+        function deleteBtn(btn){
+            if(confirm("정말 삭제하시겠습니까?")){
+                var row = $(btn).closest('tr');
+                var cno = parseInt(row.attr('id'));
+                var studentIndex = studentData.findIndex(student => student.cno === cno);
+                
+                if(studentIndex !== -1){
+                    studentData.splice(studentIndex, 1);
+                    displayData();
+                    alert("삭제되었습니다.");
+                }
+            }
+        }
+        
+        // 폼 초기화 함수
+        function clearForm(){
+            $("#sno").val("");
+            $("#name").val("");
+            $("#kor").val("");
+            $("#eng").val("");
+            $("#math").val("");
+        }
+    </script>
+</head>
+<body>
+    <img src="images/댓글이벤트.png" class="header-image">
+    
+    <button type="button" id="takeBtn">데이터 가져오기</button>
+    <br>
+    <form action="#" method="get">
+        <label>번호</label>
+        <input type="text" id="sno" name="sno"><br>
+        <label>아이디</label>
+        <input type="text" id="name" name="name"><br>
+        <label>날짜</label>
+        <input type="text" id="kor" name="kor"><br>
+        <label>내용</label>
+        <input type="text" id="eng" name="eng"><br>
+        <label>비밀번호</label>
+        <input type="text" id="math" name="math" onkeyup="enterBtn(event)" ><br>
+        <button type="button" id="sbtn">저장</button>
+    </form>
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>아이디</th>
+            <th>날짜</th>
+            <th>내용</th>
+            <th>비밀번호</th>
+            <th>관리</th>
+        </tr>
+        <tbody id="tbody">
+           
+            
+        </tbody>
+
+    </table>
+   
+   
+</body>
+</html>

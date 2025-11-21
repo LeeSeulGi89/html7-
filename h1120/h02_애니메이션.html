@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <style>
+        img{width: 300px;}
+    </style>
+    <script>
+        $(function(){
+            $("#aBtn").click(function(){
+                $("img").stop().animate({"width":"+=100px"},1000,function(){
+                    
+                });
+
+            }); //jquery end
+            
+            $("#bBtn").click(function(){
+                $("img").stop().animate({"width":"-=100px"},1000,function(){
+                    
+                });
+                
+            });
+        }); //jquery end
+    </script>
+</head>
+<body>
+    <button type="button" id="aBtn">확대</button>
+    <button type="button" id="bBtn">축소</button>
+    <br>
+    <img src="images/1112.jpg">
+</body>
+</html>

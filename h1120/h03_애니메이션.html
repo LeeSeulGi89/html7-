@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        div{border: 1px solid black; box-sizing: border-box;}
+        #main{width: 800px; height: 100px; margin: 0 auto;}
+        #sub{width: 100px; height: 100px; background: green;}
+    </style>
+    <script>
+        $(function(){
+            let m_length = 0;
+            $("#right_move").click(function(){
+                m_length += 100;
+                if(m_length > 0){m_length -= 100;}
+                $("#sub").stop().animate({
+                    "margin-left":m_length
+                },500);
+
+            });
+
+            $("#left_move").click(function(){
+                m_length -= 100;
+                if(m_length < -700){m_length += 700;}
+                $("#sub").stop().animate({
+                    "margin-left":m_length
+                },500);
+            });
+        });
+    </script>
+</head>
+<body>
+    <button type="button" id="right_move">오른쪽 이동</button>
+    <button type="button" id="left_move">왼쪽 이동</button>
+    <br>
+    <div id="main">
+        <div id="sub"></div>
+    </div>
+</html>
