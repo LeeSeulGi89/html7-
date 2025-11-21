@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>학생성적프로그램</title>
+    <style>
+        table,th,td{border:1px solid black; border-collapse: collapse;}
+        th,td{width:100px; height:40px; text-align: center; }
+    </style>
+    <script>
+        $(function(){
+            $("#takeBtn").click(function(){
+                $.ajax({
+                    url:"공부.json",
+                    type:"get",
+                    data:{},
+                    dataType:"json",
+                    success:function(data){
+                        alert("성공");
+                        console.log(data);  //10개 array배열:data.length
+
+                        var dataHtml = ``;
+                        //기본for문
+                        for(var i=0;i<data.length;i++){
+                            dataHtml += `
+                                <tr id="${data[i].sno}">
+                                    <td>${data[i].sno}</td>
+                                    <td>${data[i].name}</td>
+                                    <td>${data[i].kor}</td>
+                                    <td>${data[i].eng}</td>
+                                    <td>${data[i].math}</td>
+                                    <td>${data[i].total}</td>
+                                    <td>${data[i].avg}</td>
+                                    <td>
+                                        <button type="button" id="uBtn" >수정</button>
+                                        <button type="button" id="dBtn" >삭제</button>
+                                    </td>
+                                </tr>
+                            
+                            `;
+                        }
+
+                        /*  //단순for문 - 배열가능
+                        for(var i of data){  }
+                        */
+
+
+                        $("#tbody").html(dataHtml);
+
+
+                    },
+                    error:function(){ alert("실패");  }
+                });//ajax
+            });//takeBtn
+        });//jquery
+
+    </script>
+</head>
+<body>
+    <button type="button" id="takeBtn">데이터 가져오기</button>
+    <form action="#" method="get">
+        <label>번호</label>
+        <input type="text" id="sno" name="sno"><br>
+        <label>이름</label>
+        <input type="text" id="name" name="name"><br>
+        <label>국어</label>
+        <input type="text" id="kor" name="kor"><br>
+        <label>영어</label>
+        <input type="text" id="eng" name="eng"><br>
+        <label>수학</label>
+        <input type="text" id="math" name="math" onkeyup="enterBtn(event)" ><br>
+        <button type="button" id="sbtn" onclick="saveBtn()" >성적저장</button>
+    </form>
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>국어</th>
+            <th>영어</th>
+            <th>수학</th>
+            <th>합계</th>
+            <th>평균</th>
+            <th>비고</th>
+        </tr>
+        <tbody id="tbody">
+           
+            
+        </tbody>
+
+    </table>
+   
+   
+</body>
+</html>

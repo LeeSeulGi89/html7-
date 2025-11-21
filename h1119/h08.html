@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <style>
+        .c01{width: 100px; height: 100px; border: 1px solid black;}
+        .on{background: yellow;}
+        .off{background: green;}
+    </style>
+    <script>
+        $(function(){
+            $("#cBtn").click(()=>{
+                $(".c01").toggleClass("on").removeClass("off");
+            });
+
+            $("#canBtn").click(()=>{
+                $(".c01").addClass("off").removeClass("on");
+            });
+            
+            
+            $("input[type=text]").focus(function(){
+                $(this).addClass("on");
+            });
+            $("input[type=text]").focusout(function(){
+                $(this).removeClass("on");
+            });
+            // 이미지 넣기
+            $("#imgBtn").click(()=>{
+                $("img").attr("src","images/1116.jpg");
+            });
+
+        });
+        
+        
+    </script>
+</head>
+<body>
+    <img src="images/1115.jpg"><br>
+    <button type="button" id="imgBtn">이미지변경</button>
+    <br><br>
+
+    <div class="c01"></div>
+    <button type="button" id="cBtn">확인</button>
+    <button type="button" id="canBtn">취소</button>
+
+    <br><br>
+    <input type="text"  name="id"><br>
+    <input type="text"  name="name"><br>
+    <input type="text"  name="kor"><br>
+    <input type="text"  name="eng"><br>
+</body>
+</html>

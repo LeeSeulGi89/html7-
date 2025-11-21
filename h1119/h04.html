@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 자바스크립트 객체 - 파이썬과 유사
+        // key : value 쌍으로 이루어짐 (딕셔너리와 유사) {}로 정의.
+        var stu ={
+            "no":1, "name":"홍길동", "kor":100, "eng":90, "math":80
+        };
+        console.log(stu);
+        console.log("번호:"+stu.no);
+        console.log(JSON.stringify(stu)); // 객체 -> 문자열
+
+        var stu2 =
+            `{"no":2, "name":"홍길동", "kor":100, "eng":90, "math":80}`
+        ;
+
+        console.log(stu2.no);  // 문자열에서 no 찾지 못함
+        // 웹에서 다른 웹으로 전달시 오브젝트 객체로 전달을 하면 해석이 안됨.
+        //odj = JSON.stringify(stu2); //문자열로 변경
+        odj = log.JSON.parse(stu2); //자바스크립트 객체로 변경
+        console.log(odj);     //자바스크립트 객체로 변경
+        console.log(odj.no);  //객체의 no변수를 찾음
+        
+    </script>
+</body>
+</html>

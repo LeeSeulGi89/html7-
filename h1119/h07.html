@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <script>
+        // 배열 관련 반복 메소드
+        $(function(){
+            let arr = [1,2,3,4,5];
+            // 맵함수 반복처리해서 값을 리턴해주는 함수.
+            let mapArr =$.map(arr,(v)=>{
+                return v*2;
+            });
+            console.log(arr);
+            console.log(mapArr);
+
+
+
+            console.log("-----each-----");
+
+            //for , Each 와 비슷한 기능 배열을 순차적으로 진행해줌.
+            $.each(arr,function(v){
+                console.log(v*2);
+            });
+
+        }); //jquery
+
+
+    </script>
+</head>
+<body>
+    <div >
+
+    </div>
+</body>
+</html>

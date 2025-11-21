@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <style>
+        #d01{width: 200px; height: 200px; border: 1px solid black;
+        position: fixed;
+
+        }
+    </style>
+    <script>
+        $(function(){
+            $("#d01").mouseover(()=>{
+                $("#d01").css({
+                    "background-color":"yellow",
+                    "border":"5px solid red",
+                    "padding":"5px"
+                });
+            });
+        });
+
+        $(function(){
+            $("#d01").mouseout(()=>{
+                $("#d01").css({
+                    "background-color":"blueviolet",
+                    "padding":"2px"
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="d01"></div>
+</body>
+</html>

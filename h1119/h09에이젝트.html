@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <script>
+        // 자바스크립트는 - 서버와 통신이 안됨.
+        // ajax() - 통신가능
+        $(function(){
+            $("#jBtn").click(function(){
+
+                $.ajax({
+                    url:"공부.json",                       //통신할 서버의 주소
+                    type:"get",                   //통신방법(GET,POST)
+                    data:{},                      //서버로 보낼 데이터
+                    dataType:"json",              //서버에서 보내주는 데이터의 형식 - text, html, xml, json
+                    success:function(data){  
+                        alert("성공");
+                        console.log(data);  
+                        $("#d01").text(
+                            `${data[0].id}, ${data[0].name}, ${data[0].email}, ${data[0].ip_address}`
+                        );
+                    },
+                    error:function(){
+                        alert("실패");
+                           
+                    }
+                });
+                
+
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="d01"></div>
+    <button type="button" id="jBtn">확인</button>
+</body>
+</html>

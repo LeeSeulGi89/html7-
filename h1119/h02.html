@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>제이쿼리</title>
+    <script>
+        //제이쿼리 구문
+        $(function(){
+            //제이쿼리 이벤트 처리 - 동적처리
+            // on 이벤트는 동적처리가능, 이벤트종류를 여러개 사용가능
+            
+            $(document).on(click,focus,"#btn",function(){
+                alert("제이쿼리로 처리한 버튼 클릭 이벤트");
+
+            
+
+
+            });
+        });
+
+            // 이벤트처리 - 정적처리만 가능,2개이상 이벤트 사용불가, 하지만 길이가 짧음
+
+            /*
+            $("#btn").click(function(){
+                alert("제이쿼리로 처리한 버튼 클릭 이벤트2");
+            });
+            $("#btn").focus(function(){
+                alert("제이쿼리로 처리한 버튼 포커스 이벤트");
+            });
+        });
+            
+            */
+        
+    </script>
+</head>
+<body>
+    <div>내용</div>
+    <div>내용2</div>
+    <input type="text" name="id">
+    <input type="text" name="pw">
+
+    <button type="button">2번째</button>
+    <button type="button" id="btn">확인</button>
+</body>
+</html>

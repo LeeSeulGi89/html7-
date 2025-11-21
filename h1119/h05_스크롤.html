@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>스크롤</title>
+    <style>
+        body{height: 2000px; width: 4000px;}
+        #d01{width: 200px; height: 200px; border: 1px solid black;
+            position: fixed; top:auto; left:0; background-color: blueviolet; color: white;
+        }
+    </style>
+    <script>
+        $(function(){
+            $(window).on("scroll", function(){
+                var sc_top = $(this).scrollTop();
+                var sc_left = $(this).scrollLeft();
+                $("#d01").text("상하이동 : "+sc_top+", 좌우이동 : "+sc_left);
+            });
+        });
+        
+    </script>
+</head>
+<body>
+    <div id="d01">
+
+    </div>
+</body>
+</html>

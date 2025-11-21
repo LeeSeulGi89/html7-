@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <script>
+        // 기존태그를 가지고와서 새로운 태그를 추가해서 다시 입력하는 방식
+        // append(),prepend() - 뒤에 추가, 앞에 추가
+        // html() : 기존태그삭제후 추가
+
+        $(function(){
+            $("#btn").click(()=>{
+                $("#fruit").val(); // 추가하려는 데이터
+                $("#u01").append("<li>"+$("#fruit").val()+"</li>");
+                
+            });
+
+            $("#fruit").keyup((event)=>{
+                if(event.keyCode==13){
+                    var fruitValue = $("#fruit").val();
+                    if(fruitValue.trim() !== "") {
+                        $("#u01").append("<li>"+fruitValue+"</li>");
+                        $("#fruit").val(""); // 입력창 초기화
+                    }
+                }
+            });
+
+
+        }); //jquery end
+        
+        /*
+
+        function btn(매개변수){
+        
+        }
+        //js 6, 화살표 함수
+        var btn = () => {
+        };
+        
+        */
+    </script>
+</head>
+<body>
+    <input type="text" id="fruit"><br>
+    <button type="button" id="btn">저장</button>
+    <br>
+    <ul id="u01">
+        <li>바나나</li>
+        <li>딸기</li>
+    </ul>
+</body>
+</html>
