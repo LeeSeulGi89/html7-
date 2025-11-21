@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SK브로드밴드</title>
+    <style>
+        /*padding:사각안쪽여백, margin:사각바깥여백 */
+        * {padding:0; margin:0;}
+        #main{width:1320px; height:850px; 
+              margin:60px auto;
+        }
+        /*text-align: 글자가운데정렬, 이미지가운데정렬 */
+        #header{text-align: center; padding-bottom:60px; 
+        border-bottom: 2px solid black;}
+        #header img{width:200px;}
+        #header h2{font-size:64px; font-weight: 700;
+          letter-spacing: -1.6px; margin-top:12px;
+        }
+        #header p{font-size:20px; font-weight: 400; margin-top:8px;}
+        #section{width:1320px; height:330px; padding-top:40px;}
+        #section table{margin:0 auto; }
+        
+        #section th{width:100px; height:48px; text-align: right;
+                     padding-right:20px; font-size:18px; font-weight:500;
+                    letter-spacing: -0.45px;
+                    }
+        #section td{width:360px; height:48px;}
+
+        #section input[type='text']{
+            font-size:16px; border:1px solid #d9d9d9;
+            width:360px; height:48px; border-radius: 6px;
+
+        }
+
+        #footer{width:1320px; height:116px; background: #f2f2f2;
+           margin-top:60px; box-sizing: border-box;
+           padding:30px; padding-left:60px;
+           font-size: 16px; color:#797979; line-height: 24px;
+           letter-spacing:-0.4px;
+        }
+        #footer span{color:red;}
+        
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <a href="#">
+                <img src="image/logo.png">
+            </a>
+            <h2>SK브로드밴드에 오신 것을 환영합니다.</h2>
+            <p>서비스를 이용하시려면 로그인 해주세요.</p>
+        </div>
+        <div id="section">
+            <form action="#" method="post">
+                <table>
+                    <tr>
+                        <th>아이디</th>
+                        <td><input type="text" name="id" ></td>
+                    </tr>
+                    <tr>
+                        <th>패스워드</th>
+                        <td><input type="text" name="pw" ></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                    </tr>
+                </table>
+            </form>
+
+        </div>
+        <div id="footer">
+            <ul>
+                <li>고객님의 소중한 정보 보호를 위해 로그인 시 보안문자 입력항목이 추가되었습니다.</li>
+                <li><span>비밀번호 입력 5회 이상 오류 시 로그인이 제한</span>되며, 비밀번호 재설정을 통해 새로운 비밀번호를 설정하셔야 로그인을 하실 수 있습니다.</li>
+            </ul>
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 ㅣ 리솜리조트</title>
+    <link rel="icon" href="https://book.resom.co.kr/favicon.ico">
+    <style>
+        *{padding: 0; margin: 0;}
+        body{font-family: 'Malgun Gothic', sans-serif;}
+        
+        #nav{width: 100%; height: 140px;
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        #nav_inner{width: 1200px; height: 100%; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        
+        .logo{font-size: 24px; font-weight: bold; color: #8B4513;
+            letter-spacing: 2px;
+        }
+        
+        .main_menu{display: flex; gap: 50px;}
+        .main_menu li{list-style: none;}
+        .main_menu a{text-decoration: none; color: #333; font-size: 16px; 
+            font-weight: 500; padding: 10px 0;
+        }
+        .main_menu a:hover{color: #8B4513;}
+        
+        .sub_menu{display: flex; gap: 15px; font-size: 13px;}
+        .sub_menu li{list-style: none;}
+        .sub_menu a{text-decoration: none; color: #666; padding: 5px 8px;
+            border: 1px solid #ddd; background: #f8f8f8;
+        }
+        .sub_menu a:hover{background: #e8e8e8;}
+        
+        #banner{width: 100%; height: 320px;}
+        #banner img{width: 100%; height: 100%; object-fit: cover;}
+        
+        #history{width: 1200px; height: 54px; padding-top: 38px;
+                text-align: right;
+                color: #31261d; font-size: 13px; font-weight: 500;
+                margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <div id="nav_inner">
+            <div class="logo">RESOM</div>
+            <ul class="main_menu">
+                <li><a href="#">브랜드 소개</a></li>
+                <li><a href="#">리조트 소식</a></li>
+                <li><a href="#">회원 서비스</a></li>
+                <li><a href="#">회원권 안내</a></li>
+            </ul>
+            <ul class="sub_menu">
+                <li><a href="#">회원가입</a></li>
+                <li><a href="#">패키지 예약</a></li>
+                <li><a href="#">부대시설 예약</a></li>
+                <li><a href="#">1:1 문의</a></li>
+                <li><a href="#">컨설턴트</a></li>
+                <li><a href="#">로그인</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="banner">
+        <img src="image/img_subbanner_event.jpg">
+    </div>
+    <div id="history">HOME > 회원가입</div>
+</body>
+</html>

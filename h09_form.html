@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[type=text]{width: 100px;}
+    </style>
+</head>
+<body>
+    <form action="#" method="post" name="frm">
+        <!-- hidden: 숨겨서 보내기 -->
+        <input type="hidden" name="ipaddress" value="127.0.0.1"> <!-- 숨겨진 값 전송 -->
+        <!-- search: 전체지우기 표시 -->
+        <!-- hidden: 사용자에게 보이지 않는 값 전송 -->
+        <input type="search" name="search"><br>
+        <!-- 이메일 : 이메일 주소 확인 @,.없으면 경고창 -->
+        <input type="email" name="email" placeholder="이메일 입력"><br>
+        <label>아이디</label>
+        <!-- 텍스트 한줄입력 -->
+        <input type="text" name="id" maxlength="5" value="abc"><br>
+        <label>패스워드</label>
+        <!-- 패스워드 : *, . 표시 -->
+        <input type="password" name="pw" placeholder="패스워드는 8자리이상"><br>
+        <!-- submit: 전송-->
+        <input type="submit" value="로그인">
+        <!-- reset: 지우기 -->
+        <input type="reset" value="지우기">
+    </form>
+</body>
+</html>
