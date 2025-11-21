@@ -1,0 +1,680 @@
+<!-- 
+    ==========================================
+    한국 관광 사진 갤러리 초보자용 홈페이지
+    ==========================================
+    기능: 
+    - 공공데이터 API를 통해 한국 관광 사진 정보 가져오기
+    - 사진 갤러리 형태로 보기 좋게 표시
+    - 상세 정보 모달 팝업으로 표시
+    사용 기술: HTML, CSS, jQuery, AJAX
+    ==========================================
+-->
+<!DOCTYPE html>
+<!-- HTML 문서 시작 선언 -->
+<html lang="ko">
+<!-- lang="ko": 한국어 페이지임을 선언 -->
+<head>
+    <!-- ========== 문서 설정 영역 ========== -->
+    
+    <!-- 문자 인코딩을 UTF-8로 설정 (한글 표시) -->
+    <meta charset="UTF-8">
+    
+    <!-- 반응형 웹 설정 (모바일 대응) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 브라우저 탭 제목 -->
+    <title>🌏 한국 관광 사진 갤러리</title>
+    
+    <!-- jQuery 라이브러리 불러오기 (AJAX 통신에 필수) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <!-- ========== CSS 스타일 영역 ========== -->
+    <style>
+        /* ===== 전체 페이지 기본 설정 ===== */
+        * {
+            /* 모든 요소에 적용 */
+            margin: 0;              /* 바깥 여백 제거 */
+            padding: 0;             /* 안쪽 여백 제거 */
+            box-sizing: border-box; /* 크기 계산 방식 변경 */
+        }
+
+        body {
+            /* 전체 페이지 배경과 글꼴 설정 */
+            font-family: '맑은 고딕', Arial, sans-serif;
+            /* linear-gradient: 그라데이션 배경 (보라색 계열) */
+            min-height: 100vh;      /* 최소 높이를 화면 전체로 */
+            padding: 20px;
+        }
+
+        /* ===== 헤더 영역 ===== */
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;    /* 모서리 둥글게 */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            /* box-shadow: 그림자 효과 */
+            margin-bottom: 30px;
+            text-align: center;     /* 텍스트 가운데 정렬 */
+        }
+
+        .header h1 {
+            color: #764ba2;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* ===== 데이터 가져오기 버튼 ===== */
+        #takeBtn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;           /* 테두리 제거 */
+            padding: 15px 40px;     /* 안쪽 여백 (상하 15px, 좌우 40px) */
+            font-size: 18px;
+            font-weight: bold;      /* 굵은 글씨 */
+            border-radius: 30px;    /* 둥근 버튼 */
+            cursor: pointer;        /* 마우스 올리면 손가락 모양 */
+            transition: all 0.3s;   /* 0.3초 동안 부드럽게 변화 */
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        #takeBtn:hover {
+            /* 마우스를 버튼 위에 올렸을 때 */
+            transform: translateY(-3px);    /* 위로 3px 이동 */
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+            /* 그림자를 더 크게 */
+        }
+
+        #takeBtn:active {
+            /* 버튼을 클릭하고 있을 때 */
+            transform: translateY(-1px);    /* 살짝만 위로 */
+        }
+
+        /* ===== 로딩 애니메이션 ===== */
+        .loading {
+            display: none;          /* 처음에는 숨김 */
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .spinner {
+            /* 회전하는 로딩 아이콘 */
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;     /* 원 모양 */
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            /* 1초마다 계속 회전 */
+            margin: 0 auto;         /* 가운데 정렬 */
+        }
+
+        @keyframes spin {
+            /* 회전 애니메이션 정의 */
+            0% { transform: rotate(0deg); }     /* 시작: 0도 */
+            100% { transform: rotate(360deg); } /* 끝: 360도 */
+        }
+
+        /* ===== 갤러리 컨테이너 ===== */
+        .gallery-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-top: 20px;
+        }
+
+        .gallery-container h2 {
+            color: #764ba2;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        /* ===== 갤러리 그리드 레이아웃 ===== */
+        .gallery-grid {
+            display: grid;          /* 그리드 레이아웃 사용 */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            /* repeat: 반복, auto-fill: 자동으로 채우기 */
+            /* minmax(300px, 1fr): 최소 300px, 최대 1fr(비율) */
+            gap: 25px;              /* 아이템 사이 간격 */
+            margin-top: 20px;
+        }
+
+        /* ===== 갤러리 카드 ===== */
+        .gallery-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;       /* 내용이 넘치면 숨김 */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;   /* 부드러운 변화 효과 */
+            cursor: pointer;        /* 클릭 가능 표시 */
+        }
+
+        .gallery-card:hover {
+            /* 카드에 마우스 올렸을 때 */
+            transform: translateY(-10px);   /* 위로 10px 올라감 */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            /* 그림자가 더 진해짐 */
+        }
+
+        /* ===== 카드 이미지 영역 ===== */
+        .card-image {
+            width: 100%;            /* 카드 너비에 맞춤 */
+            height: 250px;          /* 고정 높이 */
+            object-fit: cover;      /* 비율 유지하며 영역 채움 */
+            /* 이미지가 잘리더라도 영역을 꽉 채움 */
+        }
+
+        /* ===== 카드 내용 영역 ===== */
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            /* 텍스트가 길면 말줄임표 처리 */
+            overflow: hidden;
+            text-overflow: ellipsis;    /* ... 표시 */
+            white-space: nowrap;        /* 한 줄로 */
+        }
+
+        .card-info {
+            font-size: 14px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .card-info strong {
+            color: #764ba2;
+            font-weight: bold;
+        }
+
+        /* ===== 키워드 태그 ===== */
+        .keywords {
+            margin-top: 10px;
+        }
+
+        .keyword-tag {
+            display: inline-block;  /* 가로로 나열 */
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 5px 12px;
+            border-radius: 15px;    /* 둥근 태그 */
+            font-size: 12px;
+            margin: 3px;
+        }
+
+        /* ===== 모달 팝업 ===== */
+        .modal {
+            display: none;          /* 처음에는 숨김 */
+            position: fixed;        /* 화면에 고정 */
+            z-index: 1000;          /* 맨 위에 표시 */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            /* 반투명 검은 배경 */
+            overflow: auto;         /* 내용이 많으면 스크롤 */
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;        /* 위 5%, 좌우 자동(가운데) */
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;       /* 최대 너비 제한 */
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: slideDown 0.3s;
+            /* 아래로 슬라이드되며 나타남 */
+        }
+
+        @keyframes slideDown {
+            /* 슬라이드 애니메이션 */
+            from {
+                transform: translateY(-50px);   /* 시작: 위에서 */
+                opacity: 0;                     /* 투명 */
+            }
+            to {
+                transform: translateY(0);       /* 끝: 원위치 */
+                opacity: 1;                     /* 불투명 */
+            }
+        }
+
+        /* ===== 닫기 버튼 ===== */
+        .close {
+            color: white;
+            float: right;           /* 오른쪽 정렬 */
+            font-size: 35px;
+            font-weight: bold;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #667eea;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+            /* 위쪽만 둥글게 */
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-image {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .modal-info {
+            margin: 15px 0;
+            font-size: 16px;
+            line-height: 1.8;       /* 줄 간격 */
+        }
+
+        /* ===== 데이터 없음 메시지 ===== */
+        .no-data {
+            text-align: center;
+            padding: 50px;
+            color: #999;
+            font-size: 18px;
+        }
+
+        /* ===== 통계 정보 ===== */
+        .stats {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .stats-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #764ba2;
+        }
+
+        .stats-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<!-- ========== HTML 본문 시작 ========== -->
+<body>
+
+    <!-- ===== 헤더 영역 ===== -->
+    <div class="header">
+        <h1>🌏 한국 관광 사진 갤러리</h1>
+        <p>한국관광공사 공공데이터를 활용한 아름다운 관광지 사진 모음</p>
+        
+        <!-- 데이터 가져오기 버튼 -->
+        <button type="button" id="takeBtn">📸 사진 불러오기</button>
+        
+        <!-- 로딩 애니메이션 (처음엔 숨김) -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p style="margin-top: 10px; color: #667eea;">데이터를 불러오는 중...</p>
+        </div>
+    </div>
+
+    <!-- ===== 갤러리 컨테이너 ===== -->
+    <div class="gallery-container" id="galleryContainer" style="display: none;">
+        <!-- 처음엔 숨김, 데이터 받으면 표시 -->
+        
+        <!-- 통계 정보 -->
+        <div class="stats">
+            <div class="stats-number" id="photoCount">0</div>
+            <div class="stats-label">개의 관광 사진</div>
+        </div>
+        
+        <h2>📷 사진 갤러리</h2>
+        
+        <!-- 갤러리 그리드 (여기에 카드들이 추가됨) -->
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- AJAX로 받은 데이터가 여기 들어갑니다 -->
+        </div>
+    </div>
+
+    <!-- ===== 모달 팝업 (상세 정보) ===== -->
+    <div id="detailModal" class="modal">
+        <!-- 모달 내용 -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" id="closeModal">&times;</span>
+                <h2 id="modalTitle">사진 상세 정보</h2>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- 상세 정보가 여기 들어갑니다 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== jQuery 스크립트 영역 ========== -->
+    <script>
+        // ==========================================
+        // jQuery 시작 - 문서 준비 완료 후 실행
+        // ==========================================
+        $(function() {
+            // $(function() {}): HTML이 모두 로드되면 실행
+            // document.ready()의 단축 문법
+            
+            console.log("페이지가 로드되었습니다!");
+            
+            // ==========================================
+            // "사진 불러오기" 버튼 클릭 이벤트
+            // ==========================================
+            $("#takeBtn").click(function() {
+                // $("#takeBtn"): ID가 "takeBtn"인 버튼 선택
+                // .click(function() {}): 클릭 시 실행할 함수
+                
+                // 로딩 애니메이션 표시
+                $("#loading").show();
+                // .show(): 숨겨진 요소를 보이게 함
+                
+                // 버튼 비활성화 (중복 클릭 방지)
+                $(this).prop("disabled", true).text("불러오는 중...");
+                // $(this): 클릭된 버튼 자신
+                // .prop("disabled", true): 비활성화
+                // .text(): 버튼 텍스트 변경
+                
+                // ==========================================
+                // AJAX 통신 시작
+                // AJAX: 페이지 새로고침 없이 서버에서 데이터 가져오기
+                // ==========================================
+                $.ajax({
+                    // $.ajax({}): jQuery의 비동기 통신 메서드
+                    
+                    // API 주소 (한국관광공사 공공데이터)
+                    url: "https://apis.data.go.kr/B551011/PhotoGalleryService1/galleryList1?serviceKey=918RE13GA7OY7ZEmUzApgbOeAcQoZ%2FaHsXWcqPAKQ9YNNPj83KOstRMRIUrCFIAcm9qj2R6b7NFZjp%2FYsYzJLg%3D%3D&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&_type=json",
+                    // 파라미터 설명:
+                    // - serviceKey: API 인증키
+                    // - numOfRows=10: 10개의 데이터 요청
+                    // - pageNo=1: 1페이지
+                    // - MobileOS=ETC: 기타 환경
+                    // - MobileApp=AppTest: 테스트 앱
+                    // - arrange=A: 정렬 방식
+                    // - _type=json: JSON 형식으로 응답
+                    
+                    // HTTP 요청 방식
+                    type: "get",
+                    // get: 데이터 조회 (URL에 파라미터 포함)
+                    // post: 데이터 전송 (본문에 파라미터 포함)
+                    
+                    // 서버로 보낼 추가 데이터 (현재는 URL에 모두 포함)
+                    data: {},
+                    
+                    // 응답 데이터 타입
+                    dataType: "json",
+                    // json: JavaScript 객체로 자동 변환
+                    
+                    // ==========================================
+                    // 성공했을 때 실행되는 함수 (콜백 함수)
+                    // ==========================================
+                    success: function(data) {
+                        // data: 서버에서 받은 JSON 데이터
+                        
+                        console.log("데이터 수신 성공!");
+                        console.log(data);
+                        
+                        // 로딩 숨기기
+                        $("#loading").hide();
+                        
+                        // 버튼 활성화
+                        $("#takeBtn").prop("disabled", false).text("📸 사진 다시 불러오기");
+                        
+                        // 데이터 배열 추출
+                        var tour_data = data.response.body.items.item;
+                        // data.response.body.items.item: JSON 구조에서 실제 데이터 배열
+                        
+                        console.log("받은 사진 개수:", tour_data.length);
+                        
+                        // 사진 개수 표시
+                        $("#photoCount").text(tour_data.length);
+                        
+                        // 갤러리 컨테이너 보이기
+                        $("#galleryContainer").fadeIn(500);
+                        // .fadeIn(500): 0.5초 동안 서서히 나타남
+                        
+                        // HTML 문자열 초기화
+                        var dataHtml = ``;
+                        
+                        // ==========================================
+                        // for 반복문: 배열의 모든 데이터 순회
+                        // ==========================================
+                        for (var i = 0; i < tour_data.length; i++) {
+                            // i = 0부터 시작
+                            // i < tour_data.length: 배열 길이(10)만큼 반복
+                            // i++: 매번 i를 1씩 증가
+                            
+                            // 현재 사진 데이터
+                            var photo = tour_data[i];
+                            // tour_data[i]: 배열의 i번째 요소
+                            
+                            // 키워드를 쉼표로 분리
+                            var keywords = photo.galSearchKeyword ? photo.galSearchKeyword.split(',') : [];
+                            // photo.galSearchKeyword: 검색 키워드 (예: "바다,일출,해변")
+                            // .split(','): 쉼표로 나눠서 배열로 만듦 ["바다", "일출", "해변"]
+                            // ? ... : []: 삼항 연산자 (값이 있으면 분리, 없으면 빈 배열)
+                            
+                            // 키워드 HTML 생성
+                            var keywordHtml = '';
+                            for (var j = 0; j < keywords.length && j < 3; j++) {
+                                // 최대 3개의 키워드만 표시
+                                // j < keywords.length: 키워드 개수만큼
+                                // && j < 3: 그리고 3개까지만
+                                keywordHtml += `<span class="keyword-tag">${keywords[j].trim()}</span>`;
+                                // .trim(): 앞뒤 공백 제거
+                            }
+                            
+                            // 카드 HTML 생성 (템플릿 리터럴 사용)
+                            dataHtml += `
+                                <div class="gallery-card" data-id="${photo.galContentId}">
+                                    <!-- data-id: 사진 ID를 저장 (나중에 상세보기에 사용) -->
+                                    
+                                    <img src="${photo.galWebImageUrl}" 
+                                         alt="${photo.galTitle}" 
+                                         class="card-image"
+                                         onerror="this.src='https://via.placeholder.com/300x250?text=이미지+없음'">
+                                    <!-- onerror: 이미지 로드 실패시 대체 이미지 표시 -->
+                                    
+                                    <div class="card-content">
+                                        <div class="card-title">${photo.galTitle}</div>
+                                        
+                                        <div class="card-info">
+                                            <strong>📅 촬영일:</strong> ${photo.galCreatedtime || '정보 없음'}
+                                        </div>
+                                        <!-- || '정보 없음': 값이 없으면 기본값 표시 -->
+                                        
+                                        <div class="card-info">
+                                            <strong>📍 촬영지:</strong> ${photo.galPhotographyLocation || '정보 없음'}
+                                        </div>
+                                        
+                                        <div class="card-info">
+                                            <strong>📷 작가:</strong> ${photo.galPhotographer || '정보 없음'}
+                                        </div>
+                                        
+                                        <div class="keywords">
+                                            ${keywordHtml}
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            // ${변수명}: 변수 값을 문자열에 삽입
+                            // 백틱(``)을 사용한 템플릿 리터럴
+                        }
+                        // 반복문 종료 - 10개의 카드 HTML이 생성됨
+                        
+                        // 생성된 HTML을 갤러리 그리드에 삽입
+                        $("#galleryGrid").html(dataHtml);
+                        // .html(dataHtml): 요소의 내용을 교체
+                        
+                        // ==========================================
+                        // 카드 클릭 이벤트 등록
+                        // ==========================================
+                        $(".gallery-card").click(function() {
+                            // .gallery-card: 클래스로 모든 카드 선택
+                            // 동적으로 생성된 요소에도 이벤트 적용됨
+                            
+                            // 클릭된 카드의 ID 가져오기
+                            var cardId = $(this).data("id");
+                            // $(this): 클릭된 카드
+                            // .data("id"): data-id 속성 값 가져오기
+                            
+                            // 해당 ID의 데이터 찾기
+                            var photoData = tour_data.find(function(item) {
+                                return item.galContentId == cardId;
+                            });
+                            // .find(): 배열에서 조건에 맞는 첫 번째 요소 찾기
+                            // function(item): 각 요소마다 실행
+                            // return item.galContentId == cardId: ID가 일치하면 true
+                            
+                            // 모달에 상세 정보 표시
+                            showModal(photoData);
+                        });
+                        
+                        // 성공 메시지
+                        alert("✅ " + tour_data.length + "개의 사진을 불러왔습니다!");
+                        
+                    }, // success 함수 끝
+                    
+                    // ==========================================
+                    // 실패했을 때 실행되는 함수
+                    // ==========================================
+                    error: function(xhr, status, error) {
+                        // xhr: XMLHttpRequest 객체
+                        // status: 에러 상태
+                        // error: 에러 메시지
+                        
+                        console.error("데이터 로드 실패:", error);
+                        
+                        // 로딩 숨기기
+                        $("#loading").hide();
+                        
+                        // 버튼 활성화
+                        $("#takeBtn").prop("disabled", false).text("📸 사진 불러오기");
+                        
+                        // 에러 메시지
+                        alert("❌ 데이터를 불러오는데 실패했습니다.\n네트워크 연결을 확인해주세요.");
+                    }
+                    
+                }); // ajax 끝
+                
+            }); // takeBtn 클릭 이벤트 끝
+            
+            // ==========================================
+            // 모달 상세 정보 표시 함수
+            // ==========================================
+            function showModal(data) {
+                // 함수 정의: function 함수명(매개변수) {}
+                // data: 사진 정보 객체
+                
+                // 키워드 분리
+                var keywords = data.galSearchKeyword ? data.galSearchKeyword.split(',') : [];
+                var keywordHtml = '';
+                
+                // 모든 키워드 태그 생성
+                for (var i = 0; i < keywords.length; i++) {
+                    keywordHtml += `<span class="keyword-tag">${keywords[i].trim()}</span> `;
+                }
+                
+                // 모달 제목 설정
+                $("#modalTitle").text(data.galTitle);
+                
+                // 모달 본문 HTML 생성
+                var modalContent = `
+                    <img src="${data.galWebImageUrl}" 
+                         alt="${data.galTitle}" 
+                         class="modal-image"
+                         onerror="this.src='https://via.placeholder.com/800x600?text=이미지+없음'">
+                    
+                    <div class="modal-info">
+                        <strong>📋 콘텐츠 ID:</strong> ${data.galContentId}
+                    </div>
+                    
+                    <div class="modal-info">
+                        <strong>📅 촬영일:</strong> ${data.galCreatedtime || '정보 없음'}
+                    </div>
+                    
+                    <div class="modal-info">
+                        <strong>📍 촬영 장소:</strong> ${data.galPhotographyLocation || '정보 없음'}
+                    </div>
+                    
+                    <div class="modal-info">
+                        <strong>📷 사진 작가:</strong> ${data.galPhotographer || '정보 없음'}
+                    </div>
+                    
+                    <div class="modal-info">
+                        <strong>🏷️ 검색 키워드:</strong><br>
+                        ${keywordHtml || '키워드 없음'}
+                    </div>
+                `;
+                
+                // 모달 본문에 삽입
+                $("#modalBody").html(modalContent);
+                
+                // 모달 표시
+                $("#detailModal").fadeIn(300);
+                // .fadeIn(300): 0.3초 동안 서서히 나타남
+            }
+            
+            // ==========================================
+            // 모달 닫기 이벤트
+            // ==========================================
+            
+            // X 버튼 클릭
+            $("#closeModal").click(function() {
+                $("#detailModal").fadeOut(300);
+                // .fadeOut(300): 0.3초 동안 서서히 사라짐
+            });
+            
+            // 모달 배경 클릭 (모달 외부 클릭)
+            $("#detailModal").click(function(e) {
+                // e: 이벤트 객체
+                // e.target: 실제 클릭된 요소
+                
+                if (e.target == this) {
+                    // this: #detailModal (모달 자체)
+                    // 모달 배경을 클릭했을 때만 닫기
+                    $(this).fadeOut(300);
+                }
+            });
+            
+            // ESC 키로 모달 닫기
+            $(document).keydown(function(e) {
+                // .keydown(): 키보드를 눌렀을 때
+                
+                if (e.key === "Escape") {
+                    // e.key: 눌린 키
+                    // "Escape": ESC 키
+                    $("#detailModal").fadeOut(300);
+                }
+            });
+            
+            console.log("모든 이벤트가 등록되었습니다!");
+            
+        }); // jQuery ready 끝
+
+    </script>
+
+</body>
+</html>
