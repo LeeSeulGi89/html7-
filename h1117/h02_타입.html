@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트</title>
+</head>
+<body>
+    <script>
+        /* 중요
+        변수타입설명
+        타입변경 - Number(), toString() , Boolean()
+        자바스크립트 특정 : 문자열 숫자와 문자열 숫자를 *,-,/ 를 하면 숫자형으로 변환되어 연산이 된다.
+        단, + 연산자는 문자열 연결연산자로도 사용되기 때문에 둘 중 하나라도 문자열이면 문자열로 변환되어 연결된다.
+
+        문자열 + 숫자 = 문자열 타입으로 변환
+        문자열 * 숫자 = 숫자 타입으로 변환
+        a = a+b -> a+ = b
+        b = a++ : b = a; a = a+1;
+        b = ++a : a = a+1; b = a;
+
+        1. Number() : 숫자형으로 변환
+        2. toString() : 문자열형으로 변환
+        3. Boolean() : 논리형으로 변환
+        var a = prompt("글자를 입력하세요."); //입력창타입: 문자열
+        var b = prompt("글자를 입력하세요.2");
+        document.write(a+b+"<br>");
+        document.write(a*b+"<br>"); //문자열이 숫자로 변환되어 곱셈연산
+        document.write(Number(a)+Number(b)+"<br>");
+        document.write(typeof(a)+" , "+typeof(b));
+        
+        var a = 10,b = 0;
+        b = ++a;
+        document.write(a,",",b,"<br>");
+        var c = 10,d = 0;
+        d = c++;
+        document.write(c,",",d,"<br>");
+        */
+
+        // prompt() ,document() ,write()
+        // 2개의 숫자를 입력받아 더하기, 빼기, 곱하기, 나누기 결과를 출력
+        var a = prompt("첫번째 숫자를 입력하세요.");
+        var b = prompt("두번째 숫자를 입력하세요.");
+        document.write("더하기 : "+(Number(a)+Number(b))+"<br>");
+        document.write("빼기 : "+(Number(a)-Number(b))+"<br>");
+        document.write("곱하기 : "+(Number(a)*Number(b))+"<br>");
+        document.write("나누기 : "+(Number(a)/Number(b))+"<br>");
+    </script>
+</body>
+</html>

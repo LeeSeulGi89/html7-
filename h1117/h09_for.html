@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        table,th,td{border: 1px solid black; border-collapse: collapse; }
+        table{margin: 20px auto; text-align: center;}
+        th,td{width: 100px; height: 40px;}
+    </style>
+<body>
+    <script>
+        /*
+        for i in range(10):
+            print(i); */
+
+        /* for() 초기값; 조건식; 증감식) {} */
+        /* var sum = 0;
+        for(var i=1; i<10; i++){
+            sum += i;  // sum = sum + i;
+        }
+        document.write("합계 :",sum)
+        */
+
+        /* 100을 넘는 시점이 언제인지 출력하고, 100넘는 시점의 결과값도 출력하시오.*/
+        /*
+        var total = 0;
+        for(var i=1; ; i++){
+            total += i;
+            if(total > 100){
+                document.write("<br>100을 넘는 시점 :",i);
+                document.write("<br>100을 넘는 시점의 결과값 :",total);
+                break;
+            }
+        }
+            */
+
+        /* var sum = 0;
+        for(var i=1; i<=10; i++){
+            sum += i;
+            if(i==10) break;
+            document.write("<br>1부터 10까지 합계 :",sum)
+            
+        }
+                for(var i=2;i<=9;i++){
+            for(var j=1;j<=9;j++){
+                //document.write("<br>"+i+"x"+j+"="+(i*j)+"<br>");
+                // ``: 빽키
+                document.write(`${i}*${j}=${i*j}<br>`);
+            }
+        }
+            */
+
+
+
+    </script>
+    <table>
+        <tbody id="tbody">
+
+ 
+        </tbody>
+        </table>
+        <script>
+            console.log(document.querySelector("#tbody"));
+            var tbody = document.querySelector("#tbody");
+            var htmlContent = "";
+            
+            // 2단부터 9단까지 출력
+            for(var dan=2; dan<=9; dan++){
+                htmlContent += `
+                <tr style="background-color: blue font-weight: bold;">
+                    <td colspan="5">${dan}단</td>
+                </tr>`;
+                
+                for(var i=1; i<=9; i++){
+                    htmlContent += `
+                    <tr>
+                        <td>${dan}</td>
+                        <td>X</td>
+                        <td>${i}</td>
+                        <td>=</td>
+                        <td>${dan*i}</td>
+                    </tr>`;
+                }
+            }
+            
+            tbody.innerHTML = htmlContent;
+        </script>
+</body>
+</html>

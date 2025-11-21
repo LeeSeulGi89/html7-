@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제어문</title>
+</head>
+<body>
+    <script>
+        /*
+        if{}
+        if{}else{}
+        if{}else if(){}else{}
+
+
+        var num = 10;
+        if(num>0){
+            document.write("0초과 입니다..")
+        }
+        
+
+        var num = 10;
+        if(num>0){
+            document.write("0초과 입니다..")
+
+        }else{
+            document.write("0미만 입니다..")
+        }
+
+
+        var num = 10;
+        if(num>0){                       //2줄일때는 {}생략불가 필수임
+            document.write("0초과 입니다..")
+            
+        
+        }else if(num==0){
+            document.write("0 입니다..")  //한줄일때 {}생략가능
+
+        }else{
+            document.write("0미만 입니다..")
+        }
+        // 숫자를 입력받아, 60점이상이면 "합격", 미만이면 "불합격" 출력
+        var score = prompt("점수를 입력하세요.");
+        if(Number(score)>=60){
+            document.write("합격");
+        }else{
+            document.write("불합격");
+        }
+        // 입력한 값이 홀수인지 짝수인지 출력
+        var num = prompt("숫자를 입력하세요.");
+        if(Number(num)%2==0){
+            document.write("짝수입니다.");
+        }else{
+            document.write("홀수입니다.");
+        }
+        */
+
+        // 함수선언 function 함수명(){해당되는 명령어 입력}
+
+        /*
+            자바스크립트 에서 html 태그의 값을 가져오는 방법
+            input에 있는 값을 가져올때 value 속성을 사용
+            그외 나머지 값을가져올때 innerText
+            html을 가져올때 innerHTML 속성을 사용
+
+            html 위치점 찾기
+            - document.guerySelector("pw")
+        */
+        function loginBtn(){
+            alert("함수호출");
+            //자바스크립트는 html과 같이 사용됨.
+            //자바스크립트에서 특정한 곳에 값을 입려하려고 하면
+            //1. 위치를 파악, 2 .값 입력
+            //1. 먼저 위치를 파악, 2 .값 입력
+
+            console.log("------------")
+            console.log("id:", document.querySelector("#id").value)
+            console.log("label:",  document.querySelector("#labelTxt").innerTxt)
+            console.log("제목:", document.querySelector("#subTxt").innerText)
+            console.log("pw:", document.querySelector(".pw").value)
+
+            document.querySelector("#id").value;
+            document.querySelector("#labelTxt").innerTxt;
+            document.querySelector("#subTxt").innerText;
+            document.querySelector("#id").value;
+            document.querySelector(".pw").value;
+
+        }
+
+    </script>
+    <h1 id="subTxt">로그인정보</h1>
+    <form action="#" method="post">
+        <label id="labelTxt">아이디</label>
+        <input type="text" name="id" id="id"><br>
+        <label>비밀번호</label>
+        <input type="password" name="pw" class="pw"><br>
+        <span id="txt"></span><br>
+        <input type="button" onclick="loginBtn()" value="로그인">
+        <br>
+        <button type="button">로그인</button>
+    </form>
+</body>
+</html>

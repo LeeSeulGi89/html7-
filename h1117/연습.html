@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //반학생 4명 평균을 출력하시오.
+        var sum = 0;
+        for(var i=1; i<=4; i++){
+            var score = prompt(i+"번째 학생의 점수를 입력하세요");
+            sum += parseInt(score);
+        }
+        var avg = sum / 4;
+        document.write("4명 학생의 평균 점수 :",avg.toFixed(2));
+        
+
+
+    </script>
+</body>
+</html>

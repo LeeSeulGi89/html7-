@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>자바스크립트</title>
+    <!-- 외부 스크립트 불러오기 -->
+    <script src="js/script.js"></script>
+    <script>
+        document.writeln("hello<br>")
+    </script>
+</head>
+<body>
+    <script>
+        //한줄 주석달기 , /* 여러줄 주석 달기 */
+        //변수선언 var,let,const - 문자열, 숫자(정수,실수),boolean
+
+        //화면출력
+        document.writeln("안녕하세요")
+        document.writeln("<h1>안녕하세요</h1>")
+
+        // 경고창 : alert
+        alert("경고창")
+
+        // "태그로 인식"
+        var num= 0;
+        document.write(num+"<dr>");
+        var input = prompt("입력창: 숫자를 입력하세요.>>")
+        document.write("입력값:",input+"<dr>");
+        //확인 질문창 confirm("게시글을 삭제하시겠습니까?")
+        let result = confirm("1번 게시글을 삭제하시겠습니까?")
+
+        // document.write("결과:",result);
+
+        //콘솔출력
+        console.log("콘솔창에 로그가 출력됨. document.write() : 화면에 출력")
+        
+
+        // 상수는 한번 값이 정해지면 수정불가, 사용은 가능
+        const A = 10;
+        A = 20;
+        document.write("결과:",A);
+
+        let A //undefined 정의되지 않음
+        a = 100; //변수선언과 동시에 값 대입
+        a = "문자열"; //변수는 값 변경 가능
+        a = 1.5; //변수는 값 변경 가능
+        a = true; //변수는 값 변경 가능
+
+        // 타입확인 typeof() 중요!
+        let a;
+        document.write(typeof(a),"<br>"); //number
+        let b = 100;
+        document.write(typeof(b),"<br>"); //number - 정수
+        let c = 1.5;
+        document.write(typeof(c),"<br>"); //number - 실수
+        let d = "문자열";
+        document.write(typeof(d),"<br>"); //string - 문자열
+    </script>
+</body>
+</html>

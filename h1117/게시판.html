@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VLAST Shop - 게시판</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #1a1a1a;
+    }
+    /* Header */
+    .header {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 40px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .top-menu {
+      display: flex;
+      gap: 15px;
+      font-size: 13px;
+      color: #636363;
+      margin-right: 20px;
+    }
+    .top-menu a {
+      text-decoration: none;
+      color: #636363;
+    }
+    .top-menu a:hover {
+      color: #035fe0;
+    }
+    .icons {
+      display: flex;
+      gap: 15px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    /* Board Container */
+    .board-container {
+      max-width: 1000px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+    .board-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center; /* 가운데 정렬 추가 */
+    }
+    table.board-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .board-table th,
+    .board-table td {
+      border-bottom: 1px solid #e0e0e0;
+      padding: 12px 10px;
+      text-align: left;
+    }
+    .board-table th {
+      background-color: #f9f9f9;
+      font-weight: 600;
+      border-top:1px solid #848484;
+    }
+    .board-table td.title a {
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+    .board-table td.title a:hover {
+      text-decoration: underline;
+      color: #035fe0;
+    }
+    .board-table td.date,
+    .board-table td.views {
+      color: #888;
+      font-size: 13px;
+    }
+
+    /* Pagination & Search Styling */
+    .board-footer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    }
+
+    .pagination {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    }
+
+    .pagination a {
+    padding: 6px 12px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    color: #333;
+    font-size: 13px;
+    border-radius: 3px;
+    }
+
+    .pagination a:hover {
+    background-color: #f0f0f0;
+    }
+
+    .pagination a.active {
+    background-color: #035fe0;
+    color: white;
+    border-color: #035fe0;
+    }
+
+    .search-box {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    }
+
+    .search-box input {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 13px;
+    }
+
+    .search-box button {
+    padding: 6px 12px;
+    background-color: #035fe0;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 13px;
+    cursor: pointer;
+    }
+
+    .search-box button:hover {
+    background-color: #0046b3;
+    }
+
+    .board-footer {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;   /* 위에서 아래로 정렬 */
+        align-items: center;      /* 가운데 정렬 */
+        gap: 15px;
+    }
+
+
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #ccc;
+      padding: 30px;
+      text-align: center;
+      font-size: 13px;
+      color: #A0A0A0;
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="top-menu">
+      <a href="#">회원가입</a> |
+      <a href="#">로그인</a> |
+      <a href="#">주문조회</a> |
+      <a href="#">최근본상품</a>
+    </div>
+    <div class="icons">
+      <i class="fas fa-search"></i>
+      <i class="fas fa-user"></i>
+      <i class="fas fa-shopping-bag"></i>
+    </div>
+  </div>
+
+  <!-- Board List -->
+  <div class="board-container">
+    <div class="board-title">공지사항</div>
+    <table class="board-table">
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>작성일</th>
+          <th>조회수</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        <tr>
+          <td>1</td>
+          <td class="title"><a href="#">홈페이지 리뉴얼 오픈!</a></td>
+          <td>운영팀</td>
+          <td class="date">2025-08-10</td>
+          <td class="views">324</td>
+        </tr>
+      </tbody>
+    </table>
+    <script>
+        var tbody = document.getElementById("tbody");
+        var htmlContent = "";
+        for(var i=2; i<=10; i++){
+            var day = 9 + i;
+            htmlContent += `
+            <tr>
+              <td>${i}</td>
+              <td class="title"><a href="#">홈페이지 리뉴얼 오픈</a></td>
+              <td>운영팀</td>
+              <td class="date">2025-08-${day}</td>
+              <td class="views">${Math.floor(Math.random()*100)+1000}</td>
+            </tr>`;
+        }
+        tbody.innerHTML += htmlContent;
+    </script>
+    <!-- Pagination & Search -->
+    <div class="board-footer" >
+        <div class="pagination" id="pagination">
+            <a href="#">&laquo;</a>
+            <a href="#">&raquo;</a>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="검색어 입력">
+            <button>검색</button>
+        </div>
+    </div>
+    <script>
+        var pagination = document.getElementById("pagination");
+        var paginationContent = '<a href="#">&laquo;</a>';
+        
+        for(var i = 1; i <= 5; i++){
+            if(i === 1){
+                paginationContent += `<a href="#" class="active">${i}</a>`;
+            } else {
+                paginationContent += `<a href="#">${i}</a>`;
+            }
+        }
+        
+        paginationContent += '<a href="#">&raquo;</a>';
+        pagination.innerHTML = paginationContent;
+    </script>
+    
+  </div>
+
+
+  <!-- Footer -->
+  <footer>
+    Copyright © VLAST Shop. All rights reserved.
+  </footer>
+
+</body>
+</html>

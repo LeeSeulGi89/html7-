@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        // 90점 이상 A,B,C,D,F
+        // 점수를 입력받아, 당신의 학점을 출력하시오.
+        var score = prompt("점수를 입력하세요");
+        var grade;
+        if(score >= 90){
+            grade = 'A';
+        } else if(score >= 80){
+            grade = 'B';
+        } else if(score >= 70){
+            grade = 'C';
+        } else if(score >= 60){
+            grade = 'D';
+        } else {
+            grade = 'F';
+        }
+        console.log("당신의 학점은 " + grade + "입니다.");
+        document.write("당신의 학점은 " + grade + "입니다.");
+        */
+
+
+        // && || 연산자 활용 //
+        function logBtn(){
+            // id = aaa pw = 1111 로그인 성공, 아이디 또는 패스워드가 일치하지 않습니다. 출력하시오.
+            var id = document.querySelector("#id").value;
+            var pw = document.querySelector("#pw").value;
+            if(id == "aaa" && pw == "1111"){
+                console.log("로그인 성공");
+                alert("로그인 성공");
+            } else {
+                console.log("아이디 또는 패스워드가 일치하지 않습니다.");
+                alert("아이디 또는 패스워드가 일치하지 않습니다.");
+            }
+        }
+    </script>
+    <label>아이디</label>
+    <input type="text" id="id"><br>
+    <label>비밀번호</label>
+    <input type="text" id="pw"><br>
+    <button type="button" onclick="logBtn()">로그인</button>
+    <script>
+
+    </script>
+</body>
+</html>

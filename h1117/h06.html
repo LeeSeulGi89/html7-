@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label id="labelTxt">비밀번호</label>
+    <input type="password" id="pw" onkeyup="loginBtn()"><br>
+    <label>비밀번호확인</label>
+    <input type="password" id="pw2" onkeyup="loginBtn()"><br>
+    <span id="txt"></span><br>
+    <button type="button" onclick="loginBtn()">로그인</button>
+    <script>
+        function loginBtn(){
+            //alert("호출");
+            console.log(document.querySelector("#pw").value);
+            console.log(document.querySelector("#pw2").value);
+            console.log(document.querySelector("#labelTxt").innerText);
+            var pw1 = document.querySelector("#pw").value;
+            var pw2 = document.querySelector("#pw2").value;
+            if(pw1 == pw2){
+                document.querySelector("#txt").innerHTML = "<span styly='color:blue;'>비밀번호 일치</span>";
+                console.log("비밀번호 일치");
+            } else {
+                document.querySelector("#txt").innerHTML = "<span style='color:red;'>비밀번호 불일치</span>";
+                console.log("비밀번호 불일치");
+            }
+        }
+        
+    </script>
+</body>
+</html>
