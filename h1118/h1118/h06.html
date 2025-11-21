@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,th,td{border:1px solid black; border-collapse: collapse;}
+        th,td{width:100px; height:40px; text-align: center; }
+        #txt{width:400px; height:50px; border:1px solid black; }
+    </style>
+</head>
+<body>
+    <script>
+        /*
+        function calc(a,b){
+            return (a+b)*10; //return 호출하는 지점으로 값을 돌려줌.
+        }
+
+        //함수 - 코드 중복방지, 관리의 효용성
+        function func(a,b,tstr){
+            //document.write(a+b);
+            //document.querySelector("#txt1").innerHTML = a+b;
+            document.querySelector("#"+tstr).innerHTML = calc(a,b);
+        }
+        */
+        function conBtn(){
+            alert("데이터를 저장합니다.");
+            //데이터 가져오기
+            var txt = document.querySelector("#txt").value;
+            var tbody = document.querySelector("#tbody");
+            var dhtml = tbody.innerHTML;
+            console.log(txt)
+
+            var arr = txt.split(",") //문자열->배열분리해서 제공
+
+            //합계,평균 구하기
+            arr.push(Number(arr[2]) + Number(arr[3]) );
+            arr.push((Number(arr[2]) + Number(arr[3])) /2 );
+
+            console.log(arr);
+            //기존데이터에 입력된 데이터 추가
+            tbody.innerHTML = tbody.innerHTML+ `
+                <td>${arr[0]}</td>
+                <td>${arr[1]}</td>
+                <td>${arr[2]}</td>
+                <td>${arr[3]}</td>
+                <td>${arr[4]}</td>
+                <td>${arr[5]}</td>
+
+            `;
+            document.querySelector("#txt").value = '';
+             document.querySelector("#txt").focus();
+        }
+
+
+        function keyBtn(event){
+            if(event.keyCode == 13){
+                conBtn();
+            }
+        }
+    </script>
+    <div>2,유관순,90,90</div>
+    <input type="text" id="txt" onkeyup="keyBtn(event)"><br>
+    <button type="button" onclick="conBtn()">확인</button>
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>국어</th>
+            <th>영어</th>
+            <th>합계</th>
+            <th>평균</th>
+
+        </tr>
+        <tbody id="tbody">
+           
+        </tbody>
+    </table>
+    
+    
+    
+    <!--
+        <div id="txt1"></div>
+        <button type="button" onclick="func(10,2,'txt1')">확인1</button>
+        <div id="txt2"></div>
+        <button type="button" onclick="func(2,4,'txt2')">확인2</button>
+        <div id="txt3"></div>
+        <button type="button" onclick="func(1,3,'txt3')">확인3</button>
+    -->
+    
+</body>
+</html>

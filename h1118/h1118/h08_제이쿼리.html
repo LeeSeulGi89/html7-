@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 제이쿼리
+        // 자바스크립트 - 명령어가 어렵고 길다 -> 제이쿼리 - 명령어가 쉽고 짧다
+        // 제이쿼리 구문
+        $(function(){
+            // 이벤트에 관련된  사항은 이 구문안에 작성해야 함
+            $("#txt").text("안녕");    //
+            console.log("이름 :",$(".c" ).text());
+            $("#sno").val(".c").text();     // input 태그에 값 넣기
+            $("#name").val("홍길동"); // input 태그에 값 넣기
+            console.log("이름:", $("#name").val() ); // input 태그에 값 읽기  value()
+            $("p").text()   // p 태그의 내용 읽기
+            console.log($("p").text());
+            console.log( $("ul").html() );      //innerHTML 과 동일
+        });
+    </script>
+    <div id="txt"></div>
+    <div class="c">홍길동</div>
+    <p>안녕하세요</p>
+    <input type="text" id="sno"><br>
+    <input type="text" id="name" value="유관순"><br>
+    <ul>
+        <li>바나나</li>
+        <li>사과</li>
+    </ul>
+
+
+
+
+
+    <script>
+        //document.querySelector("#txt").innerHTML="안녕하세요";
+    </script>
+</body>
+</html>

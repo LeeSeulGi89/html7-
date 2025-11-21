@@ -1,0 +1,1181 @@
+<!-- 
+    ======================================
+    jQuery 초보자 완전 가이드
+    ======================================
+    jQuery란?
+    - JavaScript를 더 쉽고 간단하게 사용할 수 있게 해주는 라이브러리
+    - "적게 쓰고, 더 많이 하자(Write Less, Do More)"가 모토
+    - 복잡한 JavaScript 코드를 간단하게 작성 가능
+    ======================================
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 초보자 완전 가이드</title>
+    
+    <!-- 
+        jQuery 라이브러리 불러오기 (CDN 방식)
+        CDN: Content Delivery Network - 인터넷에서 jQuery 파일을 가져옴
+        이 코드가 없으면 jQuery를 사용할 수 없습니다!
+    -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <style>
+        /* ===== CSS 스타일 영역 ===== */
+        
+        /* 전체 페이지 기본 스타일 */
+        body {
+            font-family: '맑은 고딕', Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            line-height: 1.6;
+        }
+
+        /* 메인 컨테이너 */
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* 제목 스타일 */
+        h1 {
+            color: #764ba2;
+            text-align: center;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #667eea;
+            background: #f0f4ff;
+            padding: 12px;
+            border-left: 6px solid #667eea;
+            margin-top: 40px;
+            border-radius: 5px;
+        }
+
+        /* 예제 박스 */
+        .example {
+            background: #fff;
+            padding: 25px;
+            margin: 20px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        /* 설명 텍스트 */
+        .description {
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        /* 버튼 스타일 */
+        button, .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        button:hover, .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* 입력 필드 */
+        input[type="text"], input[type="number"], textarea {
+            padding: 10px;
+            font-size: 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin: 5px;
+            width: 250px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        /* 결과 표시 영역 */
+        .result {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border: 2px solid #4caf50;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        /* 코드 표시 */
+        .code {
+            background: #263238;
+            color: #aed581;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+
+        /* 리스트 스타일 */
+        .demo-list li {
+            padding: 10px;
+            margin: 8px 0;
+            background: #f5f5f5;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .demo-list li:hover {
+            background: #e3f2fd;
+            transform: translateX(5px);
+        }
+
+        /* 애니메이션 박스 */
+        .animate-box {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        /* 토글 콘텐츠 */
+        .toggle-content {
+            background: #fff3cd;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 2px solid #ffc107;
+            display: none;
+        }
+
+        /* 테이블 스타일 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        /* 하이라이트 */
+        .highlight {
+            background-color: yellow;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        /* 성공 메시지 */
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #c3e6cb;
+        }
+
+        /* 경고 메시지 */
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 jQuery 초보자 완전 가이드</h1>
+
+        <!-- ========================================
+             목차
+             ======================================== -->
+        <div class="example">
+            <h3>🎯 학습 목차</h3>
+            <ol>
+                <li>jQuery 기본 문법 (선택자와 $)</li>
+                <li>요소 선택하기 (Selectors)</li>
+                <li>텍스트와 HTML 변경하기</li>
+                <li>CSS 스타일 조작하기</li>
+                <li>속성(Attribute) 다루기</li>
+                <li>클래스 추가/제거하기</li>
+                <li>이벤트 처리하기</li>
+                <li>보이기/숨기기 효과</li>
+                <li>애니메이션 만들기</li>
+                <li>DOM 조작 (요소 추가/제거)</li>
+                <li>반복문과 체이닝</li>
+                <li>AJAX 기초</li>
+            </ol>
+        </div>
+
+        <!-- ========================================
+             1. jQuery 기본 문법
+             ======================================== -->
+        <h2>1. jQuery 기본 문법 💡</h2>
+        <div class="example">
+            <div class="description">
+                <strong>jQuery의 핵심:</strong><br>
+                • <code>$</code> 기호가 jQuery를 의미합니다<br>
+                • <code>$(선택자).메서드()</code> 형태로 사용<br>
+                • 문서 준비 완료 후 실행: <code>$(document).ready()</code>
+            </div>
+
+            <div class="code">
+// jQuery 기본 문법 구조
+$(document).ready(function() {
+    // 문서가 완전히 로드된 후 실행할 코드
+    // HTML이 모두 준비되면 이 안의 코드가 실행됩니다
+});
+
+// 단축 문법 (위와 같은 의미)
+$(function() {
+    // 여기에 코드 작성
+});
+            </div>
+
+            <button id="basicBtn">기본 문법 테스트</button>
+            <div id="basicResult"></div>
+        </div>
+
+        <!-- ========================================
+             2. 요소 선택하기 (Selectors)
+             ======================================== -->
+        <h2>2. 요소 선택하기 🎯</h2>
+        <div class="example">
+            <div class="description">
+                <strong>선택자 종류:</strong><br>
+                • <code>$("#id")</code> - ID로 선택<br>
+                • <code>$(".class")</code> - 클래스로 선택<br>
+                • <code>$("태그")</code> - 태그로 선택<br>
+                • <code>$("선택자1, 선택자2")</code> - 여러 개 선택
+            </div>
+
+            <p id="demo-p">이것은 ID로 선택되는 문단입니다</p>
+            <p class="demo-class">이것은 클래스로 선택되는 문단입니다</p>
+            <button id="selectBtn1">ID로 선택</button>
+            <button id="selectBtn2">클래스로 선택</button>
+            <button id="selectBtn3">태그로 선택</button>
+            <div id="selectResult"></div>
+        </div>
+
+        <!-- ========================================
+             3. 텍스트와 HTML 변경하기
+             ======================================== -->
+        <h2>3. 텍스트와 HTML 변경하기 ✏️</h2>
+        <div class="example">
+            <div class="description">
+                <strong>주요 메서드:</strong><br>
+                • <code>.text()</code> - 순수 텍스트만 가져오거나 변경<br>
+                • <code>.html()</code> - HTML 태그 포함해서 가져오거나 변경<br>
+                • <code>.val()</code> - 입력 필드의 값 가져오거나 변경
+            </div>
+
+            <p id="text-demo">이 텍스트가 변경됩니다</p>
+            <p id="html-demo">이 <strong>HTML</strong>이 변경됩니다</p>
+            <input type="text" id="input-demo" value="입력 필드">
+
+            <br><br>
+            <button id="changeText">텍스트 변경</button>
+            <button id="changeHtml">HTML 변경</button>
+            <button id="getValue">입력값 가져오기</button>
+            <div id="textResult"></div>
+        </div>
+
+        <!-- ========================================
+             4. CSS 스타일 조작하기
+             ======================================== -->
+        <h2>4. CSS 스타일 조작하기 🎨</h2>
+        <div class="example">
+            <div class="description">
+                <strong>CSS 메서드:</strong><br>
+                • <code>.css("속성")</code> - CSS 값 가져오기<br>
+                • <code>.css("속성", "값")</code> - CSS 값 변경하기<br>
+                • <code>.css({속성1: 값1, 속성2: 값2})</code> - 여러 속성 한번에 변경
+            </div>
+
+            <div id="css-demo" style="padding: 20px; background: #f0f0f0; border-radius: 8px;">
+                이 박스의 스타일이 변경됩니다
+            </div>
+
+            <br>
+            <button id="cssBtn1">배경색 변경</button>
+            <button id="cssBtn2">글자 크기 변경</button>
+            <button id="cssBtn3">여러 스타일 한번에</button>
+            <button id="cssBtn4">원래대로</button>
+        </div>
+
+        <!-- ========================================
+             5. 속성(Attribute) 다루기
+             ======================================== -->
+        <h2>5. 속성 다루기 🔧</h2>
+        <div class="example">
+            <div class="description">
+                <strong>속성 메서드:</strong><br>
+                • <code>.attr("속성명")</code> - 속성 값 가져오기<br>
+                • <code>.attr("속성명", "값")</code> - 속성 값 설정하기<br>
+                • <code>.removeAttr("속성명")</code> - 속성 제거하기
+            </div>
+
+            <img id="demo-img" src="https://via.placeholder.com/150" alt="테스트 이미지" style="border-radius: 10px;">
+            <br><br>
+            <input type="text" id="imgUrl" placeholder="이미지 URL 입력" value="https://via.placeholder.com/150/0000FF">
+            <button id="attrBtn1">이미지 변경</button>
+            <button id="attrBtn2">alt 속성 변경</button>
+        </div>
+
+        <!-- ========================================
+             6. 클래스 추가/제거하기
+             ======================================== -->
+        <h2>6. 클래스 추가/제거하기 🏷️</h2>
+        <div class="example">
+            <div class="description">
+                <strong>클래스 메서드:</strong><br>
+                • <code>.addClass("클래스명")</code> - 클래스 추가<br>
+                • <code>.removeClass("클래스명")</code> - 클래스 제거<br>
+                • <code>.toggleClass("클래스명")</code> - 클래스 토글 (있으면 제거, 없으면 추가)<br>
+                • <code>.hasClass("클래스명")</code> - 클래스 있는지 확인
+            </div>
+
+            <style>
+                .big-text { font-size: 28px; font-weight: bold; }
+                .red-text { color: red; }
+                .blue-bg { background-color: #e3f2fd; padding: 10px; border-radius: 5px; }
+            </style>
+
+            <p id="class-demo">이 텍스트의 클래스가 변경됩니다</p>
+
+            <button id="classBtn1">큰 글씨 추가</button>
+            <button id="classBtn2">빨간색 토글</button>
+            <button id="classBtn3">파란 배경 추가</button>
+            <button id="classBtn4">모두 제거</button>
+        </div>
+
+        <!-- ========================================
+             7. 이벤트 처리하기
+             ======================================== -->
+        <h2>7. 이벤트 처리하기 🖱️</h2>
+        <div class="example">
+            <div class="description">
+                <strong>주요 이벤트:</strong><br>
+                • <code>.click()</code> - 클릭했을 때<br>
+                • <code>.dblclick()</code> - 더블클릭했을 때<br>
+                • <code>.hover()</code> - 마우스를 올렸을 때/뗐을 때<br>
+                • <code>.on("이벤트", 함수)</code> - 범용 이벤트 핸들러
+            </div>
+
+            <button id="eventBtn1">클릭 이벤트</button>
+            <button id="eventBtn2">더블클릭 이벤트</button>
+            <div id="hoverBox" style="padding: 20px; background: #f0f0f0; margin: 10px 0; border-radius: 8px; cursor: pointer;">
+                마우스를 올려보세요!
+            </div>
+            <div id="eventResult"></div>
+        </div>
+
+        <!-- ========================================
+             8. 보이기/숨기기 효과
+             ======================================== -->
+        <h2>8. 보이기/숨기기 효과 👁️</h2>
+        <div class="example">
+            <div class="description">
+                <strong>표시/숨김 메서드:</strong><br>
+                • <code>.show()</code> - 요소 보이기<br>
+                • <code>.hide()</code> - 요소 숨기기<br>
+                • <code>.toggle()</code> - 보이기/숨기기 전환<br>
+                • <code>.fadeIn()</code> - 서서히 나타나기<br>
+                • <code>.fadeOut()</code> - 서서히 사라지기<br>
+                • <code>.slideDown()</code> - 슬라이드로 펼치기<br>
+                • <code>.slideUp()</code> - 슬라이드로 접기
+            </div>
+
+            <div id="show-demo" style="padding: 20px; background: #e8f5e9; border-radius: 8px; margin: 10px 0;">
+                이 박스가 나타나고 사라집니다! ✨
+            </div>
+
+            <button id="showBtn">보이기</button>
+            <button id="hideBtn">숨기기</button>
+            <button id="toggleBtn">토글</button>
+            <button id="fadeInBtn">페이드인</button>
+            <button id="fadeOutBtn">페이드아웃</button>
+            <button id="slideDownBtn">슬라이드 다운</button>
+            <button id="slideUpBtn">슬라이드 업</button>
+
+            <h4 style="margin-top: 20px;">토글 콘텐츠 예제:</h4>
+            <button id="toggleContent">내용 펼치기/접기</button>
+            <div class="toggle-content">
+                <h4>숨겨진 내용입니다!</h4>
+                <p>버튼을 클릭하면 이 내용이 나타나거나 사라집니다.</p>
+                <p>jQuery의 slideToggle() 메서드를 사용했습니다.</p>
+            </div>
+        </div>
+
+        <!-- ========================================
+             9. 애니메이션 만들기
+             ======================================== -->
+        <h2>9. 애니메이션 만들기 🎬</h2>
+        <div class="example">
+            <div class="description">
+                <strong>애니메이션 메서드:</strong><br>
+                • <code>.animate({속성: 값}, 시간)</code> - 커스텀 애니메이션<br>
+                • 시간: 밀리초(ms) 단위 또는 "slow", "fast"<br>
+                • 여러 속성을 동시에 애니메이션 가능
+            </div>
+
+            <div class="animate-box" id="animBox1">박스1</div>
+            <div class="animate-box" id="animBox2">박스2</div>
+
+            <br>
+            <button id="animBtn1">오른쪽으로 이동</button>
+            <button id="animBtn2">크기 변경</button>
+            <button id="animBtn3">여러 효과 동시에</button>
+            <button id="animBtn4">순차적 애니메이션</button>
+            <button id="animBtn5">원위치</button>
+        </div>
+
+        <!-- ========================================
+             10. DOM 조작 (요소 추가/제거)
+             ======================================== -->
+        <h2>10. 요소 추가/제거하기 ➕➖</h2>
+        <div class="example">
+            <div class="description">
+                <strong>DOM 조작 메서드:</strong><br>
+                • <code>.append()</code> - 자식 요소 끝에 추가<br>
+                • <code>.prepend()</code> - 자식 요소 앞에 추가<br>
+                • <code>.after()</code> - 요소 뒤에 추가<br>
+                • <code>.before()</code> - 요소 앞에 추가<br>
+                • <code>.remove()</code> - 요소 제거<br>
+                • <code>.empty()</code> - 자식 요소 모두 제거
+            </div>
+
+            <ul class="demo-list" id="domList">
+                <li>항목 1</li>
+                <li>항목 2</li>
+                <li>항목 3</li>
+            </ul>
+
+            <input type="text" id="newItem" placeholder="새 항목 입력">
+            <button id="domBtn1">끝에 추가 (append)</button>
+            <button id="domBtn2">앞에 추가 (prepend)</button>
+            <button id="domBtn3">마지막 항목 제거</button>
+            <button id="domBtn4">전체 비우기</button>
+            <button id="domBtn5">초기화</button>
+        </div>
+
+        <!-- ========================================
+             11. 반복문과 체이닝
+             ======================================== -->
+        <h2>11. 반복문과 체이닝 🔄</h2>
+        <div class="example">
+            <div class="description">
+                <strong>반복과 체이닝:</strong><br>
+                • <code>.each()</code> - 선택한 요소들을 하나씩 반복<br>
+                • <strong>체이닝:</strong> 여러 메서드를 .으로 연결해서 한 줄로 작성<br>
+                • 예: <code>$("p").css("color", "red").addClass("active").fadeIn();</code>
+            </div>
+
+            <div id="each-demo">
+                <p>문단 1</p>
+                <p>문단 2</p>
+                <p>문단 3</p>
+                <p>문단 4</p>
+            </div>
+
+            <button id="eachBtn1">각 문단에 번호 추가</button>
+            <button id="eachBtn2">짝수 문단만 변경</button>
+            <button id="chainBtn">체이닝 예제</button>
+            <button id="resetEach">초기화</button>
+        </div>
+
+        <!-- ========================================
+             12. 실전 예제
+             ======================================== -->
+        <h2>12. 실전 예제 - 할 일 목록 📝</h2>
+        <div class="example">
+            <div class="description">
+                <strong>jQuery를 활용한 실전 프로젝트</strong><br>
+                할 일을 추가하고, 완료 표시하고, 삭제할 수 있는 To-Do List
+            </div>
+
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                <input type="text" id="todoInput" placeholder="할 일을 입력하세요" style="width: 300px;">
+                <button id="addTodo" style="background: #28a745;">추가</button>
+                
+                <ul id="todoList" style="list-style: none; padding: 0; margin-top: 15px;">
+                    <!-- 여기에 할 일이 추가됩니다 -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========================================
+             학습 요약
+             ======================================== -->
+        <h2>📌 jQuery 핵심 요약</h2>
+        <div class="example">
+            <table>
+                <thead>
+                    <tr>
+                        <th>카테고리</th>
+                        <th>주요 메서드</th>
+                        <th>설명</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>선택자</strong></td>
+                        <td>$("#id"), $(".class"), $("tag")</td>
+                        <td>요소를 찾는 방법</td>
+                    </tr>
+                    <tr>
+                        <td><strong>내용 변경</strong></td>
+                        <td>.text(), .html(), .val()</td>
+                        <td>텍스트와 값 변경</td>
+                    </tr>
+                    <tr>
+                        <td><strong>스타일</strong></td>
+                        <td>.css(), .addClass(), .removeClass()</td>
+                        <td>디자인 변경</td>
+                    </tr>
+                    <tr>
+                        <td><strong>이벤트</strong></td>
+                        <td>.click(), .on(), .hover()</td>
+                        <td>사용자 동작 처리</td>
+                    </tr>
+                    <tr>
+                        <td><strong>효과</strong></td>
+                        <td>.show(), .hide(), .fadeIn(), .slideDown()</td>
+                        <td>애니메이션 효과</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DOM 조작</strong></td>
+                        <td>.append(), .remove(), .empty()</td>
+                        <td>요소 추가/제거</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ========================================
+         jQuery 코드 시작
+         모든 코드에 초보자가 이해하기 쉬운 주석 추가
+         ======================================== -->
+    <script>
+        // ============================================
+        // $(document).ready() 함수
+        // 역할: HTML 문서가 완전히 로드된 후에 jQuery 코드 실행
+        // 이유: HTML이 로드되기 전에 실행하면 요소를 찾을 수 없어서 오류 발생
+        // ============================================
+        $(document).ready(function() {
+            
+            // 또는 단축 문법: $(function() { ... });
+            // 위 코드와 완전히 같은 의미입니다
+            
+            console.log("jQuery가 준비되었습니다!");
+
+            // ============================================
+            // 1. 기본 문법 예제
+            // ============================================
+            
+            // $("#아이디"): ID가 "basicBtn"인 요소를 선택
+            // .click(function() {}): 클릭 이벤트 핸들러 등록
+            $("#basicBtn").click(function() {
+                // $("#basicResult"): ID가 "basicResult"인 요소 선택
+                // .html(): HTML 내용을 설정하거나 가져오기
+                $("#basicResult").html(
+                    '<div class="result">jQuery가 정상적으로 작동합니다! ✅</div>'
+                );
+            });
+
+            // ============================================
+            // 2. 요소 선택하기 예제
+            // ============================================
+            
+            // ID로 선택 예제
+            $("#selectBtn1").click(function() {
+                // $("#demo-p"): ID 선택자 - #으로 시작
+                // .css("color", "blue"): CSS 속성 변경
+                $("#demo-p").css("color", "blue");
+                $("#selectResult").html(
+                    '<div class="result">ID 선택자로 파란색 적용! #demo-p</div>'
+                );
+            });
+
+            // 클래스로 선택 예제
+            $("#selectBtn2").click(function() {
+                // $(".demo-class"): 클래스 선택자 - .으로 시작
+                // 같은 클래스를 가진 모든 요소 선택
+                $(".demo-class").css("color", "red");
+                $("#selectResult").html(
+                    '<div class="result">클래스 선택자로 빨간색 적용! .demo-class</div>'
+                );
+            });
+
+            // 태그로 선택 예제
+            $("#selectBtn3").click(function() {
+                // $("p"): 태그 선택자 - 모든 p(문단) 태그 선택
+                // 페이지의 모든 <p> 요소가 선택됩니다
+                $("p").css({
+                    "background-color": "yellow",
+                    "padding": "5px"
+                });
+                $("#selectResult").html(
+                    '<div class="result">태그 선택자로 모든 p 태그에 노란 배경 적용!</div>'
+                );
+            });
+
+            // ============================================
+            // 3. 텍스트와 HTML 변경하기
+            // ============================================
+            
+            // .text() 메서드 예제
+            $("#changeText").click(function() {
+                // .text("새 텍스트"): 순수 텍스트만 변경
+                // HTML 태그는 문자 그대로 표시됨
+                $("#text-demo").text("텍스트가 변경되었습니다! 🎉");
+                $("#textResult").html(
+                    '<div class="result">.text() 메서드로 텍스트 변경 완료!</div>'
+                );
+            });
+
+            // .html() 메서드 예제
+            $("#changeHtml").click(function() {
+                // .html("HTML코드"): HTML 태그 포함해서 변경
+                // <strong> 태그가 실제로 적용되어 굵은 글씨로 표시
+                $("#html-demo").html("이제 <em>이탤릭체</em>와 <strong>굵은 글씨</strong>가 적용됩니다!");
+                $("#textResult").html(
+                    '<div class="result">.html() 메서드로 HTML 변경 완료!</div>'
+                );
+            });
+
+            // .val() 메서드 예제
+            $("#getValue").click(function() {
+                // .val(): input, textarea, select 요소의 값을 가져오기
+                // 사용자가 입력한 값을 읽어옴
+                var inputValue = $("#input-demo").val();
+                $("#textResult").html(
+                    '<div class="result">입력된 값: ' + inputValue + '</div>'
+                );
+            });
+
+            // ============================================
+            // 4. CSS 스타일 조작하기
+            // ============================================
+            
+            // 단일 CSS 속성 변경
+            $("#cssBtn1").click(function() {
+                // .css("속성명", "값"): CSS 속성 하나 변경
+                $("#css-demo").css("background-color", "#ffeb3b");
+            });
+
+            // 글자 크기 변경
+            $("#cssBtn2").click(function() {
+                // 글자 크기를 24px로 변경
+                $("#css-demo").css("font-size", "24px");
+            });
+
+            // 여러 CSS 속성 한번에 변경
+            $("#cssBtn3").click(function() {
+                // .css({속성1: 값1, 속성2: 값2, ...}): 여러 속성 동시 변경
+                // 객체 형태로 전달 (중괄호 {} 사용)
+                $("#css-demo").css({
+                    "background-color": "#e3f2fd",  // 파란 배경
+                    "color": "#1976d2",              // 파란 글씨
+                    "font-size": "20px",             // 글자 크기
+                    "padding": "30px",               // 안쪽 여백
+                    "border": "3px solid #1976d2",   // 테두리
+                    "font-weight": "bold"            // 굵은 글씨
+                });
+            });
+
+            // 원래대로 복구
+            $("#cssBtn4").click(function() {
+                // 초기 스타일로 되돌리기
+                $("#css-demo").css({
+                    "background-color": "#f0f0f0",
+                    "color": "#000",
+                    "font-size": "16px",
+                    "padding": "20px",
+                    "border": "none",
+                    "font-weight": "normal"
+                });
+            });
+
+            // ============================================
+            // 5. 속성(Attribute) 다루기
+            // ============================================
+            
+            // 이미지 src 속성 변경
+            $("#attrBtn1").click(function() {
+                // .val(): input 요소의 값 가져오기
+                var newUrl = $("#imgUrl").val();
+                
+                // .attr("속성명", "값"): HTML 속성 변경
+                // src 속성을 변경하면 이미지가 바뀜
+                $("#demo-img").attr("src", newUrl);
+            });
+
+            // alt 속성 변경
+            $("#attrBtn2").click(function() {
+                // alt: 이미지를 설명하는 대체 텍스트
+                // 이미지가 로드 안될 때 표시됨
+                $("#demo-img").attr("alt", "변경된 이미지 설명");
+                alert("이미지의 alt 속성이 변경되었습니다!");
+            });
+
+            // ============================================
+            // 6. 클래스 추가/제거하기
+            // ============================================
+            
+            // 클래스 추가
+            $("#classBtn1").click(function() {
+                // .addClass("클래스명"): 클래스 추가
+                // 여러 클래스를 공백으로 구분해서 한번에 추가 가능
+                $("#class-demo").addClass("big-text");
+            });
+
+            // 클래스 토글 (있으면 제거, 없으면 추가)
+            $("#classBtn2").click(function() {
+                // .toggleClass("클래스명"): 클래스 토글
+                // 클래스가 있으면 제거, 없으면 추가
+                $("#class-demo").toggleClass("red-text");
+            });
+
+            // 클래스 추가
+            $("#classBtn3").click(function() {
+                $("#class-demo").addClass("blue-bg");
+            });
+
+            // 모든 클래스 제거
+            $("#classBtn4").click(function() {
+                // .removeClass(): 모든 클래스 제거
+                // .removeClass("클래스명"): 특정 클래스만 제거
+                $("#class-demo").removeClass("big-text red-text blue-bg");
+            });
+
+            // ============================================
+            // 7. 이벤트 처리하기
+            // ============================================
+            
+            // 클릭 이벤트
+            $("#eventBtn1").click(function() {
+                // this: 이벤트가 발생한 요소 자신을 가리킴
+                // $(this): this를 jQuery 객체로 변환
+                $(this).text("클릭됨! ✓");
+                $("#eventResult").html(
+                    '<div class="result">버튼이 클릭되었습니다!</div>'
+                );
+            });
+
+            // 더블클릭 이벤트
+            $("#eventBtn2").dblclick(function() {
+                // .dblclick(): 더블클릭 이벤트
+                $("#eventResult").html(
+                    '<div class="result">버튼이 더블클릭되었습니다! 🖱️🖱️</div>'
+                );
+            });
+
+            // hover 이벤트 (마우스 올림/뗌)
+            $("#hoverBox").hover(
+                function() {
+                    // 첫 번째 함수: 마우스를 올렸을 때 (mouseenter)
+                    $(this).css({
+                        "background-color": "#4caf50",
+                        "color": "white",
+                        "transform": "scale(1.05)"
+                    });
+                },
+                function() {
+                    // 두 번째 함수: 마우스를 뗐을 때 (mouseleave)
+                    $(this).css({
+                        "background-color": "#f0f0f0",
+                        "color": "#000",
+                        "transform": "scale(1)"
+                    });
+                }
+            );
+
+            // ============================================
+            // 8. 보이기/숨기기 효과
+            // ============================================
+            
+            // .show(): 요소 보이기
+            $("#showBtn").click(function() {
+                // 인자 없이 사용하면 즉시 표시
+                // .show(1000): 1초(1000ms) 동안 서서히 표시
+                $("#show-demo").show(500);  // 0.5초 동안
+            });
+
+            // .hide(): 요소 숨기기
+            $("#hideBtn").click(function() {
+                $("#show-demo").hide(500);
+            });
+
+            // .toggle(): 보이기/숨기기 전환
+            $("#toggleBtn").click(function() {
+                // 보이면 숨기고, 숨겨져 있으면 보이게
+                $("#show-demo").toggle(500);
+            });
+
+            // .fadeIn(): 서서히 나타나기
+            $("#fadeInBtn").click(function() {
+                // 투명도를 0에서 1로 변경하며 나타남
+                $("#show-demo").fadeIn(1000);  // 1초 동안
+            });
+
+            // .fadeOut(): 서서히 사라지기
+            $("#fadeOutBtn").click(function() {
+                // 투명도를 1에서 0으로 변경하며 사라짐
+                $("#show-demo").fadeOut(1000);
+            });
+
+            // .slideDown(): 슬라이드로 펼치기
+            $("#slideDownBtn").click(function() {
+                // 위에서 아래로 슬라이드되며 나타남
+                $("#show-demo").slideDown(800);
+            });
+
+            // .slideUp(): 슬라이드로 접기
+            $("#slideUpBtn").click(function() {
+                // 아래에서 위로 슬라이드되며 사라짐
+                $("#show-demo").slideUp(800);
+            });
+
+            // 토글 콘텐츠 예제
+            $("#toggleContent").click(function() {
+                // .slideToggle(): 슬라이드로 토글
+                $(".toggle-content").slideToggle(600);
+                
+                // 버튼 텍스트도 변경
+                // .is(":visible"): 요소가 보이는지 확인
+                if ($(".toggle-content").is(":visible")) {
+                    $(this).text("내용 접기");
+                } else {
+                    $(this).text("내용 펼치기");
+                }
+            });
+
+            // ============================================
+            // 9. 애니메이션 만들기
+            // ============================================
+            
+            // 오른쪽으로 이동
+            $("#animBtn1").click(function() {
+                // .animate({속성: 값}, 시간, easing, 콜백함수)
+                // CSS 속성을 지정한 시간 동안 변경
+                $("#animBox1").animate({
+                    "margin-left": "300px"  // 왼쪽 여백을 300px로
+                }, 1000);  // 1초 동안
+            });
+
+            // 크기 변경
+            $("#animBtn2").click(function() {
+                // 여러 속성을 동시에 애니메이션
+                $("#animBox1").animate({
+                    "width": "200px",   // 가로 200px로
+                    "height": "200px"   // 세로 200px로
+                }, 1500);  // 1.5초 동안
+            });
+
+            // 여러 효과 동시에
+            $("#animBtn3").click(function() {
+                // 위치, 크기, 투명도 동시 변경
+                $("#animBox2").animate({
+                    "margin-left": "250px",
+                    "width": "150px",
+                    "height": "150px",
+                    "opacity": 0.5  // 투명도 50%
+                }, 2000);  // 2초 동안
+            });
+
+            // 순차적 애니메이션
+            $("#animBtn4").click(function() {
+                // jQuery는 체이닝된 애니메이션을 순서대로 실행
+                $("#animBox2")
+                    .animate({"margin-left": "200px"}, 1000)  // 먼저 이동
+                    .animate({"width": "150px"}, 500)         // 그 다음 크기 변경
+                    .animate({"height": "150px"}, 500)        // 그 다음 높이 변경
+                    .animate({"opacity": 0.3}, 500);          // 마지막으로 투명도
+            });
+
+            // 원위치로 복구
+            $("#animBtn5").click(function() {
+                // 모든 박스를 초기 상태로
+                $(".animate-box").animate({
+                    "margin-left": "20px",
+                    "width": "100px",
+                    "height": "100px",
+                    "opacity": 1
+                }, 1000);
+            });
+
+            // ============================================
+            // 10. DOM 조작 (요소 추가/제거)
+            // ============================================
+            
+            // 끝에 항목 추가 (append)
+            $("#domBtn1").click(function() {
+                // .val(): input의 값 가져오기
+                var newText = $("#newItem").val();
+                
+                // 입력값이 비어있는지 확인
+                if (newText === "") {
+                    alert("항목을 입력하세요!");
+                    return;  // 함수 종료
+                }
+                
+                // .append(): 선택한 요소의 마지막 자식으로 추가
+                // HTML 문자열을 직접 전달할 수 있음
+                $("#domList").append("<li>" + newText + "</li>");
+                
+                // 입력 필드 비우기
+                $("#newItem").val("");
+            });
+
+            // 앞에 항목 추가 (prepend)
+            $("#domBtn2").click(function() {
+                var newText = $("#newItem").val();
+                
+                if (newText === "") {
+                    alert("항목을 입력하세요!");
+                    return;
+                }
+                
+                // .prepend(): 선택한 요소의 첫 번째 자식으로 추가
+                $("#domList").prepend("<li>" + newText + "</li>");
+                $("#newItem").val("");
+            });
+
+            // 마지막 항목 제거
+            $("#domBtn3").click(function() {
+                // $("#domList li:last"): 마지막 li 요소 선택
+                // :last - 가상 선택자로 마지막 요소 선택
+                // .remove(): 요소를 DOM에서 완전히 제거
+                $("#domList li:last").remove();
+            });
+
+            // 전체 비우기
+            $("#domBtn4").click(function() {
+                // .empty(): 선택한 요소의 모든 자식 요소 제거
+                // 요소 자체는 남아있고 내용만 제거됨
+                $("#domList").empty();
+            });
+
+            // 초기화
+            $("#domBtn5").click(function() {
+                // HTML을 직접 설정하여 초기 상태로
+                $("#domList").html(`
+                    <li>항목 1</li>
+                    <li>항목 2</li>
+                    <li>항목 3</li>
+                `);
+            });
+
+            // ============================================
+            // 11. 반복문과 체이닝
+            // ============================================
+            
+            // .each() 반복문 예제
+            $("#eachBtn1").click(function() {
+                // .each(function(index, element) {}): 각 요소마다 함수 실행
+                // index: 현재 순서 (0부터 시작)
+                // element: 현재 요소 (일반 DOM 객체)
+                $("#each-demo p").each(function(index, element) {
+                    // $(element): DOM 객체를 jQuery 객체로 변환
+                    // .prepend(): 앞에 내용 추가
+                    $(element).prepend("[" + (index + 1) + "] ");
+                });
+            });
+
+            // 짝수 번째 요소만 변경
+            $("#eachBtn2").click(function() {
+                $("#each-demo p").each(function(index) {
+                    // %: 나머지 연산자
+                    // index % 2 === 0: 짝수 인덱스 (0, 2, 4...)
+                    if (index % 2 === 0) {
+                        // 짝수 번째 문단에만 스타일 적용
+                        $(this).css({
+                            "background-color": "#e3f2fd",
+                            "padding": "10px",
+                            "border-radius": "5px"
+                        });
+                    }
+                });
+            });
+
+            // 체이닝 예제
+            $("#chainBtn").click(function() {
+                // 체이닝: 여러 메서드를 .으로 연결해서 한 줄로 작성
+                // 코드가 간결해지고 읽기 쉬워짐
+                $("#each-demo p")
+                    .css("color", "white")           // 먼저 글자 색 변경
+                    .css("background", "#667eea")    // 그 다음 배경색 변경
+                    .css("padding", "15px")          // 여백 추가
+                    .css("border-radius", "8px")     // 모서리 둥글게
+                    .fadeOut(500)                    // 0.5초 동안 사라짐
+                    .fadeIn(500);                    // 0.5초 동안 나타남
+            });
+
+            // 초기화
+            $("#resetEach").click(function() {
+                $("#each-demo").html(`
+                    <p>문단 1</p>
+                    <p>문단 2</p>
+                    <p>문단 3</p>
+                    <p>문단 4</p>
+                `);
+            });
+
+            // ============================================
+            // 12. 실전 예제 - To-Do List
+            // ============================================
+            
+            // 할 일 추가 함수
+            $("#addTodo").click(function() {
+                // 입력값 가져오기
+                var todoText = $("#todoInput").val();
+                
+                // 빈 값 체크
+                if (todoText === "") {
+                    alert("할 일을 입력하세요!");
+                    return;
+                }
+                
+                // 새로운 할 일 항목 HTML 생성
+                // 완료 버튼과 삭제 버튼 포함
+                var todoItem = `
+                    <li style="padding: 12px; margin: 8px 0; background: #f8f9fa; 
+                               border-radius: 8px; display: flex; justify-content: space-between; 
+                               align-items: center; border-left: 4px solid #667eea;">
+                        <span class="todo-text">${todoText}</span>
+                        <div>
+                            <button class="completeBtn" style="background: #28a745; margin-right: 5px;">완료</button>
+                            <button class="deleteBtn" style="background: #dc3545;">삭제</button>
+                        </div>
+                    </li>
+                `;
+                
+                // 목록에 추가
+                $("#todoList").append(todoItem);
+                
+                // 입력 필드 비우기
+                $("#todoInput").val("");
+            });
+
+            // Enter 키로도 추가 가능하게
+            $("#todoInput").keypress(function(e) {
+                // e.which === 13: Enter 키의 키 코드
+                if (e.which === 13) {
+                    $("#addTodo").click();  // 추가 버튼 클릭 실행
+                }
+            });
+
+            // 완료 버튼 이벤트 (동적으로 추가된 요소에 이벤트 등록)
+            // .on("이벤트", "선택자", 함수): 동적 요소에도 이벤트 적용
+            $("#todoList").on("click", ".completeBtn", function() {
+                // .parent(): 부모 요소 선택
+                // .find(): 자손 요소 중에서 선택자에 맞는 요소 찾기
+                var todoItem = $(this).parent().parent();
+                var todoText = todoItem.find(".todo-text");
+                
+                // .toggleClass(): 클래스 토글
+                // 완료 상태를 토글 (완료 ↔ 미완료)
+                todoText.css({
+                    "text-decoration": todoText.css("text-decoration") === "line-through none solid rgb(0, 0, 0)" 
+                        ? "none" 
+                        : "line-through",
+                    "color": todoText.css("text-decoration") === "line-through none solid rgb(0, 0, 0)" 
+                        ? "#000" 
+                        : "#999"
+                });
+                
+                // 버튼 텍스트 변경
+                if ($(this).text() === "완료") {
+                    $(this).text("취소");
+                } else {
+                    $(this).text("완료");
+                }
+            });
+
+            // 삭제 버튼 이벤트
+            $("#todoList").on("click", ".deleteBtn", function() {
+                // 확인 메시지
+                if (confirm("정말 삭제하시겠습니까?")) {
+                    // .fadeOut(): 서서히 사라지게 한 후
+                    // 콜백 함수에서 .remove()로 완전히 제거
+                    $(this).parent().parent().fadeOut(400, function() {
+                        $(this).remove();
+                    });
+                }
+            });
+
+            // ============================================
+            // 추가 학습 팁
+            // ============================================
+            
+            /* 
+                jQuery 체이닝의 장점:
+                1. 코드가 간결해짐
+                2. 성능이 향상됨 (DOM을 한 번만 찾음)
+                3. 가독성이 좋아짐
+                
+                예시:
+                $("#element")
+                    .css("color", "red")
+                    .addClass("active")
+                    .fadeIn(500)
+                    .animate({left: "100px"}, 1000);
+            */
+            
+            /* 
+                .on() vs .click() 차이:
+                - .click(): 현재 존재하는 요소에만 적용
+                - .on(): 동적으로 추가된 요소에도 적용 가능
+                
+                동적 요소에 이벤트 등록:
+                $(부모선택자).on("이벤트", "자식선택자", 함수)
+            */
+            
+            console.log("모든 jQuery 예제가 로드되었습니다! 🎉");
+            
+        }); // $(document).ready() 끝
+
+    </script>
+</body>
+</html>

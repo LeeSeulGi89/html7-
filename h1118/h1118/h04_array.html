@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td{border: 1px solid black; border-collapse: collapse;}
+        th, td{padding: 100px; height: 40px; text-align: center;}
+        #txt{width: 400px; height: 50px; border: 1px solid black;}
+    </style>
+</head>
+<body>
+    <label>이름</label>
+    <input type="text" id="name" onkeyup="keyBtn(event)">
+    <button type="button" onclick="saveBtn()">저장</button>
+    <table id="nameTable">
+        <tr>
+            <th>이름</th>
+        </tr>
+        <tbody id="tbody">
+            <tr><td>홍길동</td></tr>
+            <tr><td>유관순</td></tr>
+        </tbody>
+    </table>
+    <script>
+        var arr = ['홍길동','유관순'];
+
+        function keyBtn(event){
+            if(event.keyCode === 13){
+                saveBtn();
+            }
+        }
+
+        function saveBtn(){
+            var name = document.querySelector("#name").value;
+            if(name.trim() === "") {
+                alert("이름을 입력해주세요.");
+                return;
+            }
+            arr.push(name);
+            console.log(arr);
+            document.querySelector("#name").value = "";
+            document.querySelector("#name").focus();
+            var tbody = document.querySelector("#tbody");
+            console.log(tbody.innerHTML+`<tr><td>${name}</td></tr>`);
+            tbody.innerHTML += `<tr><td>${name}</td></tr>`;
+            
+            alert("이름을 저장합니다.");
+        }
+        
+        
+    </script>
+</body>
+</html>

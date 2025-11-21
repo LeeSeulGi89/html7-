@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>학생성적프로그램</title>
+    <style>
+        table,th,td{border:1px solid black; border-collapse: collapse;}
+        th,td{width:100px; height:40px; text-align: center; }
+    </style>
+    <script>
+        $(function(){
+            // id 1번 요소 출력
+            // 100점 출력
+            console.log( $("#1").html());
+            console.log( $("#1").children().eq(3).text());
+            //$("#1").remove();  //삭제
+
+            // 홍길동을 이름칸에 나오게 출력
+            console.log( $("#1").children().eq(1).text());
+            // 수학을 수학점으로 출력
+            console.log( $("#1").children().eq(4).text());
+            $("#name").val( $("#1").children().eq(1).text() );
+            $("#math").val( $("#1").children().eq(4).text() );
+            
+        });
+
+        function updateBtn(){
+            $("#sno").val( $("#1").children().eq(0).text() );
+            $("#name").val( $("#1").children().eq(1).text() );
+            $("#kor").val( $("#1").children().eq(2).text() );
+            $("#eng").val( $("#1").children().eq(3).text() );
+            $("#math").val( $("#1").children().eq(4).text() );
+            // 수정모드로 변경
+            $("#sb").text("성적수정");
+            console.log()
+            $("input").css("background-color", "yellow");
+
+
+        }
+
+        //성적수정가능하게 출력하시오
+        function saveBtn(){
+            alert("성적을 저장합니다.");
+            // 저장 로직 추가 가능
+            console.log("버튼글자:", document.getElementById("sb").innerText);
+            console.log("버튼글자: ", $("#sb").text());
+
+            if($("#sb").text() ==='성적수정'){
+                var sno = $("#sb").text();
+                $("#"+sno).html();
+                    `
+                    <td>1</td>
+                    <td>홍길동</td>
+                    <td>90</td>
+                    <td>90</td>
+                    <td>90</td>
+                    <td>270</td>
+                    <td>90.0</td>
+                    <td>
+                        <button type="button" id="update" onclick="updateBtn()">수정</button>
+                        <button type="button" id="del">삭제</button>
+                    </td>
+                    `
+                alert("성적을 수정합니다.");
+            } else {
+                alert("성적을 저장합니다.");
+
+
+        }
+    }
+
+        
+
+        function saveBtn(){
+            alert("성적을 저장합니다.");
+            // 저장 로직 추가 가능
+        }
+
+        function enterBtn(event){
+            if(event.key === 'Enter'){
+                saveBtn();
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="#" method="get">
+        <label>번호</label>
+        <input type="text" id="sno" name="sno"><br>
+        <label>이름</label>
+        <input type="text" id="name" name="name"><br>
+        <label>국어</label>
+        <input type="text" id="kor" name="kor"><br>
+        <label>영어</label>
+        <input type="text" id="eng" name="eng"><br>
+        <label>수학</label>
+        <input type="text" id="math" name="math" onkeyup="enterBtn(event)"><br>
+        <button type="button" id="sb" onclick="saveBtn()">성적저장</button>
+    </form>
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>국어</th>
+            <th>영어</th>
+            <th>수학</th>
+            <th>합계</th>
+            <th>평균</th>
+            <th>비고</th>
+        </tr>
+        <tbody id="tbody">
+            <tr id='1'>
+                    <td>1</td>
+                    <td>홍길동</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td>100</td>
+                    <td>300</td>
+                    <td>100.0</td>
+                    <td>
+                        <button type="button" id="update" onclick="updateBtn()">수정</button>
+                        <button type="button" id="del">삭제</button>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+</body>
+</html>

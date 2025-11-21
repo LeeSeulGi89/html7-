@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>학생성적표</title>
+    <style>
+        table,th,td{border:1px solid black; border-collapse: collapse;}
+        th,td{width:100px; height:40px; text-align: center; }
+        
+    </style>
+</head>
+<body>
+    <script>
+        function saveBtn(event){
+            event.preventDefault();
+            
+            var sno = document.querySelector("#sno").value;
+            if(sno.length<=0){
+                alert("학생번호를 입력하셔야 저장이 가능합니다.");
+                document.querySelector("#sno").focus();
+                return;
+            }
+            alert("학생 성적을 저장합니다.");
+            var name = document.querySelector("#name").value;
+            var kor = Number(document.querySelector("#kor").value);
+            var eng = Number(document.querySelector("#eng").value);
+            var math = Number(document.querySelector("#math").value);
+            var total = kor+eng+math;
+            var avg = total / 3;
+            console.log(sno,name,kor,eng,math,total,avg);
+            var tbody = document.querySelector("#tbody");
+            var dhtml = tbody.innerHTML;
+            tbody.innerHTML = dhtml + `
+            <tr id='${sno}'>
+                <td>${sno}</td>
+                <td>${name}</td>
+                <td>${kor}</td>
+                <td>${eng}</td>
+                <td>${math}</td>
+                <td>${total}</td>
+                <td>${avg}</td>
+                <td>
+                <button type="button" onclick="updateBtn(${sno})">수정</button>
+                <button type="button" onclick="deleteBtn(event, ${sno})">삭제</button>
+                </td>
+            </tr>
+            `;
+
+
+            inputClear();
+            
+        }
+        
+
+        // 삭제버튼
+        function deleteBtn(sno, event){
+            if(confirm(sno+"번 학생을 정말 삭제하시겠습니까?")){
+                //console.log(event.target.closest("tr"));
+                //console.log(event.target.closest("tr").childNodes[1].innerText);
+
+                event.target.closest("tr").remove();
+                //document.getElementById(sno).remove();
+                //document.getElementsByClassName(sno)
+                //document.getElementsByTagName("tr")
+                //document.querySelector("#"+sno).remove();
+            }
+
+
+        }
+
+        //클릭하면 수정
+        function updateBtn(sno){
+            alert(sno+"번 학생의 성적을 수정합니다.");
+
+        }
+
+
+
+        //입력창 지우기 함수
+        function inputClear(){
+            document.querySelector("#sno").value = '';
+            document.querySelector("#name").value = '';
+            document.querySelector("#kor").value = '';
+            document.querySelector("#eng").value = '';
+            document.querySelector("#math").value = '';
+            document.querySelector("#sno").focus();
+        }
+        
+
+        
+        function enterBtn(event){
+            if(event.key === 'Enter'){
+                saveBtn(event);
+            }
+        }
+    </script>
+
+    <form action="#" method="get">
+        <label>번호</label>
+        <input type="text" id="sno" name="sno" onkeypress="enterBtn(event)"><br>
+        <label>이름</label>
+        <input type="text" id="name" name="name" onkeypress="enterBtn(event)"><br>
+        <label>국어</label>
+        <input type="text" id="kor" name="kor" onkeypress="enterBtn(event)"><br>
+        <label>영어</label>
+        <input type="text" id="eng" name="eng" onkeypress="enterBtn(event)"><br>
+        <label>수학</label>
+        <input type="text" id="math" name="math" onkeypress="enterBtn(event)"><br>
+        <button type="button" onclick="saveBtn(event)">성적저장</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>국어</th>
+            <th>영어</th>
+            <th>수학</th>
+            <th>합계</th>
+            <th>평균</th>
+            <th>비고</th>
+        </tr>
+
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+</body>
+</html>

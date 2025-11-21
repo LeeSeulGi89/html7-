@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <script>
+        // 선택자#,. ,
+        // 글자출력,입력: text(), .html(), .val(), .attr(), .parent(), .children()
+        // 형제관계에서 찾기 : eq()- 형제관계에서 찾기
+        // parent()  부모찾기, children() 자식찾기
+        // next() 다음형제, prev() 이전형제
+        // closest()  조상찾기
+        // 속성값 읽기 : .attr()
+
+
+        $(function(){
+            console.log($("li"));
+            console.log($("li").eq(0).text());
+            console.log($("ui").children().eq(1).attr("id"));
+            console.log($("#li01").parent().html() );
+            console.log( $("#li01").parent().attr("id"));  //속성값
+            console.log($("#li01").next().text());
+            // 90점 출력
+            console.log( $("#li01").next().next().next().text() );
+            console.log($("li").eq(3).text());
+            console.log( $("#li03").text());
+            console.log( $("#li03").closest("ul"));
+            console.log( $("#li03").closest("ul").eq(0));
+            
+
+
+        });
+    </script>
+</head>
+<body>
+    <ul id="u01">
+        <li id="li01">1</li>
+        <li>홍길동</li>
+        <li>100</li>
+        <li id="li03">90</li>
+        <li>80</li>
+    </ul>
+</body>
+</html>

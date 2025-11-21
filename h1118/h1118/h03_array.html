@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //배열 - 같은 성격의 변수들을 하나로 묶어서 관리하는 기법
+        /*
+        
+        var i = 0;
+        document.write(i+"<br>");
+
+        var arr = [1,2,3,4,5];
+        document.write(arr[0]+"<br>");
+        document.write(arr[1]+"<br>");
+        document.write(arr[2]+"<br>");
+        document.write(arr[3]+"<br>");
+        document.write(arr[4]+"<br>");
+        var arr2 = [1,"홍길동",100,91,0.5];
+        document.write(arr2[0]+"<br>");
+        document.write(arr2[1]+"<br>");
+        document.write(arr2[2]+"<br>");
+        document.write(arr2[3]+"<br>");
+        document.write(arr2[4]+"<br>");
+        
+        // 배열 선언 방법 - 리터럴생성, new객채생성
+        var arr = [1,2,3];          // 권장방식
+        var arr2 = new Array(4,5,6);
+
+        // 배열 추가 방법 - push()많이 씀, unshift(), splice()
+        arr.push(4);               // 마지막 위치에 추가
+        arr.unshift(0);            // 첫번째 위치에 추가
+        arr.splice(2,0,5);         // 지정한 위치에 추가 (2번째 위치에 5추가, 0은 삭제개수)
+        // arr.splice(2,2);        // 지정한 위치에 삭제 (2번째 위치에서 2개 삭제)
+
+        // 배열 수정 방법 - 위치에 값을 입력 하여 수정
+        arr[0] = 100;              
+
+
+        // 배열 삭제 방법 - pop()많이 씀, shift(), splice()
+        arr.pop();                 // 마지막 위치 삭제
+        arr.shift();               // 첫번째 위치 삭제
+        document.write(arr+"<br>");
+        arr.splice(1,1);           // 지정한 위치 삭제 (1번째 위치에서 1개 삭제)
+
+        document.write(arr+"<br>");
+
+        */
+
+
+
+
+    </script>
+    <label>이름</label>
+    <input type="text" id="name" onkeyup="keyBtn(event)" placeholder="이름을 입력하세요.">
+    <button type="button" onclick="saveBtn()">저장</button>
+    <div id="txt"></div>
+    <script>
+        var arr = ['홍길동','유관순','이순신'];
+        document.querySelector("#txt").innerText = arr;
+        function keyBtn(event){
+            console.log("입력한 키값:", event.keyCode);
+            if(event.keyCode === 13){
+                saveBtn();
+            }
+        }
+
+
+        function saveBtn(){
+            // alert("저장되었습니다.");
+            arr.push(document.querySelector("#name").value);
+            console.log(arr);
+            document.querySelector("#txt").innerText = arr;
+            document.querySelector("#name").value = "";
+
+            }
+
+    </script>
+</body>
+</html>

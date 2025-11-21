@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화일문</title>
+</head>
+<body>
+    <script>
+        /*var i=0;
+        while(i<10){
+            document.write(`i의 값 : ${i} <br>`);
+            i++;
+        }
+        document.write("=================<br>");
+        for(var j=0; j<10; i++){
+            document.write(`j의 값 : ${j} <br>`);
+        } 
+            
+        
+        // 문자열을 숫자형으로 변경 - Number(),String(),Boolean()
+        // 실수형 숫자를 정수형 숫자로 변경 - parseInt()
+        // 정수형에서 실수형 으로 변환 - parseFloat()
+        // 1~10사이의 임의의 정수 3개 출력
+        // parseInt(Math.random() *10)+1; 공식 // 1~10까지의 임의의 정수
+        // parseInt(Math.random() *45)+1; 공식 // 1~45까지의 임의의 정수
+        // parseInt(Math.random() *45); 공식 // 0~44까지의 임의의 정수
+        
+        document.write((parseInt(Math.random() *10)+1)+ "<br>");
+        document.write((parseInt(Math.random() *10)+1)+ "<br>");
+        document.write((parseInt(Math.random() *10)+1)+ "<br>");
+        document.write(Math.random() + "<br>");
+        document.write(Math.random() + "<br>");
+        document.write(Math.random() + "<br>");
+        math.random();
+        */
+
+        // 랜덤숫자 맞추기 10번을 해서 맞으면 정답, 입력값이 높으면 낮은수 입력.
+        // 입력값이 낮으면 높은수 입력.
+        // 정답: 10이 나오게 출력
+        var random = parseInt(Math.random() *100)+1;
+        var i = 0;
+        while(i<10){
+            var input = parseInt(prompt("1~100사이의 숫자를 입력하세요"));
+            if(i>random){
+                alert("더 낮은 수를 입력하세요");
+            } else if(i<random){
+                alert("더 높은 수를 입력하세요");
+            } else{
+                alert("정답입니다.");
+                break;
+            }
+            i++;
+        }
+        document.write("정답은 " + random + "입니다.<br>");
+
+        
+    </script>
+</body>
+</html>
