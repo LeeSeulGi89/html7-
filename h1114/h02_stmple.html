@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리솜 포레스트</title>
+    <style>
+        .logo-container {position: absolute; top: 55px; left: 270px; z-index: 1000; transition: none; }
+    
+        .logo-image {width: 150px; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);}
+
+        .banner{margin-top: -10px;
+                width: 100%;
+                margin: 0 ;
+                height: 320px;
+                background: url("images/리솜메인.jpg");
+                position: relative;
+    }
+
+        
+        .breadcrumb {
+            position: absolute;
+            top: 330px;
+            right: 330px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .breadcrumb a {
+            text-decoration: none;
+            color: #666;
+        }
+
+        .breadcrumb img {
+            
+            height: 12px;
+            opacity: 0.7;
+        }
+
+        /* 배너 텍스트 스타일 */
+        .banner-text {
+            position: absolute;
+            top: 50%;
+            left: 50px;
+            transform: translateY(-50%);
+            text-align: left;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 배너 텍스트 애니메이션 */
+        @keyframes slideInFromLeft {
+            from {
+                left: -500px;
+                opacity: 0;
+            }
+            to {
+                left: 50px;
+                opacity: 1;
+            }
+        }
+
+        .banner-text h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            position: relative;
+            left: -500px;
+            opacity: 0;
+            animation: slideInFromLeft 2s ease-out forwards;
+        }
+
+        .banner-text p {
+            font-size: 16px;
+            font-weight: 400;
+            margin: 8px 0;
+            line-height: 1.4;
+            position: relative;
+            left: -500px;
+            opacity: 0;
+        }
+
+        .banner-text p:first-of-type {
+            animation: slideInFromLeft 2s ease-out 0.5s forwards;
+        }
+
+        .banner-text p:last-of-type {
+            animation: slideInFromLeft 2s ease-out 1s forwards;
+        }
+
+        
+
+        .header {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 300px;
+        box-sizing: border-box;
+  
+        }
+        .top-menu {
+        display: flex;
+        gap: 15px;
+        font-size: 12px;
+        color: #8a8d8f;
+        margin-right: 20px;
+        margin-left: 13px;
+        height: 11px;
+
+        }
+
+        .top-menu a {
+        text-decoration: none;
+        color: #8a8d8f;
+        }
+        .top-menu a:hover {
+        color: #035fe0;
+        }
+
+        ul{
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        justify-content: flex-end;
+        padding: 0 289px;
+        position: relative;
+        }
+
+        ul>li{
+        padding: 15px 30px;
+        height: 40px;
+        color: #1d1d1d;
+        font-weight: 500;
+        font-size: 19px;
+        cursor: pointer;
+        position: relative;
+        }
+        ul>li:hover{
+    
+        border-bottom: 2px  solid #718929;
+        color: #718929;
+        }
+        ul>li:last-child{
+        border-right: none;
+        }
+
+
+        .all-submenu-container {
+            display: block;
+            position: fixed;
+            top: 130px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-top: 3px solid #ffffff;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            width: 100%;
+            padding: 0 0 23px 0;
+            
+            
+        }
+
+        .all-submenu-grid {
+            display: flex;
+            justify-content: flex-end;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 320px;
+            gap: 0;
+        }
+
+        .submenu-column {
+            flex: 0 0 auto;
+            width: calc((62% - 10px) / 6);
+            margin-right: 2px;
+            padding: 0;
+            text-align: right;
+            letter-spacing: -0.1em;
+            
+        }
+
+        .submenu-column:last-child {
+            margin-right: 0;
+        }
+
+        .submenu-column h3 {
+            font-size: 16px;
+            font-weight: 320;
+            color: #030303;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #718929;
+            text-align: center;
+            line-height: 20;
+        }
+
+        .submenu-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: block;
+            
+        }
+
+        .submenu-column li {
+            padding: 5px 0;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            border-bottom: none !important;
+            height: auto !important;
+            letter-spacing: normal;
+            line-height: 1.4;
+        }
+
+        .submenu-column li a {
+            text-decoration: none;
+            color: #666;
+        }
+
+        .submenu-column li a:hover {
+            color: #718929;
+        }
+
+        
+        ul:hover .all-submenu-container {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+
+
+        
+        @media screen and (max-width: 1200px) {
+            .header {
+                padding: 0 50px;
+            }
+            ul {
+                padding: 0 50px;
+                justify-content: center;
+            }
+            .logo-container {
+                left: 20px;
+            }
+            .all-submenu-grid {
+                padding: 0 50px;
+            }
+            .submenu-column {
+                font-size: 12px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .header {
+                padding: 0 20px;
+                height: auto;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .top-menu {
+                font-size: 10px;
+                gap: 10px;
+                margin: 0;
+            }
+            
+            ul {
+                padding: 0 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            ul > li {
+                padding: 10px 15px;
+                font-size: 16px;
+            }
+            
+            .logo-container {
+                position: static;
+                text-align: center;
+                margin: 10px 0;
+            }
+            
+            .logo-image {
+                width: 100px;
+            }
+
+            .all-submenu-container {
+                position: relative;
+                width: 100%;
+                left: 0;
+                margin-left: 0;
+                padding: 20px 0;
+            }
+
+            .all-submenu-grid {
+                display: block;
+                padding: 0 20px;
+            }
+
+            .submenu-column {
+                width: 100%;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .submenu-column ul {
+                text-align: center;
+            }
+
+            .banner-text {
+                left: 30px;
+            }
+
+            .banner-text h1 {
+                font-size: 22px;
+            }
+
+            .banner-text p {
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .top-menu {
+                font-size: 9px;
+                gap: 5px;
+            }
+            
+            ul > li {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+            
+            .banner {
+                height: 200px;
+            }
+
+            .banner-text {
+                left: 20px;
+                text-align: left;
+                width: calc(100% - 40px);
+            }
+
+            .banner-text h1 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .banner-text p {
+                font-size: 12px;
+                margin: 5px 0;
+            }
+
+            .all-submenu-container {
+                padding: 15px 0;
+            }
+
+            .submenu-column {
+                margin-bottom: 15px;
+            }
+
+            .submenu-column h3 {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .submenu-column li {
+                font-size: 12px;
+                padding: 1px 0;
+            }
+        }
+
+        
+        .news-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #000000;
+        }
+
+        .news-header h2 {
+            font-size: 40px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .search-area {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-select {
+            width: 88px;
+            height: 30px;
+            border: 1px solid #dcdcdc;;
+            color: #666;
+            text-align: center;
+        }
+
+        .search-input {
+            width: 300px;
+            height: 28px;
+            border: 1px solid #dcdcdc;
+            
+        }
+
+        .search-btn {
+            background: #777;
+            border: solid 1px #6f6f6f;
+            height: 30px;
+            width: 60px;
+            vertical-align: middle;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            background-color: #555;
+        }
+
+        .news-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            
+        }
+
+        .news-table th,
+        .news-table td {
+            padding: 15px 10px;
+            
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .news-table th {
+            padding: 15px 0;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+            line-height: 100%;
+        }
+
+        .news-table td {
+            color: #555;
+        }
+
+        .news-table td:first-child,
+        .news-table td:last-child {
+            text-align: center;
+        }
+
+        .news-table a {
+            text-decoration: none;
+            color: #555;
+            text-align: center;
+            padding-left: 0;
+            font-size: 100%;
+        }
+
+        .news-table a:hover {
+            color: #718929;
+            text-decoration: underline;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 30px;
+        }
+
+        .page-btn {
+            padding: 0px 5px;
+            text-decoration: none;
+            color: #000000;
+            border: 1px solid #e8e8e8;
+            
+        }
+
+        .page-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .page-btn.active {
+            background-color: #8A8D8F;
+            border: 1px solid #8A8D8F;
+            line-height: 28px;
+            font-weight: 600;
+            
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+    <a href="https://www.resom.co.kr/forest/blog/news_list.asp" target="_blank">
+        <img src="images/리솜메인2.png">
+    </a>
+    </div>
+
+    <div class="header">
+    <div class="top-menu">
+      <a href="#">회원예약</a> |
+      <a href="#">패키지 예약</a> |
+      <a href="#">부대시설 예약</a> |
+      <a href="#">회원가입</a> |
+      <a href="#">로그인</a>
+    </div>
+    </div>
+
+        <ul>
+            <li>포레스트</li>
+            <li>스파</li>
+            <li>객실</li>
+            <li>특별한 경험</li>
+            <li>부대시설</li>
+            <li>브랜드소개</li>
+
+            
+            <div class="all-submenu-container">
+                <div class="all-submenu-grid">
+                    <div class="submenu-column">
+                        
+                        <ul>
+                            <li><a href="https://www.resom.co.kr/forest/resort/resort_concept.asp" target="_blank">소개</a></li>
+                            <li><a href="https://www.resom.co.kr/forest/blog/news_list.asp" target="_blank">뉴스</a></li>
+                            <li><a href="https://www.resom.co.kr/forest/blog/blog_list.asp" target="_blank">스토리</a></li>
+                            <li><a href="https://www.resom.co.kr/forest/resort/resort_map.asp" target="_blank">오시는 길</a></li>
+                        </ul>
+                    </div>
+                    <div class="submenu-column">
+                        
+                        <ul>
+                            <li>해브나인</li>
+                            <li>- 스파시설</li>
+                            <li>- 편의시설</li>
+                            <li>온미당</li>
+                            <li>- 찜질시설</li>
+                            <li>- 편의시설</li>
+                            <li>- 이용안내</li>
+                        </ul>
+                    </div>
+                    <div class="submenu-column">
+                        
+                        <ul>
+                            <li>포레스트 리솜</li>
+                            <li>- S 25<span>- S 30</span></li>
+                            <li>- G 40<span>- S 50</span></li>
+                            <li>- G 70</li>
+                            <li>레스토랑</li>
+                            <li>이용안내</li>
+                        </ul>
+                    </div>
+                    <div class="submenu-column">
+                        
+                        <ul>
+                            <li>리오프로그램</li>
+                            <li>이벤트</li>
+                            <li>무료공간</li>
+                            <li>트레킹 코스</li>
+                            <li>주변관광지</li>
+                        </ul>
+                    </div>
+                    <div class="submenu-column">
+                        
+                        <ul>
+                            <li>식음시설</li>
+                            <li>연회시설</li>
+                            <li>- 포레스트</li>
+                            <li>- 레스토랑</li>
+                            <li>문화시설</li>
+                        </ul>
+                    </div>
+                    <div class="submenu-column">
+                        
+                        <ul>
+                            <li>레스토랑</li>
+                            <li>아일랜드 리솜</li>
+                            <li>스플라스 리솜</li>
+                            <li>피시빌 리솜</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </ul>
+
+    <nav class="nav"></nav>
+    <div class="banner">
+        <div class="banner-text">
+            <h1>파노라마 숲에서 즐기는 프라이빗 스파</h1>
+            <p>계절의 색을 담은 숲이 나만의 정원이 됩니다.</p>
+            <p>자연과 함께하는 특별한 쉼을 경험해보세요.</p>
+        </div>
+        <div class="breadcrumb">
+            <a href="#">HOME</a> 
+            <img src="images/작은1.jpg">
+            <a href="#">포레스트</a> 
+            <img src="images/작은1.jpg">
+            뉴스
+        </div>
+    </div>
+    
+    
+    <div class="news-section">
+        <div class="news-header">
+            <h2>뉴스</h2>
+            <div class="search-area">
+                <select class="search-select">
+                    <option>제목</option>
+                    <option>내용</option>
+                    <option>작성자</option>
+                </select>
+                <input type="text" class="search-input" placeholder="">
+                <button class="search-btn">검색</button>
+            </div>
+        </div>
+        
+        <table class="news-table">
+            <thead>
+                <tr>
+                    <th width="80">번호</th>
+                    <th>제목</th>
+                    <th width="100">리조트</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>21</td>
+                    <td><a href="#">유아용 웨건 '폼포라(pompolari)' 무료 대여 서비스</a></td>
+                    <td>포레스트</td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td><a href="#">해브나인 스파 야구야수존 필수착용 안내 (25.11.01~)</a></td>
+                    <td>포레스트</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td><a href="#">'여름방학 그림일기' 이벤트 당첨자 발표</a></td>
+                    <td>포레스트</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td><a href="#">제1회 호반 시그니처 메뉴 경진대회 개최</a></td>
+                    <td>포레스트</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td><a href="#">[2025 사진공모전] 눈부시게 푸르른 날</a></td>
+                    <td>포레스트</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td><a href="#">어메니티(리프레젠트) 리뉴얼 안내</a></td>
+                    <td>포레스트</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td><a href="#">익스프레소 체크아웃 서비스 오픈</a></td>
+                    <td>포레스트</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td><a href="#">안전한 먹거리 제공을 위해 한국식품안전관리인증원(HACCP)인증을받겠습니다</a></td>
+                    <td>포레스트</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td><a href="#">해브나인 스파 이용요금 인상안내</a></td>
+                    <td>포레스트</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td><a href="#">해브나인 스파 7년 연속 '우수월스파광장' 선정</a></td>
+                    <td>포레스트</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td><a href="#">호반호텔앤리조트 신랄름 우수기업 표창</a></td>
+                    <td>포레스트</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td><a href="#">저감 주요 여행지 제휴혜택 안내</a></td>
+                    <td>포레스트</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="pagination">
+            <a href="#" class="page-btn"><img src="images/왼쪽하나.jpg"></a>
+            <a href="#" class="page-btn"><img src="images/왼쪽둘.jpg"></a>
+            <a href="#" class="page-btn active">1</a>
+            <a href="#" class="page-btn">2</a>
+            <a href="#" class="page-btn"><img src="images/오른쪽하나.jpg"></a>
+            <a href="#" class="page-btn"><img src="images/오른쪽둘.jpg"></a>
+        </div>
+    </div>
+</body>
+</html>

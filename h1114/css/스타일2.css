@@ -1,0 +1,104 @@
+body {
+font-family: 'Arial', sans-serif;
+margin: 0;
+padding: 0;
+background: #fff;
+color: #1a1a1a;
+}
+
+/* Header */
+.header {
+width: 100%;
+height: 60px;
+display: flex;
+justify-content: flex-end;
+align-items: center;
+padding: 0 40px;
+box-sizing: border-box;
+border-bottom: 1px solid #f0f0f0;
+}
+.top-menu {
+display: flex;
+gap: 15px;
+font-size: 13px;
+color: #636363;
+margin-right: 20px;
+}
+.top-menu a {
+text-decoration: none;
+color: #636363;
+}
+.top-menu a:hover {
+color: #035fe0;
+}
+
+.write-container {
+max-width: 800px;
+margin: 80px auto;
+padding: 0 20px;
+box-sizing: border-box;
+}
+.write-title {
+font-size: 28px;
+font-weight: bold;
+margin-bottom: 30px;
+text-align: center;
+}
+
+form.write-form {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+.write-form input[type="text"],
+.write-form textarea {
+padding: 10px;
+font-size: 15px;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
+width: 100%;
+}
+
+.write-form textarea {
+resize: vertical;
+min-height: 200px;
+}
+
+.write-buttons {
+display: flex;
+justify-content: flex-end;
+gap: 15px;
+}
+
+.write-buttons button {
+padding: 10px 20px;
+border: none;
+border-radius: 4px;
+font-size: 14px;
+color: white;
+background-color: #035fe0;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+.write-buttons button:hover {
+background-color: #0046b3;
+}
+
+.write-buttons .cancel {
+background-color: #6c757d;
+}
+
+.write-buttons .cancel:hover {
+background-color: #5a6268;
+}
+
+footer {
+border-top: 1px solid #ccc;
+padding: 30px;
+text-align: center;
+font-size: 13px;
+color: #A0A0A0;
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VLAST Shop - 게시판</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <style>
+    /* 로고 스타일 */
+    .logo-container {
+      position: absolute;
+      top: 55px;
+      left: 270px;
+      z-index: 1000;
+    }
+    
+    .logo-image {
+      width: 150px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .banner{width: 100%; height: 320px;
+      
+      background: url("images/리솜메인.jpg");
+    }
+
+  
+
+  ul{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: flex-end;
+    padding: 0 280px;
+  }
+  ul>li{
+    
+    padding: 15px 30px;
+    height: 40px;
+    color: #333;
+    font-weight: 500;
+    font-size: 19px;
+    cursor: pointer;
+    
+  }
+  ul>li:hover{
+    
+    border-bottom: 3px solid #718929;
+    color: #718929;
+  }
+  ul>li:last-child{
+    border-right: none;
+  }
+  img{width: 100%; 
+      
+  }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="logo-container">
+    <img src="images/리솜메인2.png">
+  </div>
+  
+  <div class="header">
+    <div class="top-menu">
+      <a href="#"><i class="fas fa-user-plus" aria-hidden="true"></i> 회원가입</a> |
+      <a href="#"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> 로그인</a> |
+      <a href="#"><i class="fas fa-receipt" aria-hidden="true"></i> 주문조회</a> |
+      <a href="#"><i class="fas fa-history" aria-hidden="true"></i> 최근본상품</a>
+    </div>
+    <div class="icons">
+      <i class="fas fa-search"></i>
+      <i class="fas fa-user"></i>
+      <i class="fas fa-shopping-bag"></i>
+    </div>
+  </div>
+
+  <ul>
+    <li>포레스트</li>
+    <li>스파</li>
+    <li>객실</li>
+    <li>특별한경험</li>
+    <li>부대시설</li>
+    <li>브랜드소개</li>
+
+
+  </ul>
+  <!--배너-->
+  <nav class="nav"></nav>
+  <div class="banner"></div>
+  
+
+  <!-- Board List -->
+  <div class="board-container">
+    <div class="board-title">공지사항</div>
+    <table class="board-table">
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>작성일</th>
+          <th>조회수</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>5</td>
+          <td class="title"><a href="#">[공지] 추석 연휴 배송 안내</a></td>
+          <td>관리자</td>
+          <td class="date">2025-09-05</td>
+          <td class="views">123</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td class="title"><a href="#">9월 신규 회원 이벤트 안내</a></td>
+          <td>운영팀</td>
+          <td class="date">2025-09-01</td>
+          <td class="views">98</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td class="title"><a href="#">[점검] 사이트 정기 점검 안내</a></td>
+          <td>관리자</td>
+          <td class="date">2025-08-28</td>
+          <td class="views">211</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td class="title"><a href="#">배송비 정책 변경 안내</a></td>
+          <td>관리자</td>
+          <td class="date">2025-08-20</td>
+          <td class="views">156</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td class="title"><a href="#">홈페이지 리뉴얼 오픈!</a></td>
+          <td>운영팀</td>
+          <td class="date">2025-08-10</td>
+          <td class="views">324</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Pagination & Search -->
+    <div class="board-footer" >
+        <div class="pagination">
+            <a href="#">&laquo;</a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">&raquo;</a>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="검색어 입력">
+            <button>검색</button>
+        </div>
+    </div>
+    
+  </div>
+
+
+  <!-- Footer -->
+  <footer>
+    Copyright © VLAST Shop. All rights reserved.
+  </footer>
+
+</body>
+</html>

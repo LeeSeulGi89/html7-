@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리솜 포레스트</title>
+    <style>
+        .logo-container {
+        position: absolute;
+        top: 55px;
+        left: 270px;
+        z-index: 1000;
+        transition: none;
+    }
+    
+        .logo-image {
+        width: 150px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .banner{margin-top: -10px;
+                width: 100%;
+                margin: 0 ;
+                height: 320px;
+                background: url("images/리솜메인.jpg");
+                position: relative;
+    }
+
+        
+        .breadcrumb {
+            position: absolute;
+            top: 330px;
+            right: 330px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .breadcrumb a {
+            text-decoration: none;
+            color: #666;
+        }
+
+        .breadcrumb img {
+            
+            height: 12px;
+            opacity: 0.7;
+        }
+
+        
+
+        .header {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 300px;
+        box-sizing: border-box;
+  
+        }
+        .top-menu {
+        display: flex;
+        gap: 15px;
+        font-size: 12px;
+        color: #8a8d8f;
+        margin-right: 20px;
+        margin-left: 13px;
+        height: 11px;
+
+        }
+
+        .top-menu a {
+        text-decoration: none;
+        color: #8a8d8f;
+        }
+        .top-menu a:hover {
+        color: #035fe0;
+        }
+
+        ul{
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        justify-content: flex-end;
+        padding: 0 289px;
+        position: relative;
+        }
+
+        ul>li{
+        padding: 15px 30px;
+        height: 40px;
+        color: #1d1d1d;
+        font-weight: 500;
+        font-size: 19px;
+        cursor: pointer;
+        position: relative;
+        }
+        ul>li:hover{
+    
+        border-bottom: 2px  solid #718929;
+        color: #718929;
+        }
+        ul>li:last-child{
+        border-right: none;
+        }
+
+
+        .all-submenu-container {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -0px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-top: 3px solid #ffffff;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            width: 100vw;
+            padding: 30px 0;
+        }
+
+        .all-submenu-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        .submenu-column {
+            text-align: left;
+        }
+
+        .submenu-column h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #030303;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #718929;
+            text-align: center;
+        }
+
+        .submenu-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: block;
+        }
+
+        .submenu-column li {
+            padding: 8px 0;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            border-bottom: none !important;
+            height: auto !important;
+        }
+
+        /* 메뉴 컨테이너에 호버할 때 하위 메뉴 표시 */
+        ul:hover .all-submenu-container {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+
+
+        
+        @media screen and (max-width: 1200px) {
+            .header {
+                padding: 0 50px;
+            }
+            ul {
+                padding: 0 50px;
+                justify-content: center;
+            }
+            .logo-container {
+                left: 20px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .header {
+                padding: 0 20px;
+                height: auto;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .top-menu {
+                font-size: 10px;
+                gap: 10px;
+                margin: 0;
+            }
+            
+            ul {
+                padding: 0 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            ul > li {
+                padding: 10px 15px;
+                font-size: 16px;
+            }
+            
+            .logo-container {
+                position: static;
+                text-align: center;
+                margin: 10px 0;
+            }
+            
+            .logo-image {
+                width: 100px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .top-menu {
+                font-size: 9px;
+                gap: 5px;
+            }
+            
+            ul > li {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+            
+            .banner {
+                height: 200px;
+            }
+        }
+
+        
+        .news-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #000000;
+        }
+
+        .news-header h2 {
+            font-size: 40px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .search-area {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-select {
+            width: 88px;
+            height: 30px;
+            border: 1px solid #dcdcdc;;
+            color: #666;
+            text-align: center;
+        }
+
+        .search-input {
+            width: 300px;
+            height: 28px;
+            border: 1px solid #dcdcdc;
+            
+        }
+
+        .search-btn {
+            background: #777;
+            border: solid 1px #6f6f6f;
+            height: 30px;
+            width: 60px;
+            vertical-align: middle;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .search-btn:hover {
+            background-color: #555;
+        }
+
+        .news-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            
+        }
+
+        .news-table th,
+        .news-table td {
+            padding: 15px 10px;
+            
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .news-table th {
+            padding: 15px 0;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+            line-height: 100%;
+        }
+
+        .news-table td {
+            color: #555;
+        }
+
+        .news-table td:first-child,
+        .news-table td:last-child {
+            text-align: center;
+        }
+
+        .news-table a {
+            text-decoration: none;
+            color: #555;
+            text-align: center;
+            padding-left: 0;
+            font-size: 100%;
+        }
+
+        .news-table a:hover {
+            color: #718929;
+            text-decoration: underline;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 30px;
+        }
+
+        .page-btn {
+            padding: 0px 5px;
+            text-decoration: none;
+            color: #000000;
+            border: 1px solid #e8e8e8;
+            
+        }
+
+        .page-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .page-btn.active {
+            background-color: #8A8D8F;
+            border: 1px solid #8A8D8F;
+            line-height: 28px;
+            font-weight: 600;
+            
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+    <a href="https://www.resom.co.kr/forest/blog/news_list.asp" target="_blank">
+        <img src="images/리솜메인2.png">
+    </a>
+    </div>
+
+    <div class="header">
+    <div class="top-menu">
+      <a href="#">회원예약</a> |
+      <a href="#">패키지 예약</a> |
+      <a href="#">부대시설 예약</a> |
+      <a href="#">회원가입</a> |
+      <a href="#">로그인</a>
+    </div>
+    </div>
+
+        <ul>
+            <li>포레스트</li>
+            <li>스파</li>
+            <li>객실</li>
+            <li>특별한 경험</li>
+            <li>부대시설</li>
+            <li>브랜드소개</li>
+
+            
+            <div class="all-submenu-container">
+                <div class="all-submenu-grid">
+                    <div class="submenu-column">
