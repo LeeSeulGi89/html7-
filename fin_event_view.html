@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> JARDIN SHOP </title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description" content="JARDIN SHOP" />
+<meta name="keywords" content="JARDIN SHOP" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scaleable=no" />
+<link rel="stylesheet" type="text/css" href="../css/reset.css?v=Y" />
+<link rel="stylesheet" type="text/css" href="../css/layout.css?v=Y" />
+<link rel="stylesheet" type="text/css" href="../css/content.css?v=Y" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="../js/top_navi.js"></script>
+<script type="text/javascript" src="../js/left_navi.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
+<script type="text/javascript" src="../js/jquery.anchor.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+});//jquery
+</script>
+<style> a{cursor: pointer;}</style>
+</head>
+<body>
+
+<div id="allwrap">
+<div id="wrap">
+
+	<div id="header">
+		
+		<div id="snbBox">
+			<h1><img src="../images/img/슬구의코딩.png" alt="슬구의코딩" /></h1>
+			<div id="quickmenu">
+				<div id="mnaviOpen"><img src="../images/btn/btn_mnavi.gif" width="33" height="31" alt="메뉴열기" /></div>
+				<div id="mnaviClose"><img src="../images/btn/btn_mnavi_close.gif" width="44" height="43" alt="메뉴닫기" /></div>
+				<ul>
+					<li><a href="#">이벤트</a></li>
+					<li><a href="#">고객</a></li>
+					<li><a href="#">커뮤니티</a></li>
+				</ul>
+			</div>
+			<div id="snb">
+				<ul>
+					<li><a href="#">로그인</a></li>
+					<li><a href="#">회원가입</a></li>
+					<li><a href="#">마이페이지</a></li>
+					<li><a href="#">쇼핑</a></li>
+				</ul>
+
+				<div id="search">
+					<input type="text" class="searchType" />
+					<input type="image" src="../images/btn/btn_main_search.gif" width="23" height="20" alt="검색하기" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- GNB -->
+	<div id="gnb">
+		
+		<div id="top">
+			<ul>
+				<li class="brand t1"><a href="#" id="topNavi1">HTML의 모든것</a>
+					<ul id="topSubm1">
+						<li><a href="#">초보자용</a></li>
+						<li><a href="#">중급자</a></li>
+						<li><a href="#">고급버전</a></li>
+						<li><a href="#">html응용</a></li>
+						<li><a href="#">오리지널커피백</a></li>
+						<li><a href="#">카페리얼 음료</a></li>
+						<li><a href="#">마일드커피백</a></li>
+						<li><a href="#">워터커피</a></li>
+						<li><a href="#">카페포드</a></li>
+						<li><a href="#">모히또파티</a></li>
+						<li><a href="#">테이크아웃 카페모리</a></li>
+						<li><a href="#">포타제</a></li>
+					</ul>
+				</li>
+				<li class="t2"><a href="#" id="topNavi2">자바스크립트</a>
+					<ul id="topSubm2">
+						<li><a href="#">초보자</a></li>
+						<li><a href="#">중급자</a></li>
+						<li><a href="#">고급개발자</a></li>
+						<li><a href="#">응용</a></li>
+					</ul>
+				</li>
+				<li class="t1"><a href="#" id="topNavi3">제이쿼리</a>
+					<ul id="topSubm3">
+						<li><a href="#">초보자</a></li>
+						<li><a href="#">중급자</a></li>
+						<li><a href="#">고급개발자</a></li>
+					</ul>
+				</li>
+				<li class="t2"><a href="#" id="topNavi4">파이썬</a>
+					<ul id="topSubm4">
+						<li><a href="#">초보자</a></li>
+						<li><a href="#">중급자</a></li>
+						<li><a href="#">고급개발자</a></li>
+					</ul>
+				</li>
+				<li class="t1"><a href="#" id="topNavi5">음료</a>
+					<ul id="topSubm5">
+						<li><a href="#">까페리얼</a></li>
+						<li><a href="#">워터커피</a></li>
+						<li><a href="#">모히또</a></li>
+					</ul>
+				</li>
+				<li class="t2"><a href="#" id="topNavi6">커피용품</a>
+					<ul id="topSubm6">
+						<li><a href="#">종이컵</a></li>
+						<li><a href="#">커피필터</a></li>
+						<li><a href="#">머신 등</a></li>
+					</ul>
+				</li>
+				<li class="t1"><a href="#" id="topNavi7">선물세트</a></li>
+				<li class="t2"><a href="#" id="topNavi8">대량구매</a></li>
+			</ul>
+		</div>
+
+		<script type="text/javascript">initTopMenu();</script>
+	</div>
+	<!-- //GNB -->
+
+	<!-- container -->
+	<div id="container">
+
+		<div id="location">
+			<ol>
+				<li><a href="#">HOME</a></li>
+				<li><a href="#">EVENT</a></li>
+				<li class="last">진행중 이벤트</li>
+			</ol>
+		</div>
+		
+		<div id="outbox">		
+			<div id="left">
+				<div id="title2">EVENT<span>이벤트</span></div>
+				<ul>	
+					<li><a href="#" id="leftNavi1">건의사항</a></li>
+					<li><a href="#" id="leftNavi2">자유게시판</a></li>
+					<li class="last"><a href="#" id="leftNavi3">관리자의 글</span></a></li>
+				</ul>			
+			</div><script type="text/javascript">initSubmenu(1,0);</script>
+
+
+			<!-- contents -->
+			<div id="contents">
+				<div id="mypage">
+					<h2><strong>코드 맞추기 퀴즈</strong><span>참여하셔서 선물을 받아가세요!</span></h2>
+					
+					<div class="viewDivMt">
+						<div class="viewHead">
+							<div class="subject">
+								<ul>
+									<li>홈페이지 오픈 기념 코드 맞추기 이벤트</li>
+								</ul>
+							</div>
+							<div class="day">
+								<p class="txt">이벤트 기간<span>2025-11-21 ~ 2025-12-01</span></p>
+							</div>
+						</div>
+
+						<div class="viewContents">
+							<img src="../images/img/1111.png" alt="" />
+						</div>
+					</div>
+
+
+					<!-- 이전다음글 -->
+					<div class="pnDiv web">
+						<table summary="이전다음글을 선택하여 보실 수 있습니다." class="preNext" border="1" cellspacing="0">
+							<caption>이전다음글</caption>
+							<colgroup>
+							<col width="100px" />
+							<col width="*" />
+							<col width="100px" />
+							</colgroup>
+							<tbody>
+								<tr>
+									<th class="pre">PREV</th>
+									<td><a href="#">얼른 연락주세요ㅠㅠ 현기증 나요 ㅠ</a></td>
+									<td>&nbsp;</td>
+								</tr>
+
+								<tr>
+									<th class="next">NEXT</th>
+									<td>몇명에게 상품을 주나요?</td>
+									<td>&nbsp;</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- //이전다음글 -->
+
+					<script>
+						// 전역변수
+						let cno = 1; //댓글번호
+						let flag = 0;
+                        let id;
+                        let cpw;
+                        let cdate;
+                        let ccontent;
+						$(function(){
+
+							// 한글 이름 배열
+							const animalNames = [
+								"하울의음쥑이는성", "이웃집또털어", "자축인묘진샤오미", "니이모를찾아서", "돈들어손내놔",
+								"용감한사자", "온순한양", "빠른치타", "큰코끼리", "작은햄스터",
+								"화려한공작", "부지런한개미", "느린거북이", "높이나는독수리", "물속펭귄",
+								"전국모래자랑", "빨간망든차차", "톱과젤리", "티끝모아파산", "반만고양이",
+								"짱구는목말러", "넌선생이고난학생이야", "어머님은짜장면에밥까지드셨어", "거져줄게잘사가", "누워있고싶다"
+								
+								 
+							];
+
+							// 랜덤 동물 이름 생성 함수
+							const getRandomAnimalName = function(){
+								const randomIndex = Math.floor(Math.random() * animalNames.length);
+								return animalNames[randomIndex];
+							}
+
+							//keyCode함수
+							$(".replyTxt").keyup(function(e){
+								console.log(e.keyCode);
+								if(e.keyCode == 13)
+								  $(this).closest("ul").find(".replyBtn").click();
+							}); //keyCode
+
+							//1.등록버튼 클릭함수
+							$(".replyBtn").click(function(){
+								let ul = $(this).closest("ul");
+								// 댓글내용확인
+								if (ul.find(".replyType").val().length<=0){
+									alert("댓글내용을 입력하셔야 저장이 가능합니다.");
+									ul.find(".replyType").focus();
+									return;
+								} //if
+
+								
+							cno;
+							id = getRandomAnimalName();
+							cpw = ul.find(".replynum").val();
+							ccontent = ul.find(".replyType").val();
+							cdate = todayTime();
+							let dataHtml = ``;
+							
+							// 비밀번호가 있으면 비밀글로 처리
+							if(cpw && cpw.trim() !== ""){
+								dataHtml +=`
+									<ul id='${cno}' data-original-text='${ccontent}' data-password='${cpw}' data-secret='true'>
+										<li class="name">${id} <span>[${cdate}]</span></li>
+										<li class="txt">
+											<a class="passwordBtn"><span class="orange">※ 비밀글입니다.</span></a>
+										</li>
+										<li class="btn">
+											<a class="rebtn updateBtn">수정</a>
+											<a class="rebtn deleteBtn">삭제</a>
+										</li>
+									</ul>
+								`;
+							}else{
+								dataHtml +=`
+									<ul id='${cno}' data-original-text='${ccontent}' data-secret='false'>
+										<li class="name">${id} <span>[${cdate}]</span></li>
+										<li class="txt">${ccontent}</li>
+										<li class="btn">
+											<a class="rebtn updateBtn">수정</a>
+											<a class="rebtn deleteBtn">삭제</a>
+										</li>
+									</ul>
+								`;
+							}								$(".replyBox").prepend(dataHtml);
+								cno++;
+                                c_count(1); 
+								ul.find(".replynum").val(""); 
+								ul.find(".replyType").val("");
+								alert("댓글을 저장합니다.");
+
+							});//replyBtn
+							
+
+						// 비밀글 클릭 시 비밀번호 확인
+						$(document).on("click", ".passwordBtn", function(){
+							const ul = $(this).closest("ul");
+							const correctPassword = ul.attr("data-password");
+							const originalText = ul.attr("data-original-text");
+							
+							const inputPassword = prompt("비밀번호를 입력하세요:");
+							
+							if(inputPassword === correctPassword){
+								ul.find(".txt").html(originalText);
+								alert("비밀글 내용을 확인합니다.");
+							}else{
+								alert("비밀번호가 틀렸습니다.");
+							}
+						});//passwordBtn
+
+                            //2.삭제버튼 클릭함수
+                            $(document).on("click",".deleteBtn",function(){
+                                const ul = $(this).closest("ul");
+                                const isSecret = ul.attr("data-secret") === "true";
+                                
+                                // 비밀글인 경우 비밀번호 확인
+                                if(isSecret){
+                                    const correctPassword = ul.attr("data-password");
+                                    const inputPassword = prompt("삭제하려면 비밀번호를 입력하세요:");
+                                    
+                                    if(inputPassword !== correctPassword){
+                                        alert("비밀번호가 틀렸습니다.");
+                                        return;
+                                    }
+                                }
+                                
+                                console.log(ul.attr("id"));
+                                if(confirm(ul.attr("id")+"번 댓글을 삭제하시겠습니까?")){
+                                    ul.remove();
+                                    c_count(2);
+                                }
+                            });//deleteBtn
+
+
+                            //3.수정버튼 클릭함수
+                            $(document).on("click",".updateBtn",function(){
+                                const ul = $(this).closest("ul");
+                                const txtLi = ul.find(".txt");
+                                const isSecret = ul.attr("data-secret") === "true";
+                                const deleteBtnLi = ul.find(".btn");
+                                
+                                // 비밀글인 경우 비밀번호 확인
+                                if(isSecret && $(this).text() == "수정"){
+                                    const correctPassword = ul.attr("data-password");
+                                    const inputPassword = prompt("수정하려면 비밀번호를 입력하세요:");
+                                    
+                                    if(inputPassword !== correctPassword){
+                                        alert("비밀번호가 틀렸습니다.");
+                                        return;
+                                    }
+                                }
+                                
+                                const currentText = isSecret && txtLi.find(".passwordBtn").length > 0 ? 
+                                    ul.attr("data-original-text") : txtLi.text();
+                                
+                                if($(this).text() == "수정"){
+                                    // 현재 텍스트를 data 속성에 저장 (수정 전 원본)
+                                    if(!ul.attr("data-original-text")){
+                                        ul.attr("data-original-text", currentText);
+                                    }
+                                    // 수정 모드로 전환
+                                    let editHtml = `<textarea class="replyType">${currentText}</textarea>`;
+                                    txtLi.html(editHtml);
+                                    $(this).text("저장");
+                                    // 삭제 버튼을 취소 버튼으로 변경
+                                    deleteBtnLi.find(".deleteBtn").removeClass("deleteBtn").addClass("cancelBtn").text("취소");
+                                }else{
+                                    // 저장 처리
+                                    const updatedText = txtLi.find("textarea").val();
+                                    txtLi.text(updatedText);
+                                    // 새로운 텍스트를 원본으로 업데이트
+                                    ul.attr("data-original-text", updatedText);
+                                    $(this).text("수정");
+                                    // 취소 버튼을 삭제 버튼으로 되돌림
+                                    deleteBtnLi.find(".cancelBtn").removeClass("cancelBtn").addClass("deleteBtn").text("삭제");
+                                    alert(ul.attr("id")+"번 댓글이 수정되었습니다.");
+									
+                                }//ifelse
+
+                            });//updateBtn
+                            
+
+                            //4.취소버튼 클릭함수
+                            $(document).on("click",".cancelBtn",function(){
+                                const ul = $(this).closest("ul");
+                                
+                                if(confirm("수정을 취소하시겠습니까?")){
+                                    // 원래 댓글 내용으로 복원
+                                    const originalText = ul.attr("data-original-text");
+                                    ul.find(".txt").text(originalText);
+                                    ul.find(".updateBtn").text("수정");
+                                    // 취소 버튼을 삭제 버튼으로 되돌림
+                                    $(this).removeClass("cancelBtn").addClass("deleteBtn").text("삭제");
+                                }
+
+                            });//cancelBtn
+
+                            // 5.댓글 총 개수 변경함수
+                            const c_count = function(flag){
+                                let comment_count = Number($(".comment_count").text());
+                                if(flag == 1){
+                                    $(".comment_count").text(comment_count+1);
+                                }else{                              
+                                    $(".comment_count").text(comment_count-1);
+
+                                }
+                            } //c_count
+
+							// 날짜시간함수
+							// 년도-월-일 시간:분:초
+							const todayTime = function(){
+								let now = new Date(); 
+								let year = now.getFullYear();
+								let month = now.getMonth()+1; 
+								let day = now.getDate();
+								let hour = now.getHours();
+								let minute = now.getMinutes();
+								let second = now.getSeconds();
+
+								return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+							} //todayTime
+
+						});//jquery
+					</script>
+					<!-- 댓글-->
+					<div class="replyWrite">
+						<ul id="1">
+							<li class="in">
+								<p class="txt">총 <span class="orange comment_count">0</span> 개의 댓글이 달려있습니다.</p>
+								<p class="password">비밀번호&nbsp;&nbsp;<input type="password" class="replynum" /></p>
+								<textarea class="replyType replyTxt"></textarea>
+							</li>
+							<li class="btn">
+								<a class="replyBtn">등록</a>
+							</li>
+						</ul>
+						<p class="ntic">※ 비밀번호를 입력하시면 댓글이 비밀글로 등록 됩니다.</p>
+					</div>
+
+					<div class="replyBox">
+						<!-- 댓글리스트 -->
+						<ul id="1">
+
+
+						<!--댓글 수정 -->
+						<!--
+						<ul>
+							<li class="name">${id}<span>${cdate}</span></li>
+							<li class="txt"><textarea class="replyType">${ccontent}</textarea></li>
+							<li class="btn">
+								<a class="rebtn uSaveBtn">수정저장</a>
+								<a class="rebtn cancelBtn">취소</a>
+							</li>
+						</ul>
+
+						<ul>
+							<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
+							<li class="txt">
+								<a href="password.html" class="passwordBtn"><span class="orange">※ 비밀글입니다.</span></a>
+							</li>
+						</ul>
+						-->
+
+					</div>
+					<!-- //댓글 -->
+
+
+					<!-- Btn Area -->
+					<div class="btnArea">
+						<div class="bRight">
+							<ul>
+								<li><a href="#" class="sbtnMini mw">목록</a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- //Btn Area -->
+					
+				</div>
+			</div>
+			<!-- //contents -->
+
+
+<script type="text/javascript" src="../js/jquery.fancybox-1.3.4.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/jquery.fancybox-1.3.4.css" />
+<script type="text/javascript">
+$(function(){
+	
+	var winWidth = $(window).width();
+	if(winWidth > 767){
+		var layerCheck = 540;
+	}else{
+		var layerCheck = 320;
+	}
+
+	$(".passwordBtn").fancybox({
+		'autoDimensions'    : false,
+		'showCloseButton'	: false,
+		'width' : layerCheck,
+		'padding' : 0,
+		'type'			: 'iframe',
+		'onComplete' : function() {
+			$('#fancybox-frame').load(function() { // wait for frame to load and then gets it's height
+			$('#fancybox-content').height($(this).contents().find('body').height());
+			});
+		}
+	});
+
+
+});
+</script>
+
+		</div>
+	</div>
+	<!-- //container -->
+
+
+
+
+	<div id="footerWrap">
+		<div id="footer">
+			<div id="fnb">
+				<ul>
+					<li class="left"><a href="#">개인정보취급방침</a></li>
+					<li><a href="#">이용약관</a></li>
+					<li class="left"><a href="#">이메일무단수집거부</a></li>
+					<li><a href="#">고객센터</a></li>
+					<li class="left brand"><a href="#">슬구의개발인스타</a></li>
+				</ul>
+			</div>
+			
+			<div id="finfo">
+				<div id="flogo"><img src="../images/txt/flogo.gif" alt="JARDIN THE COFFEE CREATOR, SINCE 1984" /></div>
+				<address>
+					<ul>
+						<li>슬구의개발</li>
+						<li>대표자 이슬기</li>
+						<li class="tnone">주소 서울시 관악구 신림동5가길 5</li>
+						<li class="webnone">소비자상담실 02)546-3881</li>
+						<li>사업자등록번호 404-10-16149</li>
+						<li class="tnone">재미있게 열심히 배우자</li>
+						<li class="copy">© 1989 Lee Seul Gi <span>GOOD</span></li>
+					</ul>
+				</address>
+
+				<div id="inicis"><img src="../images/ico/ico_inicis.png" alt="이니시스 결제시스템" /></div>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,878 @@
+<!-- 
+    ==========================================
+    JARDIN SHOP 이벤트 상세보기 페이지
+    ==========================================
+    기능: 
+    - 진행중인 이벤트 상세 내용 표시
+    - 댓글 등록/수정/삭제 기능
+    - 이전/다음 글 이동
+    ==========================================
+-->
+<!DOCTYPE html>
+<!-- HTML5 문서 타입 선언 -->
+<html>
+<head>
+    <!-- ========== 문서 메타 정보 영역 ========== -->
+    
+    <!-- 브라우저 탭에 표시될 제목 -->
+    <title> JARDIN SHOP </title>
+    
+    <!-- 문자 인코딩을 UTF-8로 설정 (한글 표시) -->
+    <meta charset="UTF-8" />
+    
+    <!-- IE 브라우저에서 최신 버전으로 렌더링 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- 검색엔진을 위한 페이지 설명 -->
+    <meta name="description" content="JARDIN SHOP" />
+    
+    <!-- 검색엔진을 위한 키워드 -->
+    <meta name="keywords" content="JARDIN SHOP" />
+    
+    <!-- 반응형 웹을 위한 뷰포트 설정 (모바일 대응) -->
+    <!-- width=device-width: 기기 화면 너비에 맞춤 -->
+    <!-- initial-scale=1.0: 초기 확대 비율 100% -->
+    <!-- minimum-scale/maximum-scale: 최소/최대 확대 비율 -->
+    <!-- user-scaleable=no: 사용자 확대 불가 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scaleable=no" />
+    
+    <!-- ========== CSS 스타일시트 불러오기 ========== -->
+    <!-- ?v=Y: 캐시 방지용 버전 파라미터 -->
+    
+    <!-- 브라우저 기본 스타일 초기화 CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/reset.css?v=Y" />
+    
+    <!-- 레이아웃(배치) 관련 CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/layout.css?v=Y" />
+    
+    <!-- 콘텐츠 디자인 CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/content.css?v=Y" />
+    
+    <!-- ========== JavaScript 라이브러리 불러오기 ========== -->
+    
+    <!-- jQuery 라이브러리 (CDN 방식) - DOM 조작과 이벤트 처리에 필수 -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    
+    <!-- 상단 네비게이션 메뉴 동작 스크립트 -->
+    <script type="text/javascript" src="../js/top_navi.js"></script>
+    
+    <!-- 왼쪽 사이드 메뉴 동작 스크립트 -->
+    <script type="text/javascript" src="../js/left_navi.js"></script>
+    
+    <!-- 메인 페이지 기능 스크립트 -->
+    <script type="text/javascript" src="../js/main.js"></script>
+    
+    <!-- 공통 기능 스크립트 -->
+    <script type="text/javascript" src="../js/common.js"></script>
+    
+    <!-- jQuery Easing 플러그인 (부드러운 애니메이션 효과) -->
+    <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
+    
+    <!-- Swiper 슬라이더 플러그인 -->
+    <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
+    
+    <!-- jQuery Anchor 플러그인 (앵커 링크 부드럽게 이동) -->
+    <script type="text/javascript" src="../js/jquery.anchor.js"></script>
+    
+    <!-- ========== 페이지 로딩 시 실행되는 jQuery 코드 ========== -->
+    <script type="text/javascript">
+        // jQuery 문서 준비 완료 함수
+        // HTML이 모두 로드되면 이 안의 코드가 실행됩니다
+        $(function(){
+            // 현재는 비어있음 - 필요한 초기화 코드를 여기에 작성
+        });//jquery 끝
+    </script>
+    
+    <!-- ========== 인라인 스타일 ========== -->
+    <style> 
+        /* 모든 링크(a 태그)에 손가락 모양 커서 적용 */
+        a {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<!-- ========== HTML 본문 시작 ========== -->
+<body>
+
+<div id="allwrap">
+<div id="wrap">
+
+	<div id="header">
+		
+		<div id="snbBox">
+			<h1><img src="../images/txt/logo.gif" alt="JARDIN SHOP" /></h1>
+			<div id="quickmenu">
+				<div id="mnaviOpen"><img src="../images/btn/btn_mnavi.gif" width="33" height="31" alt="메뉴열기" /></div>
+				<div id="mnaviClose"><img src="../images/btn/btn_mnavi_close.gif" width="44" height="43" alt="메뉴닫기" /></div>
+				<ul>
+					<li><a href="#">EVENT</a></li>
+					<li><a href="#">CUSTOMER</a></li>
+					<li><a href="#">COMMUNITY</a></li>
+				</ul>
+			</div>
+			<div id="snb">
+				<ul>
+					<li><a href="#">LOGIN</a></li>
+					<li><a href="#">JOIN</a></li>
+					<li><a href="#">MY PAGE</a></li>
+					<li><a href="#">CART</a></li>
+				</ul>
+
+				<div id="search">
+					<input type="text" class="searchType" />
+					<input type="image" src="../images/btn/btn_main_search.gif" width="23" height="20" alt="검색하기" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- ========== GNB (Global Navigation Bar) - 전체 메뉴 ========== -->
+	<div id="gnb">
+		<!-- 메인 상품 카테고리 메뉴 영역 -->
+		
+		<div id="top">
+			<!-- 상단 메뉴 컨테이너 -->
+			
+			<ul>
+				<!-- 메뉴 리스트 시작 -->
+				
+				<!-- 첫 번째 메뉴: 쟈뎅 브랜드 -->
+				<li class="brand t1">
+					<!-- class="brand t1": 브랜드 메뉴, 타입1 스타일 -->
+					<a href="#" id="topNavi1">JARDIN's BRAND</a>
+					<!-- id="topNavi1": JavaScript로 제어하기 위한 고유 ID -->
+					
+					<!-- 서브메뉴 (마우스 올리면 나타남) -->
+					<ul id="topSubm1">
+						<li><a href="#">클래스</a></li>
+						<li><a href="#">홈스타일 카페모리</a></li>
+						<li><a href="#">드립커피백</a></li>
+						<li><a href="#">카페리얼 커피</a></li>
+						<li><a href="#">오리지널커피백</a></li>
+						<li><a href="#">카페리얼 음료</a></li>
+						<li><a href="#">마일드커피백</a></li>
+						<li><a href="#">워터커피</a></li>
+						<li><a href="#">카페포드</a></li>
+						<li><a href="#">모히또파티</a></li>
+						<li><a href="#">테이크아웃 카페모리</a></li>
+						<li><a href="#">포타제</a></li>
+					</ul>
+				</li>
+				<li class="t2"><a href="#" id="topNavi2">원두</a>
+					<ul id="topSubm2">
+						<li><a href="#">클래스</a></li>
+						<li><a href="#">로스터리샵</a></li>
+						<li><a href="#">커피휘엘</a></li>
+						<li><a href="#">산지별 생두</a></li>
+					</ul>
+				</li>
+				<li class="t1"><a href="#" id="topNavi3">원두커피백</a>
+					<ul id="topSubm3">
+						<li><a href="#">드립커피 로스트</a></li>
+						<li><a href="#">오리지널커피백</a></li>
+						<li><a href="#">마일드커피백</a></li>
+					</ul>
+				</li>
+				<li class="t2"><a href="#" id="topNavi4">인스턴트</a>
+					<ul id="topSubm4">
+						<li><a href="#">까페모리</a></li>
+						<li><a href="#">홈스타일카페모리</a></li>
+						<li><a href="#">포타제</a></li>
+					</ul>
+				</li>
+				<li class="t1"><a href="#" id="topNavi5">음료</a>
+					<ul id="topSubm5">
+						<li><a href="#">까페리얼</a></li>
+						<li><a href="#">워터커피</a></li>
+						<li><a href="#">모히또</a></li>
+					</ul>
+				</li>
+				<li class="t2"><a href="#" id="topNavi6">커피용품</a>
+					<ul id="topSubm6">
+						<li><a href="#">종이컵</a></li>
+						<li><a href="#">커피필터</a></li>
+						<li><a href="#">머신 등</a></li>
+					</ul>
+				</li>
+				<li class="t1"><a href="#" id="topNavi7">선물세트</a></li>
+				<li class="t2"><a href="#" id="topNavi8">대량구매</a></li>
+			</ul>
+		</div>
+
+		<script type="text/javascript">initTopMenu();</script>
+	</div>
+	<!-- //GNB 끝 -->
+
+	<!-- ========== 메인 컨테이너 영역 ========== -->
+	<div id="container">
+		<!-- 페이지의 실제 내용이 들어가는 영역 -->
+
+		<!-- 현재 위치 표시 (빵가루 네비게이션) -->
+		<div id="location">
+			<!-- 사용자가 현재 어느 페이지에 있는지 표시 -->
+			
+			<ol>
+				<!-- ol: 순서가 있는 목록 (ordered list) -->
+				<li><a href="#">HOME</a></li>
+				<!-- 홈으로 이동 -->
+				<li><a href="#">EVENT</a></li>
+				<!-- 이벤트 메인으로 이동 -->
+				<li class="last">진행중 이벤트</li>
+				<!-- class="last": 마지막 항목 (현재 페이지) -->
+			</ol>
+		</div>
+		
+		<!-- 좌측 메뉴와 콘텐츠를 감싸는 박스 -->
+		<div id="outbox">		
+			<!-- ========== 왼쪽 사이드 메뉴 ========== -->
+			<div id="left">
+				<!-- 좌측 카테고리 메뉴 영역 -->
+				
+				<!-- 메뉴 제목 -->
+				<div id="title2">EVENT<span>이벤트</span></div>
+				<!-- EVENT: 영문 제목, <span>: 한글 부제목 -->
+				
+				<!-- 서브 메뉴 리스트 -->
+				<ul>	
+					<li><a href="#" id="leftNavi1">진행중 이벤트</a></li>
+					<!-- 현재 진행중인 이벤트 목록 페이지 -->
+					
+					<li><a href="#" id="leftNavi2">종료된 이벤트</a></li>
+					<!-- 종료된 이벤트 목록 페이지 -->
+					
+					<li class="last"><a href="#" id="leftNavi3">당첨자 발표</span></a></li>
+					<!-- class="last": 마지막 메뉴 항목 -->
+					<!-- 이벤트 당첨자 발표 페이지 -->
+				</ul>			
+			</div>
+			
+			<!-- 왼쪽 메뉴 초기화 JavaScript 함수 호출 -->
+			<script type="text/javascript">
+				// initSubmenu(1,0): 
+				// 첫 번째 파라미터(1): 현재 선택된 메뉴 번호
+				// 두 번째 파라미터(0): 서브메뉴 확장 여부
+				initSubmenu(1,0);
+			</script>
+
+
+			<!-- ========== 메인 콘텐츠 영역 ========== -->
+			<div id="contents">
+				<!-- 실제 페이지 내용이 표시되는 영역 -->
+				
+				<div id="mypage">
+					<!-- 마이페이지 스타일 컨테이너 -->
+					
+					<!-- 페이지 제목과 설명 -->
+					<h2>
+						<strong>진행중 이벤트</strong>
+						<!-- strong: 굵은 글씨로 강조 -->
+						<span>쟈뎅샵의 특별한 혜택이 가득한 이벤트에 참여해 보세요.</span>
+						<!-- span: 부가 설명 텍스트 -->
+					</h2>
+					
+					<!-- ========== 이벤트 상세 내용 영역 ========== -->
+					<div class="viewDivMt">
+						<!-- viewDivMt: 상세보기 디비전 마진 탑 (상단 여백 있는 뷰 박스) -->
+						
+						<!-- 이벤트 헤더 정보 -->
+						<div class="viewHead">
+							<!-- 제목과 기간 정보를 담는 헤더 -->
+							<!-- 이벤트 제목 -->
+							<div class="subject">
+								<!-- subject: 제목 영역 -->
+								<ul>
+									<li>까페모리 봄바람 커피한잔 30% 할인 이벤트!!</li>
+									<!-- 이벤트 제목 텍스트 -->
+								</ul>
+							</div>
+							
+							<!-- 이벤트 기간 -->
+							<div class="day">
+								<!-- day: 날짜 정보 영역 -->
+								<p class="txt">
+									이벤트 기간
+									<span>2014-04-01 ~ 2014-04-29</span>
+									<!-- 시작일 ~ 종료일 -->
+								</p>
+							</div>
+						</div>
+
+						<!-- 이벤트 상세 내용 (이미지) -->
+						<div class="viewContents">
+							<!-- viewContents: 본문 내용 표시 영역 -->
+							<img src="../images/img/sample_event_view.jpg" alt="" />
+							<!-- 이벤트 상세 설명 이미지 -->
+							<!-- alt="": 대체 텍스트 (빈 값) -->
+						</div>
+					</div>
+
+
+					<!-- ========== 이전/다음 글 네비게이션 ========== -->
+					<div class="pnDiv web">
+						<!-- pnDiv: Previous/Next Division -->
+						<!-- web: PC 웹 화면에서만 표시 -->
+						
+						<!-- 이전/다음 글 테이블 -->
+						<table summary="이전다음글을 선택하여 보실 수 있습니다." class="preNext" border="1" cellspacing="0">
+							<!-- summary: 스크린 리더를 위한 테이블 설명 -->
+							<!-- class="preNext": 이전/다음 스타일 -->
+							<!-- border="1": 테두리 두께 1px -->
+							<!-- cellspacing="0": 셀 간격 0 (테두리 붙임) -->
+							
+							<caption>이전다음글</caption>
+							<!-- caption: 테이블 제목 (스크린 리더용) -->
+							
+							<!-- 컬럼 그룹 정의 (너비 설정) -->
+							<colgroup>
+								<col width="100px" />
+								<!-- 첫 번째 열: PREV/NEXT 표시 (100px) -->
+								<col width="*" />
+								<!-- 두 번째 열: 제목 표시 (나머지 전체 너비) -->
+								<col width="100px" />
+								<!-- 세 번째 열: 여백 (100px) -->
+							</colgroup>
+							
+							<tbody>
+								<!-- 테이블 본문 -->
+								
+								<!-- 이전 글 행 -->
+								<tr>
+									<th class="pre">PREV</th>
+									<!-- th: 테이블 헤더 셀 (이전글 표시) -->
+									<!-- class="pre": 이전 글 스타일 -->
+									
+									<td><a href="#">상품 재입고는 언제 되나요?</a></td>
+									<!-- 이전 글 제목 (클릭하면 해당 글로 이동) -->
+									
+									<td>&nbsp;</td>
+									<!-- 빈 셀 (&nbsp;: 공백 문자) -->
+								</tr>
+
+								<!-- 다음 글 행 -->
+								<tr>
+									<th class="next">NEXT</th>
+									<!-- th: 테이블 헤더 셀 (다음글 표시) -->
+									<!-- class="next": 다음 글 스타일 -->
+									
+									<td>다음 글이 없습니다.</td>
+									<!-- 다음 글이 없을 때 표시되는 메시지 -->
+									
+									<td>&nbsp;</td>
+									<!-- 빈 셀 -->
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- //이전다음글 끝 -->
+
+					<!-- ========================================
+					     댓글 기능 JavaScript 코드
+					     ======================================== -->
+					<script>
+						// ==========================================
+						// 전역 변수 선언
+						// ==========================================
+						
+						// cno: Comment Number (댓글 고유 번호)
+						let cno = 2;
+						// let: 블록 스코프 변수 선언 (ES6 문법)
+						// 댓글이 추가될 때마다 1씩 증가하여 고유 ID로 사용
+						// 초기값 2: 이미 댓글 1개가 화면에 있다고 가정
+						
+						// ==========================================
+						// jQuery 문서 준비 완료 함수
+						// ==========================================
+						$(function(){
+							// HTML이 모두 로드된 후 실행되는 함수
+							
+							// ==========================================
+							// keyCode 함수 (키보드 입력 감지)
+							// ==========================================
+							$(".replyTxt").keyup(function(e){
+								// $(".replyTxt"): replyTxt 클래스를 가진 요소 선택
+								// .keyup(): 키보드를 눌렀다 뗐을 때 실행
+								// e: 이벤트 객체 (어떤 키가 눌렸는지 정보 포함)
+								
+								console.log(e.keyCode);
+								// e.keyCode: 눌린 키의 코드 번호
+								// 콘솔에 출력 (개발자 도구에서 확인 가능)
+								// 예: Enter키=13, Esc키=27 등
+							});
+
+							// ==========================================
+							// 댓글 등록 버튼 클릭 이벤트
+							// ==========================================
+							$(".replyBtn").click(function(){
+								// $(".replyBtn"): 등록 버튼 선택
+								// .click(): 클릭했을 때 실행되는 함수
+								
+								// $(this): 클릭된 버튼 자신
+								// .closest("ul"): 가장 가까운 부모 ul 요소 찾기
+								let ul = $(this).closest("ul");
+								// 버튼이 속한 ul 요소를 찾아서 ul 변수에 저장
+								
+								// ==========================================
+								// 댓글 내용 검증 (빈 값 체크)
+								// ==========================================
+								if (ul.find(".replyType").val().length<=0){
+									// ul.find(".replyType"): ul 안의 textarea 찾기
+									// .val(): 입력된 값 가져오기
+									// .length: 문자열 길이
+									// <=0: 길이가 0 이하 (비어있음)
+									
+									alert("댓글내용을 입력하셔야 저장이 가능합니다.");
+									// 경고 메시지 표시
+									
+									ul.find(".replyType").focus();
+									// .focus(): 해당 입력창에 커서 이동
+									
+									return;
+									// 함수 종료 (더 이상 실행 안 함)
+								}
+								
+								// ==========================================
+								// 댓글 정보 수집
+								// ==========================================
+								
+								cno;
+								// 현재 댓글 번호 (전역 변수)
+								
+								let id = "aaa";
+								// 작성자 ID (실제로는 로그인 정보에서 가져와야 함)
+								// 여기서는 테스트용으로 "aaa" 고정
+								
+								let cpw = ul.find(".replynum").val();
+								// cpw: Comment PassWord
+								// 비밀번호 입력 필드의 값 가져오기
+								// ul.find(".replynum"): 비밀번호 input 찾기
+								
+								let ccontent = ul.find(".replyType").val();
+								// ccontent: Comment Content
+								// 댓글 내용 가져오기
+								
+								let cdate = todayTime();
+								// cdate: Comment Date
+								// 현재 날짜와 시간을 todayTime() 함수로 가져오기
+								
+								// ==========================================
+								// 댓글 HTML 생성 (템플릿 리터럴 사용)
+								// ==========================================
+								
+								let dataHtml = ``;
+								// 빈 문자열로 초기화
+								// 백틱(``)을 사용하면 여러 줄 문자열과 변수 삽입 가능
+								
+								dataHtml +=`
+									<ul id='${cno}'>
+										<!-- 댓글 하나의 전체 컨테이너 -->
+										<!-- id='${cno}': 댓글 고유 번호를 ID로 설정 -->
+										
+										<li class="name">${id} <span>[${cdate}]</span></li>
+										<!-- 작성자 ID와 작성 날짜 표시 -->
+										<!-- ${id}: 작성자 ID 변수 삽입 -->
+										<!-- ${cdate}: 작성 날짜 변수 삽입 -->
+										
+										<li class="txt">${ccontent}</li>
+										<!-- 댓글 내용 표시 -->
+										<!-- ${ccontent}: 댓글 내용 변수 삽입 -->
+										
+										<li class="btn">
+											<!-- 수정/삭제 버튼 영역 -->
+											<a class="rebtn updateBtn">수정</a>
+											<!-- 수정 버튼 -->
+											<a class="rebtn deleteBtn">삭제</a>
+											<!-- 삭제 버튼 -->
+										</li>
+									</ul>
+								`;
+								// ${변수명}: 템플릿 리터럴에서 변수 값 삽입
+								
+								// ==========================================
+								// 댓글을 화면에 추가
+								// ==========================================
+								
+								$(".replyBox").prepend(dataHtml);
+								// $(".replyBox"): 댓글 목록 영역 선택
+								// .prepend(): 맨 앞에 추가 (최신 댓글이 위에 표시)
+								// append()는 맨 뒤에 추가
+								
+								cno++; 
+								// cno = cno + 1; 과 같음
+								// 댓글 번호를 1 증가시킴 (다음 댓글을 위해)
+								
+								ul.find(".replynum").val(""); 
+								// 비밀번호 입력창 비우기
+								// .val(""): 빈 문자열로 설정
+								
+								ul.find(".replyType").val("");
+								// 댓글 내용 입력창 비우기
+								
+								alert("하단댓글을 저장합니다.");
+								// 저장 완료 메시지 표시
+								
+							});//replyBtn 클릭 이벤트 끝
+
+
+							// ==========================================
+							// 날짜/시간 생성 함수
+							// ==========================================
+							const todayTime = function(){
+								// const: 상수 선언 (값 변경 불가)
+								// function(): 함수 정의
+								// 현재 날짜와 시간을 "YYYY-MM-DD HH:MM:SS" 형식으로 반환
+								
+								let now = new Date(); 
+								// new Date(): 현재 날짜/시간 객체 생성
+								// now 변수에 저장
+								
+								let year = now.getFullYear();
+								// .getFullYear(): 4자리 연도 (예: 2025)
+								
+								let month = now.getMonth()+1; 
+								// .getMonth(): 월 (0~11 반환)
+								// +1: 실제 월로 변환 (0월→1월, 1월→2월...)
+								
+								let day = now.getDate();
+								// .getDate(): 일 (1~31)
+								
+								let hour = now.getHours();
+								// .getHours(): 시 (0~23)
+								
+								let minute = now.getMinutes();
+								// .getMinutes(): 분 (0~59)
+								
+								let second = now.getSeconds();
+								// .getSeconds(): 초 (0~59)
+
+								return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+								// return: 함수의 결과값 반환
+								// 템플릿 리터럴로 "2025-11-20 14:30:45" 형식 생성
+								// ${변수명}: 변수 값을 문자열에 삽입
+							}
+							// todayTime 함수 끝
+
+						});//jquery 문서 준비 함수 끝
+					</script>
+					<!-- 댓글 JavaScript 코드 끝 -->
+					
+					<!-- ========== 댓글 작성 영역 ========== -->
+					<div class="replyWrite">
+						<!-- replyWrite: 댓글 작성 폼 컨테이너 -->
+						
+						<ul id="1">
+							<!-- 댓글 입력 폼 리스트 (id="1": 첫 번째 폼) -->
+							
+							<li class="in">
+								<!-- class="in": input 영역 -->
+								<!-- class="in": input 영역 -->
+								
+								<!-- 댓글 개수 표시 -->
+								<p class="txt">
+									총 <span class="orange">3</span> 개의 댓글이 달려있습니다.
+									<!-- orange: 숫자를 주황색으로 강조 -->
+								</p>
+								
+								<!-- 비밀번호 입력 영역 -->
+								<p class="password">
+									비밀번호&nbsp;&nbsp;
+									<!-- &nbsp;: 공백 문자 (Non-Breaking Space) -->
+									<input type="password" class="replynum" />
+									<!-- type="password": 비밀번호 입력 (입력 내용 숨김) -->
+									<!-- class="replynum": JavaScript에서 선택하기 위한 클래스 -->
+								</p>
+								
+								<!-- 댓글 내용 입력 영역 -->
+								<textarea class="replyType replyTxt"></textarea>
+								<!-- textarea: 여러 줄 텍스트 입력 가능 -->
+								<!-- class="replyType": 댓글 입력창 스타일 -->
+								<!-- class="replyTxt": 키보드 이벤트 감지용 클래스 -->
+							</li>
+							
+							<!-- 등록 버튼 영역 -->
+							<li class="btn">
+								<a class="replyBtn">등록</a>
+								<!-- class="replyBtn": 클릭 이벤트가 등록된 버튼 -->
+								<!-- 클릭하면 댓글이 저장됨 -->
+							</li>
+						</ul>
+						
+						<!-- 비밀글 안내 문구 -->
+						<p class="ntic">
+							※ 비밀번호를 입력하시면 댓글이 비밀글로 등록 됩니다.
+							<!-- ntic: notice (안내 메시지) -->
+						</p>
+					</div>
+
+					<!-- ========== 댓글 목록 표시 영역 ========== -->
+					<div class="replyBox">
+						<!-- replyBox: 작성된 댓글들이 표시되는 컨테이너 -->
+						<!-- JavaScript로 새 댓글이 이 영역 앞쪽(.prepend)에 추가됨 -->
+						
+						<!-- 댓글 리스트 샘플 (기존 댓글) -->
+						<ul>
+							<!-- 하나의 댓글 단위 -->
+							
+							<!-- 작성자와 작성일 -->
+							<li class="name">
+								jjabcde 
+								<!-- 작성자 ID -->
+								<span>[2014-03-04&nbsp;&nbsp;15:01:59]</span>
+								<!-- 작성 날짜와 시간 -->
+							</li>
+							
+							<!-- 댓글 내용 -->
+							<li class="txt">
+								대박!!! 이거 저한테 완전 필요한 이벤트였어요!!
+							</li>
+							
+							<!-- 수정/삭제 버튼 -->
+							<li class="btn">
+								<a class="rebtn updateBtn">수정</a>
+								<!-- updateBtn: 수정 버튼 (클릭 시 수정 모드로 전환) -->
+								
+								<a class="rebtn deleteBtn">삭제</a>
+								<!-- deleteBtn: 삭제 버튼 (클릭 시 댓글 삭제) -->
+							</li>
+						</ul>
+
+						<!-- ==========================================
+						     댓글 수정 모드 예시 (주석 처리됨)
+						     ========================================== -->
+						<!--
+						<ul>
+							<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
+							<li class="txt"><textarea class="replyType"></textarea></li>
+							<!-- 수정 모드: 텍스트 영역이 textarea로 변경됨 -->
+							<li class="btn">
+								<a href="#" class="rebtn">수정</a>
+								<a href="#" class="rebtn">삭제</a>
+							</li>
+						</ul>
+
+						<!-- ==========================================
+						     비밀댓글 표시 예시 (주석 처리됨)
+						     ========================================== -->
+						<ul>
+							<li class="name">jjabcde <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></li>
+							<li class="txt">
+								<a href="password.html" class="passwordBtn">
+									<span class="orange">※ 비밀글입니다.</span>
+									<!-- 비밀번호 입력해야 내용 볼 수 있음 -->
+								</a>
+							</li>
+						</ul>
+						-->
+
+					</div>
+					<!-- //댓글 목록 끝 -->
+
+
+					<!-- ========== 버튼 영역 ========== -->
+					<div class="btnArea">
+						<!-- 페이지 하단 버튼들을 담는 영역 -->
+						
+						<div class="bRight">
+							<!-- bRight: 버튼을 오른쪽 정렬 -->
+							
+							<ul>
+								<li>
+									<a href="#" class="sbtnMini mw">목록</a>
+									<!-- sbtnMini: 작은 버튼 스타일 -->
+									<!-- mw: medium width -->
+									<!-- 클릭하면 이벤트 목록 페이지로 이동 -->
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- //버튼 영역 끝 -->
+					
+				</div>
+				<!-- mypage 끝 -->
+			</div>
+			<!-- //콘텐츠 영역 끝 -->
+
+
+<!-- ========================================
+     Fancybox 플러그인 (모달 팝업)
+     ======================================== -->
+
+<!-- Fancybox CSS 스타일시트 -->
+<link rel="stylesheet" type="text/css" href="../css/jquery.fancybox-1.3.4.css" />
+<!-- 팝업 디자인을 위한 스타일 -->
+
+<!-- ========================================
+     Fancybox 설정 스크립트
+     ======================================== -->
+<script type="text/javascript">
+	// jQuery 문서 준비 함수
+	$(function(){
+		// HTML이 모두 로드된 후 실행
+		
+		// ==========================================
+		// 반응형 팝업 크기 설정
+		// ==========================================
+		
+		var winWidth = $(window).width();
+		// $(window): 브라우저 창 선택
+		// .width(): 창의 너비(px) 가져오기
+		// winWidth 변수에 저장
+		
+		// 화면 크기에 따라 팝업 크기 결정
+		if(winWidth > 767){
+			// 화면 너비가 767px 초과 (PC, 태블릿)
+			var layerCheck = 540;
+			// 팝업 너비를 540px로 설정
+		}else{
+			// 화면 너비가 767px 이하 (모바일)
+			var layerCheck = 320;
+			// 팝업 너비를 320px로 설정
+		}
+
+		// ==========================================
+		// Fancybox 초기화 및 설정
+		// ==========================================
+		
+		$(".passwordBtn").fancybox({
+			// $(".passwordBtn"): 비밀댓글 버튼에 팝업 적용
+			// .fancybox(): Fancybox 기능 활성화
+			
+			'autoDimensions' : false,
+			// 자동 크기 조정 비활성화 (수동으로 크기 설정)
+			
+			'showCloseButton' : false,
+			// X 닫기 버튼 숨김
+			
+			'width' : layerCheck,
+			// 팝업 너비를 layerCheck 변수 값으로 설정
+			// PC: 540px, 모바일: 320px
+			
+			'padding' : 0,
+			// 팝업 내부 여백 0
+			
+			'type' : 'iframe',
+			// 팝업 타입: iframe (다른 HTML 페이지를 팝업으로 표시)
+			
+			'onComplete' : function() {
+				// 팝업이 완전히 로드된 후 실행되는 함수
+				
+				$('#fancybox-frame').load(function() { 
+					// iframe이 로드될 때까지 대기
+					// .load(): 로드 완료 이벤트
+					
+					$('#fancybox-content').height($(this).contents().find('body').height());
+					// 팝업 높이를 iframe 내부 body 높이에 맞춤
+					// $(this).contents(): iframe 내부 문서 접근
+					// .find('body'): body 요소 찾기
+					// .height(): 높이 가져오기/설정하기
+					// 자동으로 내용에 맞춰 팝업 크기 조정
+				});
+			}
+		});
+		// Fancybox 설정 끝
+
+	});
+	// jQuery 함수 끝
+</script>
+
+		</div>
+		<!-- outbox 끝 -->
+	</div>
+	<!-- //container 끝 -->
+
+
+
+
+	<!-- ========== 푸터 영역 ========== -->
+	<div id="footerWrap">
+		<!-- 페이지 하단 전체를 감싸는 래퍼 -->
+		
+		<div id="footer">
+			<!-- 실제 푸터 내용 -->
+			
+			<!-- FNB (Footer Navigation Bar) - 하단 링크 메뉴 -->
+			<div id="fnb">
+				<ul>
+					<li class="left"><a href="#">개인정보취급방침</a></li>
+					<!-- 개인정보 처리 정책 페이지 -->
+					
+					<li><a href="#">이용약관</a></li>
+					<!-- 서비스 이용 약관 페이지 -->
+					
+					<li class="left"><a href="#">이메일무단수집거부</a></li>
+					<!-- 이메일 수집 거부 정책 -->
+					
+					<li><a href="#">고객센터</a></li>
+					<!-- 고객 지원 페이지 -->
+					
+					<li class="left brand"><a href="#">쟈뎅 브랜드 사이트</a></li>
+					<!-- 브랜드 공식 사이트로 이동 -->
+				</ul>
+			</div>
+			
+			<!-- 회사 정보 영역 -->
+			<div id="finfo">
+				<!-- finfo: footer information -->
+				
+				<!-- 푸터 로고 -->
+				<div id="flogo">
+					<img src="../images/txt/flogo.gif" alt="JARDIN THE COFFEE CREATOR, SINCE 1984" />
+					<!-- 쟈뎅 브랜드 로고 및 슬로건 -->
+				</div>
+				
+				<!-- 회사 주소 및 정보 -->
+				<address>
+					<!-- address: 연락처 정보를 위한 시맨틱 태그 -->
+					
+					<ul>
+						<li>㈜쟈뎅</li>
+						<!-- 회사명 -->
+						
+						<li>대표자 윤영노</li>
+						<!-- 대표이사 이름 -->
+						
+						<li class="tnone">주소 서울시 강남구 논현동 4-21번지 영 빌딩</li>
+						<!-- class="tnone": 태블릿에서 숨김 -->
+						<!-- 회사 주소 -->
+						
+						<li class="webnone">소비자상담실 02)546-3881</li>
+						<!-- class="webnone": 웹에서 숨김 (모바일에서만 표시) -->
+						<!-- 고객 상담 전화번호 -->
+						
+						<li>사업자등록번호 211-81-24727</li>
+						<!-- 사업자 등록 번호 -->
+						
+						<li class="tnone">통신판매신고 제 강남 – 1160호</li>
+						<!-- 통신판매업 신고 번호 -->
+						
+						<li class="copy">
+							COPYRIGHT © 2014 JARDIN <span>ALL RIGHTS RESERVED.</span>
+							<!-- 저작권 표시 -->
+							<!-- ©: 저작권 기호 -->
+						</li>
+					</ul>
+				</address>
+
+				<!-- 결제 시스템 로고 -->
+				<div id="inicis">
+					<img src="../images/ico/ico_inicis.png" alt="이니시스 결제시스템" />
+					<!-- 이니시스: PG(전자결제) 서비스 업체 로고 -->
+				</div>
+			</div>
+		</div>
+		<!-- footer 끝 -->
+	</div>
+	<!-- footerWrap 끝 -->
+
+
+
+</div>
+<!-- wrap 끝 -->
+</div>
+<!-- allwrap 끝 -->
+
+</body>
+<!-- body 끝 -->
+</html>
+<!-- HTML 문서 끝 -->
