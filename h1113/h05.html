@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{padding: 0; margin: 0;}
+        li:nth-child(3){font-size: 20px; color: red;}
+        li:nth-of-type(4){font-size: 20px; color: blue;}
+        .main{font-size: 18px; color: #00478b; font-weight: 500;
+        margin: 50px; position: relative;
+        padding-left: 10px;
+        
+        }
+        .main::before{
+            content: "✌🏻·͜·✌🏻";
+            position: absolute;
+            top: -4px;
+            left:  -45px;
+            font-size: 20px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="main">기후변화 리스크 관리 프로세스</div>
+    <ul>
+        <li>사과</li>
+        <hr>
+        <li>복숭아</li>
+        <li>배</li>
+        <li>수박</li>
+        <li>바나나</li>
+        <li>멜론</li>
+        <li>딸기</li>
+
+    </ul>
+</body>
+</html>

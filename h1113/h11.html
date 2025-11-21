@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포레스트 리솜</title>
+    <style>
+        *{padding: 0; margin: 0;}
+        body{width: 100%; height: 3000px;}
+        header{width: 100%; height: 121px; border-bottom: 1px solid #e8e8e8;
+            position: fixed; top:0; left: 0;
+            background: white; z-index: 10;
+        }
+        .banner{width: 100%; height: 600px; position: relative;
+            top:121px;
+            background: url("images/리솜2.jpg") no-repeat 0 -190px;
+            
+        }
+        @keyframes bannermove{
+            from{left: 1000px; color: rgba(255,255,255,0)}
+            to{left: 0px; color: rgba(255,255,255,1)}
+
+        }
+        .banner .banner_txt{position: relative;
+            color: white; letter-spacing: -0.7px;
+            left: 100px; top: 250px;
+        }
+        .banner_txt h4{font-size: 48px;
+            position: relative;
+            left: 1000px;
+            color: rgba(255,255,255,0);
+            animation: bannermove 1.5s forwards;
+        }
+        .banner_txt p{font-size: 24px;
+            position: relative;
+            left: 1000px;
+            color: rgba(255,255,255,0);
+            animation: bannermove 1.5s 0.5s forwards;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav></nav>
+    </header>
+    <div class="banner">
+        <div class="banner_txt">
+        <h4>파노라마 숲에서 즐기는 프라이빗 스파</h4>
+        <p>계절의 색을 담은 숲이 나만의 정원이 됩니다.<br>
+            자연과 함께하는 특별한 쉼을 경험해보세요.</p>
+    </div>
+    </div>
+    <div class="sect">
+
+    </div>
+</body>
+</html>

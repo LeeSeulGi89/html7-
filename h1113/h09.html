@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니메이션</title>
+    <style>
+        *{padding: 0; margin: 0;}
+        .main{width: 800px; height: 400px; border: 1px solid black;
+        margin: 50px auto;
+    }
+        .box{width: 100px; height: 100px; 
+        background: greenyellow;
+        border: 3px solid black;
+ 
+        animation: chg-bg 2s infinite alternate;
+        
+
+
+        /*  
+        animation-name: chg-bg;              /* 애니메이션 이름 */
+        /* animation-duration: 2s;          /* 애니메이션 시간 */
+        /* animation-direction: alternate;    /* 반대방향으로 재생
+        animation-iteration-count: infinite;   /* 무한반복 */
+        
+        
+
+    }
+
+        @keyframes chg-bg{
+            from{
+
+            }
+            to{
+                background: #a5d6ff;
+                border-radius: 50%;
+                transform: translate(400px,0)
+            }
+
+        }
+        @keyframes chg-rotate{
+
+        }
+        to{
+            transform: rotate(2s);
+        }
+
+        .c01{
+            width: 100px; height: 100%;
+            animation: rotate 2s infinite alternate;
+            
+
+
+        }
+        @keyframes rotata{
+            form{transform: rotate(0,0) ;}
+                50%{transform: rotate(180deg,0) ;}
+                to{transform: rotate(-180deg,-180deg) ;}
+            }
+        @keyframes rotata{
+            form{background: red;}
+            50%{background: green;}
+            to{background: blue;}
+            }
+
+    </style>
+</head>
+<body>
+    <div class="c01"></div>
+
+    <div class="main">
+        <div class="box"></div>
+    </div>
+</body>
+</html>

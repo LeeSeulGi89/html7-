@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응형웹</title>
+    <style>
+        *{padding: 0; margin: 0;}
+        .main{width: 80%; margin: 0 auto; font-size: 30px; text-align: center;}
+        header{width: 100%; height: 200px; background: rgb(143, 143, 252);}
+        section{width: 100%; display: flex;}
+        article{width: 80%; height: 600px; background: yellow;}
+        aside{width: 20%; height: 600px; background: green;
+        font-size: 24px;
+            position: relative;
+            left: 1000px;
+            color: rgba(255,255,255,0);
+            animation: aside 1.5s 0.5s forwards;
+        }
+        footer{width: 100%; height: 300px; background: pink;}
+        @media screen and (max-width: 800px){
+            section{display: block;}
+            aside{width: 100%; height: 200px;}
+            article{width: 100%;}
+        }
+        @keyframes aside{
+            from{left: 1000px; color: rgba(255,255,255,0)}
+            to{left: 0px; color: rgba(255,255,255,1)}
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="main">
+        <header>상단메뉴</header>
+        <section>
+            <article>내용부분</article>
+            <aside>옆 사이드바</aside>
+        </section>
+        <footer>푸터부분</footer>
+
+    </div>
+</body>
+</html>

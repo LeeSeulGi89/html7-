@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{padding: 0; margin: 0;}
+        div{border: 1px solid black;}
+        .main{width: 800px; height: 800px; margin: 100px;}
+        .c00{width: 200px; height: 200px;}
+        /* 포지션은 이동 */
+        .c02{position: relative; left: 100px; top: -100px;}
+        .c03{position: absolute; left: 200px; top: 100px;}
+        .sect{width: 100%; height: 300px; background: pink;}
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="c00 c01">1</div>
+        <div class="c00 c02">2</div>
+        <div class="c00 c03">3</div>
+        <div class="c00 c04">4</div>
+    </div>
+    <div class="sect"></div>
+</body>
+</html>

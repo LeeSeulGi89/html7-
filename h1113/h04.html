@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <style>
+        a{text-decoration: none; color:inherit;}
+        input:focus{background: pink;}
+        input:disabled{background: #fdebeb;}
+        input:checked + label {font-size:20px; font-weight: 700;}
+        input[type='checkbox']{display: none;}
+        
+        input[type='checkbox']+label{ 
+            display: inline-block; width:16px; height:16px;
+            background: url('images/radio_off.jpg');
+        }
+        input[type='checkbox']:checked+label{ 
+            display: inline-block; width:16px; height:16px;
+            background: url('images/radio_on.jpg');
+        }
+    </style>
+    <script>
+        function loginBtn(){
+            alert("로그인 진행")
+            console.log("체크박스 개수 : ", $("input[class='c00']").length)
+            console.log("체크된 개수 : ", $("input[class='c00']:checked").length)
+            /*
+            console.log("아이디 : ",$("#id").val());
+            console.log("패스워드 : ",$("#pw").val());
+            if($("#id").val() == ""){
+                alert("아이디를 입력하셔야 로그인이 가능합니다.");
+                $("#id").focus();
+            } 
+            */
+        }
+
+    </script>
+</head>
+<body>
+    <form action="#" method="post">
+        <label>아이디</label>
+        <input type="text" name="id" id="id" disabled  ><br>
+        <label>패스워드</label>
+        <input type="password" name="pw" id="pw" autofocus><br>
+        <label>취미</label><br>
+        <input type="checkbox" name="hobby" class="c00" id="game" value="game">
+        <label  for="game"></label><span>게임</span>
+        <input type="checkbox" name="hobby" id="golf" value="golf">
+        <label for="golf"></label><span>골프</span>
+        <input type="checkbox" name="hobby" id="swim" value="swim">
+        <label  for="swim"></label><span>수영</span>
+        <br>
+        <input type="button" onclick="loginBtn()" value="로그인"><br>
+    </form>
+    <ul>
+        <li><a href="http://www.naver.com">네이버</a></li>
+        <li><a href="http://www.google.co.kr">구글</a></li>
+        <li><a href="http://www.daum.net">다음</a></li>
+    </ul>
+    
+</body>
+</html>
